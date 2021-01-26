@@ -13,7 +13,6 @@ public class Aviron extends Sport
   }
 	
 	
-	
   public int gettimesession() {
 	  
 	  
