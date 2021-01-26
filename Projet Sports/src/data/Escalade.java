@@ -10,7 +10,7 @@ public class Escalade extends Sport
 		
      this.course_difficulty=course_difficulty;		
      this.time_session=time_session;		
-	
+	  
 	}
 	
 	

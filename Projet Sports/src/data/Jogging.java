@@ -7,7 +7,7 @@ public class Jogging extends Sport
 	
 	public Jogging(int duree,int distance) {
 		
-		this.duree=duree;
+		this.duree=duree; 
 		this.distance=distance;
 		
 			
