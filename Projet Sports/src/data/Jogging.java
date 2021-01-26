@@ -2,16 +2,44 @@ package data;
 
 public class Jogging extends Sport
 {
-private int duree_seance;
-private int distance_parcourue;
-
-public Jogging(int duree_seance,int distance_parcourue) {
-	this.duree_seance=duree_seance;
-	this.distance_parcourue=distance_parcourue;
+	private int duree;
+	private int distance;
 	
+	public Jogging(int duree,int distance) {
+		
+		this.duree=duree;
+		this.distance=distance;
+		
+		
+		
+	}
 	
-	
-}
+    public	int getduree() {
+		
+		
+		
+	return duree;	
+		
+	}
+	 public void setduree(int duree) {
+		
+		
+	this.duree=duree;	
+		
+	}
+	public int getdistance() {
+		
+		
+	return distance;	
+		
+	}
+	 
+	public void setdistance(int distance) {
+		
+		
+	this.distance=distance;	
+		
+	}
 
 
 
