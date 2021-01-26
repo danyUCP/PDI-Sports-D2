@@ -13,7 +13,6 @@ public class SeanceJogging extends Seance
 		this.distance = distance;
 	}
 
-
 	public int getDistance() 
 	{
 		return distance;

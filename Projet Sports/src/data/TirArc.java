@@ -11,7 +11,6 @@ public class TirArc extends Sport
 		this.affected_area=affected_area;
 		
 		
-		
 	}
 	public int gettarget_distance() {
 		

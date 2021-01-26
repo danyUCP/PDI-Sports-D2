@@ -15,7 +15,6 @@ public class SeanceAviron extends Seance
 		this.coupsPagaie = coupsPagaie;
 	}
 
-
 	public int getDistance() 
 	{
 		return distance;

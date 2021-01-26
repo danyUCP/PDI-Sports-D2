@@ -16,7 +16,6 @@ public class Musculation extends Sport
 	}
 	
 	
-	
 	public int getnumber_repetition() {
 		
 		

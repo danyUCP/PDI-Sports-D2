@@ -6,7 +6,7 @@ public class Aviron extends Sport
 	int travelled_distance;
 	int timesession;
 	
-  public Rowing(	int travelled_distance,int timesession) {
+  public Rowing(int travelled_distance,int timesession) {
 	
 	this.travelled_distance=travelled_distance;
 	this.timesession=timesession;

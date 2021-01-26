@@ -10,8 +10,7 @@ public class Jogging extends Sport
 		this.duree=duree;
 		this.distance=distance;
 		
-		
-		
+			
 	}
 	
     public	int getduree() {
