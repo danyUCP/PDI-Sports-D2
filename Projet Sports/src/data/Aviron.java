@@ -10,7 +10,7 @@ public class Aviron extends Sport
 	
 	this.travelled_distance=travelled_distance;
 	this.timesession=timesession;
-  }      
+  }        
 	   
 	
   public int gettimesession() {
