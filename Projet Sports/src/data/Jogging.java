@@ -39,7 +39,8 @@ public class Jogging extends Sport
 	this.distance=distance;	
 		
 	}
-
+    
 
 
 }
+    
