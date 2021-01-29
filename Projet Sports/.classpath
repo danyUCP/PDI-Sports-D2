@@ -1,53 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/aopalliance.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/aspectjweaver.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/cglib-2.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/cglib-nodep-2.1_3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/commons-logging.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/ejb3-persistence.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/hibernate3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/hibernate-annotations.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/hibernate-commons-annotations.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/javassist-3.9.0.GA.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/javax.faces-2.2.8.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/jcommon-1.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/jfreechart-1.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/jstl-api-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/jstl-impl-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/junit.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/log4j.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/mysql-connector-java-5.1.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/postgresql-8.4-702.jdbc4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/primefaces-7.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/servlet.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/slf4j-api-1.5.8.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/slf4j-log4j12.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-aop-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-aspects-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-beans-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-context-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-context-support-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-core-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-expression-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-instrument-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-jdbc-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-jms-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-messaging-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-orm-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-oxm-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-test-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-tx-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-web-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-webmvc-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-webmvc-portlet-4.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexa/Downloads/libs/libs/spring-websocket-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/aopalliance.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/cglib-2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/commons-logging.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/hibernate3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/javax.faces-2.2.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/jcommon-1.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/jfreechart-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/jstl-api-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/jstl-impl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/junit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/log4j.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/mysql-connector-java-5.1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/postgresql-8.4-702.jdbc4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/primefaces-7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/servlet.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/slf4j-log4j12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-aop-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-aspects-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-beans-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-context-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-context-support-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-core-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-expression-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-instrument-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-jdbc-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-jms-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-messaging-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-orm-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-oxm-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-test-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-tx-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-web-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-webmvc-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-webmvc-portlet-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Julien/Desktop/L3 Info/GPI/Cours prof/libs/libs/spring-websocket-4.2.2.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
