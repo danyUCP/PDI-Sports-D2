@@ -4,6 +4,8 @@ package ihm;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -38,12 +40,12 @@ public class Register extends JFrame implements ActionListener{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
 		Register frame = new Register();
 		frame.setVisible(true);
 			
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -134,6 +136,7 @@ public class Register extends JFrame implements ActionListener{
 		
 		rdbtnNon.addActionListener(this);
 		rdbtnNewRadioButton.addActionListener(this);
+		btnNewButton.addActionListener(new Cancel());
 	}
 
 	
@@ -146,6 +149,18 @@ public class Register extends JFrame implements ActionListener{
 			ChoiseSport dialog = new ChoiseSport();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
+		}
+	}
+	
+	public class Cancel implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			/**
+			 * This return to index panel
+			 */
+			Index frame = new Index();
+			frame.setVisible(true);
+			
 		}
 	}
 }

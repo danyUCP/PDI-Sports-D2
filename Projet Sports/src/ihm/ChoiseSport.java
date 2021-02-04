@@ -18,7 +18,8 @@ import javax.swing.JRadioButton;
 public class ChoiseSport extends JDialog {
 
 	/**
-	 * 
+	 * @author PDI_D2
+	 * Use dialog box in the register
 	 */
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();

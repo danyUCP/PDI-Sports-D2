@@ -28,6 +28,7 @@ public class Index extends JFrame {
 	private JLabel lblNewLabel,new_compte,id,id_name, id_name_1, lblNewLabel_1,lblNewLabel_2,present;
 	private JTextField textField;
 	JButton btnNewButton_1_1,btnNewButton_1;
+	
 
 	/**
 	 * Launch the application.
@@ -126,10 +127,13 @@ public class Index extends JFrame {
 		btnNewButton_1.addActionListener(new Cancel());
 		
 		new_compte.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("Créer un nouveau compte");
-            }
+           
+    public void mouseClicked(MouseEvent e) {
+        Index frame = new Index();
+        frame.setVisible(false); // se rendre invisible
+        Register re = new Register();
+        re.setVisible(true);
+        }
 
         });
 	}
@@ -140,7 +144,6 @@ public class Index extends JFrame {
 	 */
 	public class Submit implements ActionListener {
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			
 			System.out.println("Vous avez cliquer sur Submit");
@@ -150,10 +153,11 @@ public class Index extends JFrame {
 	}
 	public class Cancel implements ActionListener {
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			System.out.println("Vous avez cliquer sur Cancel");
+			/**
+			 * This function close the panel
+			 */
+			dispose();
 			
 		}
 		  
