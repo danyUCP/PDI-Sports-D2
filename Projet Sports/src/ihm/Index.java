@@ -4,7 +4,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import util.HibernateUtil;
+import data.User;
+import manager.UserManager;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.SwingConstants;
@@ -129,8 +134,7 @@ public class Index extends JFrame {
 		new_compte.addMouseListener(new MouseAdapter() {
            
     public void mouseClicked(MouseEvent e) {
-        Index frame = new Index();
-        frame.setVisible(false); // se rendre invisible
+        dispose();
         Register re = new Register();
         re.setVisible(true);
         }
@@ -144,9 +148,44 @@ public class Index extends JFrame {
 	 */
 	public class Submit implements ActionListener {
 
+		@SuppressWarnings("static-access")
 		public void actionPerformed(ActionEvent e) {
-			
-			System.out.println("Vous avez cliquer sur Submit");
+			User u=new User();
+			UserManager use= new UserManager();
+			if(!textField.getText().equals("") && !last_Name.getText().equals("")) {
+				/*if(textField.getText()==u.getMdp() && last_Name.getText()==u.getMdp()) {
+					System.out.println("Vous avez renter "+ textField.getText()+" et "+last_Name.getText());
+					System.out.println("Vous avez cliquer sur Submit");
+				}*/
+				use.addUser("e-sn", "123", "NIL", "Sam", "M", 30, (float) 1.70, 60);
+				use.addUser("e-KL", "123", "LIL", "Kai", "F", 20, (float)1.60, 40);
+				use.addUser("e-xm", "123", "Mihuel", "xavier", "M", 25, (float)1.90, 80);
+				String a= use.getInfoUser(1);
+				HibernateUtil.sessionFactory.close();
+				if(a.equals(textField.getText()+last_Name.getText())) {
+					dispose();
+					Inbox frame = new Inbox();
+					frame.setVisible(true);
+				}
+				
+				else {
+					
+					JOptionPane warning;
+					warning = new JOptionPane();
+				    warning.showMessageDialog(null, "L'identifiant ou le mot de passe est incorecte", "Erreur", JOptionPane.ERROR_MESSAGE);
+				    if(a.equals(textField.getText()+last_Name.getText())) {
+						dispose();
+						Inbox frame = new Inbox();
+						frame.setVisible(true);
+					}
+				}
+				
+				
+			}
+			else {
+				JOptionPane info = new JOptionPane();
+				info.showMessageDialog(null, "Vous devez renter un identifiant et un mot de passe", "Information", JOptionPane.INFORMATION_MESSAGE);
+			}
 			
 		}
 		  

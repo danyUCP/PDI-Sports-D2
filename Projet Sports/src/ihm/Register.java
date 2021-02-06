@@ -158,6 +158,7 @@ public class Register extends JFrame implements ActionListener{
 			/**
 			 * This return to index panel
 			 */
+			dispose();
 			Index frame = new Index();
 			frame.setVisible(true);
 			

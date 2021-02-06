@@ -1,7 +1,15 @@
 package data;
 
-
+/**
+ * 
+ * @author PDI_D2
+ * This class create User which will serve as a table in the base
+ *
+ */
 public class User {
+	/**
+	 * Attributes of the class otherwise the fields of the table
+	 */
 	private int idUser;
 	private String login;
 	private String mdp;
@@ -12,6 +20,22 @@ public class User {
 	private float size;
 	private float weight;
 	
+	public User() {
+		
+	}
+	
+	/**
+	 * Constructor
+	 * @param idUser
+	 * @param login
+	 * @param mdp
+	 * @param firstname
+	 * @param lastname
+	 * @param sexe
+	 * @param age
+	 * @param size
+	 * @param weight
+	 */
 	public User(int idUser, String login, String mdp, String firstname, String lastname, String sexe, int age,
 			float size, float weight) {
 		super();
@@ -80,5 +104,17 @@ public class User {
 	public void setIdUser(int idUser) {
 		this.idUser = idUser;
 	}
+
+	/**
+	 * This method return the character string representing the objects
+	 */
+	public String toString() {
+		return "User [idUser=" + idUser + ", login=" + login + ", mdp=" + mdp + ", firstname=" + firstname
+				+ ", lastname=" + lastname + ", sexe=" + sexe + ", age=" + age + ", size=" + size + ", weight=" + weight
+				+ "]";
+	}
+	
+	
+	
 	
 }
