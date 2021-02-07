@@ -41,7 +41,7 @@ public LineChartJogging( String applicationTitle , String chartTitle ) {
       dataset.addValue( 300 , "Jogging distance vs temps" , "120" );
       dataset.addValue( 50 , "Jogging distance vs temps" , "730" );
       return dataset;
-   }
+   }    
    
    public static void main( String[ ] args ) {
 	   LineChartJogging chart = new LineChartJogging(

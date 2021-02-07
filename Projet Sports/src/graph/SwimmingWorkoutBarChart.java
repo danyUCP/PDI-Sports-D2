@@ -69,7 +69,7 @@ public class SwimmingWorkoutBarChart extends ApplicationFrame  {
 		dataset.addValue(4.0, series4, category5);
 
 		return dataset;
-   
+            
 	}
 
 	private JFreeChart createChart(CategoryDataset dataset) {

@@ -63,7 +63,7 @@ public class RowingWorkoutLine extends ApplicationFrame {
 
 		return dataset;
 
-	}  
+	}     
 
 	private JFreeChart createChart(XYDataset dataset) {
 		return ChartFactory.createXYLineChart("RowingLine Chart Demo 6", "session", "distance (m)", dataset, PlotOrientation.VERTICAL, true, true, false);

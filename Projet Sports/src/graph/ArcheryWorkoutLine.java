@@ -66,7 +66,7 @@ public class ArcheryWorkoutLine extends ApplicationFrame  {
 
 		return dataset;
 
-	}         
+	}                 
 
 	private JFreeChart createChart(XYDataset dataset) {
 		return ChartFactory.createXYLineChart("ArcheryLine Chart Demo 6", "X", "Y", dataset, PlotOrientation.VERTICAL, true, true, false);
