@@ -29,7 +29,7 @@ public class ClimbingWorkoutPie extends ApplicationFrame  {
 	
 		return dataset;
 	}
-
+    
 	private JFreeChart createChart(PieDataset dataset) {
 		return ChartFactory.createPieChart("Climbing Workout Pie Chart", dataset, true, true, false);
 	}

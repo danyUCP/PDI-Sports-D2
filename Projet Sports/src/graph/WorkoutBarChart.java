@@ -61,7 +61,7 @@ public class WorkoutBarChart extends ApplicationFrame {
 
 		return dataset;
 
-	}
+	}   
 
 	private JFreeChart createChart(CategoryDataset dataset) {
 

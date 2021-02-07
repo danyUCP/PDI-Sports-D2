@@ -42,5 +42,5 @@ public class ArcheryWorkoutPieChart extends JFrame {
 		demo.pack();
 		RefineryUtilities.centerFrameOnScreen(demo);
 		demo.setVisible(true);
-	}
+	}  
 }

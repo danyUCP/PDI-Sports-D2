@@ -65,7 +65,7 @@ public class ClimbingWorkoutLine extends ApplicationFrame  {
 		return dataset;
 
 	}
-
+   
 	private JFreeChart createChart(XYDataset dataset) {
 		return ChartFactory.createXYLineChart("ClimbingWorkoutLine Chart Demo 6", "session", "session duration", dataset, PlotOrientation.VERTICAL, true, true, false);
 	}
