@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
@@ -126,6 +127,13 @@ public class Register extends JFrame implements ActionListener{
 		rdbtnNon.setBounds(293, 217, 62, 21);
 		contentPane.add(rdbtnNon);
 		
+		/**
+		 * Allows you to choose just 1 single button
+		 */
+		ButtonGroup bg = new ButtonGroup();
+		bg.add(rdbtnNewRadioButton);
+		bg.add(rdbtnNon);
+		
 		JLabel sport = new JLabel("Etes vous sportif?");
 		sport.setBounds(27, 221, 107, 13);
 		contentPane.add(sport);
@@ -134,23 +142,12 @@ public class Register extends JFrame implements ActionListener{
 		Passwork.setBounds(50, 321, 78, 13);
 		contentPane.add(Passwork);
 		
-		rdbtnNon.addActionListener(this);
-		rdbtnNewRadioButton.addActionListener(this);
+		rdbtnNon.addActionListener(new Action());
+		rdbtnNewRadioButton.addActionListener(new Action());
 		btnNewButton.addActionListener(new Cancel());
 	}
 
 	
-	public void actionPerformed(ActionEvent arg0) {
-		
-		if(arg0.getSource()==rdbtnNon) {
-		System.out.println("Vous ne pratiquez pas de sport?!");
-		}
-		else {
-			ChoiseSport dialog = new ChoiseSport();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		}
-	}
 	
 	public class Cancel implements ActionListener {
 
@@ -163,5 +160,35 @@ public class Register extends JFrame implements ActionListener{
 			frame.setVisible(true);
 			
 		}
+	}
+	
+	/**
+	 * 
+	 * this class implements the actions of the jbuttons, 
+	 * which prevents the events from occurring twice
+	 * Which was the case directly in the method actionPerformed
+	 *
+	 */
+	public class Action implements ActionListener {
+
+		public void actionPerformed(ActionEvent arg0) {
+			if(arg0.getSource()==rdbtnNon) {
+				System.out.println("Vous ne pratiquez pas de sport?!");
+				}
+				
+				if(arg0.getSource()==rdbtnNewRadioButton) {
+						
+						ChoiseSport dialog = new ChoiseSport();
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+				}	
+			
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

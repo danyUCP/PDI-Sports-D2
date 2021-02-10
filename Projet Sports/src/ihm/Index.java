@@ -5,7 +5,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import util.HibernateUtil;
-import data.User;
 import manager.UserManager;
 
 import javax.swing.JLabel;
@@ -150,7 +149,7 @@ public class Index extends JFrame {
 
 		@SuppressWarnings("static-access")
 		public void actionPerformed(ActionEvent e) {
-			User u=new User();
+			//User u=new User();
 			UserManager use= new UserManager();
 			if(!textField.getText().equals("") && !last_Name.getText().equals("")) {
 				/*if(textField.getText()==u.getMdp() && last_Name.getText()==u.getMdp()) {
@@ -165,6 +164,7 @@ public class Index extends JFrame {
 				if(a.equals(textField.getText()+last_Name.getText())) {
 					dispose();
 					Inbox frame = new Inbox();
+					frame.setUndecorated(true);
 					frame.setVisible(true);
 				}
 				

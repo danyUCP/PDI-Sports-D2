@@ -11,6 +11,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 
 import javax.swing.JRadioButton;
@@ -24,12 +26,12 @@ public class ChoiseSport extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JRadioButton R1,R2, R3, R4, R5, R6;
+	JButton cancelButton;
 
 	/**
 	 * Launch the application.
 	 */
-	/**
-	 * public static void main(String[] args) {
+	 /*public static void main(String[] args) {
 		ChoiseSport dialog = new ChoiseSport();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -88,17 +90,29 @@ public class ChoiseSport extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
+				cancelButton.addActionListener(new Action());
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
-	
+
+
 	void radioButtons_itemStateChanged(ItemEvent e) {
         Object source = e.getSource();
         if (source == R1) System.out.println("Vous pratiquez du jogging");
         if (source == R2) System.out.println("Vous pratiquez dde la musculation");
         if (source == R3) System.out.println("Vous pratiquez du tir à l'arc");
     }
+	
+	public class Action implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand().equals("Cancel")) {
+				  dispose();
+			}
+		}
+	}
 }

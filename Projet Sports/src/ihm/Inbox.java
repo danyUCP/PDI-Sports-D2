@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -33,6 +34,7 @@ public class Inbox extends JFrame {
 	 */
 	/*public static void main(String[] args) {
 		Inbox frame = new Inbox();
+		frame.setUndecorated(true);
 		frame.setVisible(true);
 	}*/
 
@@ -167,8 +169,17 @@ public class Inbox extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			int retour = JOptionPane.showOptionDialog(null, 
+                    "Voulez-vous vraiment vous déconnecter?", 
+                    "Erreur", 
+                    //JOptionPane yes no
+                    JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.ERROR_MESSAGE, 
+                    null, null, null);
+			if(retour==0) {
+				dispose();
+			}
 			
-			System.out.println("Vous avez cliquer sur déconnexion");
 			
 		}
 		  
