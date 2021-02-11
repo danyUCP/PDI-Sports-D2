@@ -39,6 +39,7 @@ public class Index extends JFrame {
 	 */
 	public static void main(String[] args) {
 		Index frame = new Index();
+		//frame.setUndecorated(true);
 		frame.setVisible(true);
 	}
 
@@ -47,7 +48,7 @@ public class Index extends JFrame {
 	 */
 	public Index() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 614, 472);
+		setBounds(100, 100, 858, 496);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,69 +59,69 @@ public class Index extends JFrame {
 		present.setBackground(new Color(255, 255, 255));
 		present.setIcon(new ImageIcon(Index.class.getResource("/images/chart-ConvertImage.jpg")));
 		present.setOpaque(true);
-		present.setBounds(-2, 107, 271, 435);
+		present.setBounds(0, 167, 363, 335);
 		contentPane.add(present);
 		
 		last_Name = new JTextField();
 		last_Name.setColumns(10);
-		last_Name.setBounds(342, 223, 212, 28);
+		last_Name.setBounds(504, 223, 212, 28);
 		contentPane.add(last_Name);
 		
 		lblNewLabel = new JLabel("Bienvenue sur");
 		lblNewLabel.setForeground(new Color(0, 128, 128));
 		lblNewLabel.setFont(new Font("Sitka Small", Font.BOLD | Font.ITALIC, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(322, 8, 239, 57);
+		lblNewLabel.setBounds(430, 8, 239, 57);
 		contentPane.add(lblNewLabel);
 		
 		id = new JLabel("S'identifier");
 		id.setFont(new Font("Sitka Small", Font.PLAIN, 12));
 		id.setForeground(new Color(0, 128, 128));
-		id.setBounds(397, 68, 122, 36);
+		id.setBounds(547, 64, 122, 36);
 		contentPane.add(id);
 		
 		id_name = new JLabel("Identifiant");
 		id_name.setFont(new Font("Sitka Banner", Font.PLAIN, 13));
 		id_name.setForeground(new Color(0, 128, 128));
-		id_name.setBounds(279, 128, 58, 36);
+		id_name.setBounds(410, 128, 58, 36);
 		contentPane.add(id_name);
 		
 		id_name_1 = new JLabel("Mot de passe");
 		id_name_1.setForeground(new Color(0, 128, 128));
 		id_name_1.setFont(new Font("Sitka Banner", Font.PLAIN, 13));
-		id_name_1.setBounds(272, 220, 77, 36);
+		id_name_1.setBounds(391, 220, 77, 36);
 		contentPane.add(id_name_1);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(342, 131, 212, 28);
+		textField.setBounds(504, 131, 212, 28);
 		contentPane.add(textField);
 		
 		lblNewLabel_1 = new JLabel("LET'S GO");
 		lblNewLabel_1.setFont(new Font("Matura MT Script Capitals", Font.PLAIN, 14));
 		lblNewLabel_1.setForeground(new Color(0, 128, 128));
-		lblNewLabel_1.setBounds(494, 0, 106, 71);
+		lblNewLabel_1.setBounds(610, 0, 106, 71);
 		contentPane.add(lblNewLabel_1);
 		
 		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon(Index.class.getResource("/images/running.png")));
-		lblNewLabel_2.setBounds(289, 0, 115, 174);
+		lblNewLabel_2.setBounds(353, 10, 115, 174);
 		contentPane.add(lblNewLabel_2);
 		
-		btnNewButton_1 = new JButton("Cancel");
+		btnNewButton_1 = new JButton("Close");
 		btnNewButton_1.setBackground(Color.GRAY);
-		btnNewButton_1.setBounds(313, 344, 91, 21);
+		btnNewButton_1.setBounds(504, 344, 91, 21);
 		contentPane.add(btnNewButton_1);
 		
 		btnNewButton_1_1 = new JButton("Submit");
 		btnNewButton_1_1.setBackground(Color.GRAY);
-		btnNewButton_1_1.setBounds(463, 344, 91, 21);
+		btnNewButton_1_1.setBounds(625, 344, 91, 21);
 		contentPane.add(btnNewButton_1_1);
 		
 		new_compte = new JLabel("Cr\u00E9er un nouveau compte");
 		new_compte.setHorizontalAlignment(SwingConstants.CENTER);
 		new_compte.setForeground(Color.RED);
-		new_compte.setBounds(359, 394, 160, 13);
+		new_compte.setBounds(536, 394, 160, 13);
 		contentPane.add(new_compte);
 		
 		/**
