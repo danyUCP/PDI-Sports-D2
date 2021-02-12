@@ -2,19 +2,22 @@ package data;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+
+@Entity
 public class RowingWorkout extends Workout
 {
 	private int distance;
-	private int paddleStrokes;
+	private int paddle_strokes;
 
 
-	
-
-	public RowingWorkout(Date date, int duration, int distance, int paddleStrokes) {
+	public RowingWorkout(Date date, int duration, int distance, int paddle_strokes) 
+	{
 		super(date, duration);
 		this.distance = distance;
-		this.setPaddleStrokes(paddleStrokes);
+		this.paddle_strokes = paddle_strokes;
 	}
+
 
 	public int getDistance() 
 	{
@@ -26,12 +29,14 @@ public class RowingWorkout extends Workout
 		this.distance = distance;
 	}
 
-	public int getPaddleStrokes() {
-		return paddleStrokes;
+	public int getPaddleStrokes() 
+	{
+		return paddle_strokes;
 	}
 
-	public void setPaddleStrokes(int paddleStrokes) {
-		this.paddleStrokes = paddleStrokes;
+	public void setPaddleStrokes(int paddle_strokes) 
+	{
+		this.paddle_strokes = paddle_strokes;
 	}
 
 	

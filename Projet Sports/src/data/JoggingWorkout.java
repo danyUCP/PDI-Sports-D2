@@ -2,18 +2,20 @@ package data;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+
+@Entity
 public class JoggingWorkout extends Workout
 {
 	private int distance;
-	public JoggingWorkout(Date date, int duration, int distance) {
+	
+	
+	public JoggingWorkout(Date date, int duration, int distance) 
+	{
 		super(date, duration);
-		this.distance=distance;
+		this.distance = distance;
 	}
 
-	
-
-	
-	
 
 	public int getDistance() 
 	{
@@ -24,10 +26,5 @@ public class JoggingWorkout extends Workout
 	{
 		this.distance = distance;
 	}
-
-
-	
-	
-	
 
 }

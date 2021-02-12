@@ -1,21 +1,29 @@
 package data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * 
  * @author PDI_D2
  * This class create User which will serve as a table in the base
  *
  */
+@Entity
 public class User {
 	/**
 	 * Attributes of the class otherwise the fields of the table
 	 */
-	private int idUser;
+	@Id
+	@GeneratedValue
+	private int id;
+	
 	private String login;
 	private String mdp;
 	private String firstname;
 	private String lastname;
-	private String sexe;
+	private String gender;
 	private int age;
 	private float size;
 	private float weight;
@@ -31,87 +39,129 @@ public class User {
 	 * @param mdp
 	 * @param firstname
 	 * @param lastname
-	 * @param sexe
+	 * @param gender
 	 * @param age
 	 * @param size
 	 * @param weight
 	 */
-	public User(int idUser, String login, String mdp, String firstname, String lastname, String sexe, int age,
-			float size, float weight) {
-		super();
-		this.idUser = idUser;
+	public User(String login, String mdp, String firstname, String lastname, String gender, int age, float size, float weight) 
+	{
 		this.login = login;
 		this.mdp = mdp;
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.sexe = sexe;
+		this.gender = gender;
 		this.age = age;
 		this.size = size;
 		this.weight = weight;
 	}
 	
-	public String getLogin() {
+	
+	public String getLogin() 
+	{
 		return login;
 	}
-	public void setLogin(String login) {
+	
+	public void setLogin(String login) 
+	{
 		this.login = login;
 	}
-	public String getMdp() {
+	
+	public String getMdp() 
+	{
 		return mdp;
 	}
-	public void setMdp(String mdp) {
+	
+	public void setMdp(String mdp) 
+	{
 		this.mdp = mdp;
 	}
-	public String getFirstname() {
+	
+	public String getFirstname() 
+	{
 		return firstname;
 	}
-	public void setFirstname(String firstname) {
+	
+	public void setFirstname(String firstname) 
+	{
 		this.firstname = firstname;
 	}
-	public String getLastname() {
+	
+	public String getLastname() 
+	{
 		return lastname;
 	}
-	public void setLastname(String lastname) {
+	
+	public void setLastname(String lastname)
+	{
 		this.lastname = lastname;
 	}
-	public String getSexe() {
-		return sexe;
+	
+	public String getGender() 
+	{
+		return gender;
 	}
-	public void setSexe(String sexe) {
-		this.sexe = sexe;
+	
+	public void setGender(String gender) 
+	{
+		this.gender = gender;
 	}
-	public int getAge() {
+	
+	public int getAge() 
+	{
 		return age;
 	}
-	public void setAge(int age) {
+	
+	public void setAge(int age) 
+	{
 		this.age = age;
 	}
-	public float getSize() {
+	
+	public float getSize() 
+	{
 		return size;
 	}
-	public void setSize(float size) {
+	
+	public void setSize(float size) 
+	{
 		this.size = size;
 	}
-	public float getWeight() {
+	
+	public float getWeight() 
+	{
 		return weight;
 	}
-	public void setWeight(float weight) {
+	
+	public void setWeight(float weight) 
+	{
 		this.weight = weight;
 	}
-	public int getIdUser() {
-		return idUser;
+	
+	public int getId() 
+	{
+		return id;
 	}
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	
+	public void setId(int id) 
+	{
+		this.id = id;
 	}
 
 	/**
 	 * This method return the character string representing the objects
 	 */
-	public String toString() {
-		return "User [idUser=" + idUser + ", login=" + login + ", mdp=" + mdp + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", sexe=" + sexe + ", age=" + age + ", size=" + size + ", weight=" + weight
-				+ "]";
+	public String toString() 
+	{
+		String s = "";
+		
+		s += "User " + id + "\n";
+		s += "Name : " + firstname + " " + lastname + "\n";
+		s += "Gender : " + gender + "\n";
+		s += "Age : " + age + "\n";
+		s += "Size : " + size + " cm\n";
+		s += "Weight : " + weight + " kg\n";
+	
+		return s;
 	}
 	
 	

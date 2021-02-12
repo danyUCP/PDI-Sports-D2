@@ -23,24 +23,23 @@ public class UserManager {
 	 * @param mdp
 	 * @param firstname
 	 * @param lastname
-	 * @param sexe
+	 * @param gender
 	 * @param age
 	 * @param size
 	 * @param weight
 	 */
-	public void addUser(String login,String mdp,String firstname,String lastname,String sexe,int age,float size,float weight) {
+	public void addUser(String login,String mdp,String firstname,String lastname,String gender,int age,float size,float weight) 
+	{
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		User u=new User();
-		u.getAge();
-		u.getFirstname();
-		u.getLastname();
+
 		u.setAge(age);
 		u.setLogin(login);
 		u.setFirstname(firstname);
 		u.setLastname(lastname);
 		u.setMdp(mdp);
-		u.setSexe(sexe);
+		u.setGender(gender);
 		u.setSize(size);
 		u.setWeight(weight);
 		session.save(u);

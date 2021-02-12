@@ -2,45 +2,67 @@ package data;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+
+@Entity
 public class SwimmingWorkout extends Workout
 {
-	int meterBreaststroke;
-	int meterbutterfly;
-	int meterCrowl;
-	int meterback;
+	int breaststroke_lenghts;
+	int butterfly_lenghts;
+	int crowl_lenghts;
+	int backstroke_lenghts;
 	
-public SwimmingWorkout(Date date, int duration, int meterBreaststroke, int meterbutterfly, int meterCrowl,
-		int meterback) {
-	super(date, duration);
-	this.meterBreaststroke = meterBreaststroke;
-	this.meterbutterfly = meterbutterfly;
-	this.meterCrowl = meterCrowl;
-	this.meterback = meterback;
-}
-public int getMeterBreaststroke() {
-	return meterBreaststroke;
-}
-public void setMeterBreaststroke(int meterBreaststroke) {
-	this.meterBreaststroke = meterBreaststroke;
-}
-public int getMeterbutterfly() {
-	return meterbutterfly;
-}
-public void setMeterbutterfly(int meterbutterfly) {
-	this.meterbutterfly = meterbutterfly;
-}
-public int getMeterCrowl() {
-	return meterCrowl;
-}
-public void setMeterCrowl(int meterCrowl) {
-	this.meterCrowl = meterCrowl;
-}
-public int getMeterback() {
-	return meterback;
-}
-public void setMeterback(int meterback) {
-	this.meterback = meterback;
-}
+	
+	public SwimmingWorkout(Date date, int duration, int breaststroke_lenghts, int butterfly_lenghts, int crowl_lenghts, int backstroke_lenghts) 
+	{
+		super(date, duration);
+		this.breaststroke_lenghts = breaststroke_lenghts;
+		this.butterfly_lenghts = butterfly_lenghts;
+		this.crowl_lenghts = crowl_lenghts;
+		this.backstroke_lenghts = backstroke_lenghts;
+	}
 
 
+
+	public int getBreaststroke_lenghts() 
+	{
+		return breaststroke_lenghts;
+	}
+
+	public void setBreaststroke_lenghts(int breaststroke_lenghts) 
+	{
+		this.breaststroke_lenghts = breaststroke_lenghts;
+	}
+
+	public int getButterfly_lenghts() 
+	{
+		return butterfly_lenghts;
+	}
+
+	public void setButterfly_lenghts(int butterfly_lenghts) 
+	{
+		this.butterfly_lenghts = butterfly_lenghts;
+	}
+
+	public int getCrowl_lenghts() 
+	{
+		return crowl_lenghts;
+	}
+
+	public void setCrowl_lenghts(int crowl_lenghts) 
+	{
+		this.crowl_lenghts = crowl_lenghts;
+	}
+
+	public int getBackstroke_lenghts() 
+	{
+		return backstroke_lenghts;
+	}
+
+	public void setBackstroke_lenghts(int backstroke_lenghts) 
+	{
+		this.backstroke_lenghts = backstroke_lenghts;
+	}
+	
+	
 }
