@@ -28,13 +28,11 @@ public class User {
 	private float size;
 	private float weight;
 	
-	public User() {
-		
-	}
+	public User() {	}
 	
 	/**
 	 * Constructor
-	 * @param idUser
+	 * @param id
 	 * @param login
 	 * @param mdp
 	 * @param firstname

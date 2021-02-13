@@ -25,6 +25,8 @@ public class DBConnection {
 			config.addAnnotatedClass(RowingWorkout.class);
 			config.addAnnotatedClass(SwimmingWorkout.class);
 			config.addAnnotatedClass(MusculationWorkout.class);
+			config.addAnnotatedClass(Target.class);
+			config.addAnnotatedClass(Exercise.class);
 
 			configFile = new File("resources/connection.cfg.xml");
 			System.out.println(configFile.getAbsolutePath());

@@ -9,6 +9,7 @@ public class JoggingWorkout extends Workout
 {
 	private int distance;
 	
+	public JoggingWorkout() {	}
 	
 	public JoggingWorkout(Date date, int duration, int distance) 
 	{
@@ -27,4 +28,12 @@ public class JoggingWorkout extends Workout
 		this.distance = distance;
 	}
 
+
+	@Override
+	public String toString() 
+	{
+		return "Jogging Workout -> " + super.toString() + " | Distance : " + distance + "m";
+	}
+
+	
 }

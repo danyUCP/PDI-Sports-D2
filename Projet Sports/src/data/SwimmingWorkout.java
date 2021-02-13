@@ -13,6 +13,8 @@ public class SwimmingWorkout extends Workout
 	int backstroke_lenghts;
 	
 	
+	public SwimmingWorkout() {	}
+	
 	public SwimmingWorkout(Date date, int duration, int breaststroke_lenghts, int butterfly_lenghts, int crowl_lenghts, int backstroke_lenghts) 
 	{
 		super(date, duration);
@@ -23,6 +25,10 @@ public class SwimmingWorkout extends Workout
 	}
 
 
+	public int getTotalLenghts() 
+	{
+		return breaststroke_lenghts + butterfly_lenghts + crowl_lenghts + backstroke_lenghts;
+	}
 
 	public int getBreaststroke_lenghts() 
 	{
@@ -64,5 +70,16 @@ public class SwimmingWorkout extends Workout
 		this.backstroke_lenghts = backstroke_lenghts;
 	}
 	
+	@Override
+	public String toString() 
+	{
+		String s = "";
+		
+		s += "Swimming Workout -> " + super.toString() + "\n";
+		s += "\tBrasse -> " + breaststroke_lenghts + " | Papillon -> " + butterfly_lenghts + " | Crowl -> " + crowl_lenghts + " | Dos Crowlé -> " + backstroke_lenghts + "\n";
+		s += "\tTotal de longueurs -> " + this.getTotalLenghts();
+		
+		return s;
+	}
 	
 }

@@ -28,6 +28,9 @@ public abstract class Workout
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = User.class)
 	private User user;
 	
+	
+	public Workout() {	}
+	
 	public Workout(Date date, int duration) 
 	{
 		this.date = date;
@@ -63,6 +66,13 @@ public abstract class Workout
 	public void setDuration(int duration) 
 	{
 		this.duration = duration;
+	}
+	
+	
+	@Override
+	public String toString() 
+	{
+		return date + " - " + duration + " min";
 	}
 	
 

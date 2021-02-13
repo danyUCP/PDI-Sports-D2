@@ -1,43 +1,54 @@
 package data;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ArcheryWorkout extends Workout
 {
-	private int target_distance;
-	private String affected_area;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Target.class)
+	private List<Target> targets;
 	
+	public ArcheryWorkout() {	}
 	
-	public ArcheryWorkout(Date date, int duration, int target_distance, String affected_area) 
+	public ArcheryWorkout(Date date, int duration) 
 	{
 		super(date, duration);
-		this.target_distance = target_distance;
-		this.affected_area = affected_area;
+		this.targets = new ArrayList<Target>();
 	}
 	
 	
-	public int getTargetDistance() 
+	public void addTarget(Target t)
 	{
-		return target_distance;
+		targets.add(t);
 	}
-
-	public void setTargetDistance(int target_distance) 
+	
+	public int getTotalShots()
 	{
-		this.target_distance = target_distance;
+		int total = 0;
+		
+		for(int i = 0 ; i < targets.size() ; i++)
+			total += targets.get(i).getShots();
+		
+		return total;
 	}
+	
 
-	public String getAffectedArea() 
+	@Override
+	public String toString() 
 	{
-		return affected_area;
+		String s = "";
+		
+		s += "Archery Workout -> " + super.toString() + " - Tirs total : " + this.getTotalShots() + "\n";
+		for(int i = 0 ; i < targets.size() ; i++)
+			s += "\tCible " + (i+1) + " -> " + targets.get(i) + (i < targets.size() - 1 ? "\n" : "");
+		
+		return s;
 	}
-
-	public void setAffectedArea(String affected_area) 
-	{
-		this.affected_area = affected_area;
-	}
-
-
 }

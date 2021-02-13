@@ -1,55 +1,44 @@
 package data;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 @Entity
 public class MusculationWorkout extends Workout
-{
-	private int number_repetition;
-	private int number_sets;
-	private String type_exercise;
+{	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Exercise.class)
+	private List<Exercise> exercises;
 	
+	public MusculationWorkout() {	}
 	
-	public MusculationWorkout(Date date, int duration, int number_repetition, int number_sets, String type_exercise) 
+	public MusculationWorkout(Date date, int duration) 
 	{
 		super(date, duration);
-		this.number_repetition = number_repetition;
-		this.number_sets = number_sets;
-		this.type_exercise = type_exercise;
+		this.exercises = new ArrayList<Exercise>();
 	}
 
 
-	public int getNumberRepetition() 
+	public void addExercise(Exercise e)
 	{
-		return number_repetition;
-	}
-
-	public void setNumberRepetition(int number_repetition) 
-	{
-		this.number_repetition = number_repetition;
-	}
-
-	public int getNumberSets() 
-	{
-		return number_sets;
-	}
-
-	public void setNumberSets(int number_sets) 
-	{
-		this.number_sets = number_sets;
-	}
-
-	public String getTypeExercise() 
-	{
-		return type_exercise;
-	}
-
-	public void setTypeExercise(String type_exercise) 
-	{
-		this.type_exercise = type_exercise;
+		exercises.add(e);
 	}
 	
+	@Override
+	public String toString() 
+	{
+		String s = "";
+		
+		s += "Musculation Workout -> " + super.toString() + " - Total d'exercice : " + exercises.size() + "\n";
+		for(int i = 0 ; i < exercises.size() ; i++)
+			s += "\tExercice " + (i+1) + " -> " + exercises.get(i) + (i < exercises.size() - 1 ? "\n" : "");
+		
+		return s;
+	}
 
 }
