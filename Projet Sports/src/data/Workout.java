@@ -15,7 +15,7 @@ import javax.persistence.TableGenerator;
 
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Workout 
 {
 	@TableGenerator(name = "workoutGen", table = "ID_GEN", pkColumnName = "GEN_KEY", valueColumnName = "GEN_VALUE", pkColumnValue = "WORKOUT_ID", allocationSize = 1)
