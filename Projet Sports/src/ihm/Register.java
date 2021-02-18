@@ -8,8 +8,12 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
@@ -31,100 +35,102 @@ public class Register extends JFrame implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField textField,textField_1, textField_2, textField_4,textField_5,textField_3,textField_6;
 	private JRadioButton rdbtnNon,rdbtnNewRadioButton;
 
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		
 		Register frame = new Register();
 		frame.setVisible(true);
 			
-	}*/
+	}
 
 	/**
 	 * Create the frame.
 	 */
 	public Register() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(280, 100, 448, 468);
+		setBounds(100, 100, 858, 496);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("");
+		JLabel lblNewLabel = new JLabel("S'inscrire");
 		lblNewLabel.setOpaque(true);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBackground(new Color(0, 0, 128));
-		lblNewLabel.setBounds(0, 10, 434, 28);
+		lblNewLabel.setBounds(212, 10, 434, 28);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBackground(Color.GREEN);
 		contentPane.add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(138, 71, 258, 19);
+		textField.setBounds(85, 74, 258, 19);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(138, 118, 258, 19);
+		textField_1.setBounds(85, 138, 258, 19);
 		contentPane.add(textField_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(138, 170, 258, 19);
+		textField_2.setBounds(85, 203, 258, 19);
 		contentPane.add(textField_2);
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(138, 266, 258, 19);
+		textField_4.setBounds(509, 74, 258, 19);
 		contentPane.add(textField_4);
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setBounds(138, 318, 258, 19);
+		textField_5.setBounds(509, 203, 258, 19);
 		contentPane.add(textField_5);
 		
 		JButton btnNewButton = new JButton("Cancel");
 		btnNewButton.setBackground(new Color(105, 105, 105));
 		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBounds(72, 380, 85, 21);
+		btnNewButton.setBounds(233, 380, 85, 21);
 		contentPane.add(btnNewButton);
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setForeground(new Color(255, 255, 255));
 		btnSubmit.setBackground(SystemColor.controlDkShadow);
-		btnSubmit.setBounds(292, 380, 85, 21);
+		btnSubmit.setBounds(484, 380, 85, 21);
 		contentPane.add(btnSubmit);
 		
 		JLabel Name = new JLabel("Nom");
-		Name.setBounds(83, 74, 45, 13);
+		Name.setBounds(30, 74, 45, 13);
 		contentPane.add(Name);
 		
 		JLabel Last_name = new JLabel("Prenom");
-		Last_name.setBounds(72, 121, 56, 13);
+		Last_name.setBounds(30, 141, 56, 13);
 		contentPane.add(Last_name);
 		
 		JLabel gender = new JLabel("Sexe");
-		gender.setBounds(43, 173, 85, 13);
+		gender.setBounds(30, 206, 85, 13);
 		contentPane.add(gender);
 		
 		JLabel Age = new JLabel("Age");
-		Age.setBounds(50, 269, 78, 13);
+		Age.setBounds(469, 77, 78, 13);
 		contentPane.add(Age);
 		
 		rdbtnNewRadioButton = new JRadioButton("Oui");
 		rdbtnNewRadioButton.addActionListener(this);
-		rdbtnNewRadioButton.setBounds(151, 217, 103, 21);
+		rdbtnNewRadioButton.setBounds(143, 259, 78, 21);
 		contentPane.add(rdbtnNewRadioButton);
 		
 		rdbtnNon = new JRadioButton("Non");
-		rdbtnNon.setBounds(293, 217, 62, 21);
+		rdbtnNon.setBounds(256, 259, 62, 21);
 		contentPane.add(rdbtnNon);
 		
 		/**
@@ -135,16 +141,42 @@ public class Register extends JFrame implements ActionListener{
 		bg.add(rdbtnNon);
 		
 		JLabel sport = new JLabel("Etes vous sportif?");
-		sport.setBounds(27, 221, 107, 13);
+		sport.setBounds(30, 263, 107, 13);
 		contentPane.add(sport);
 		
 		JLabel Passwork = new JLabel("Mot de passe");
-		Passwork.setBounds(50, 321, 78, 13);
+		Passwork.setBounds(201, 330, 78, 13);
 		contentPane.add(Passwork);
 		
 		rdbtnNon.addActionListener(new Action());
 		rdbtnNewRadioButton.addActionListener(new Action());
 		btnNewButton.addActionListener(new Cancel());
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(509, 138, 258, 19);
+		contentPane.add(textField_3);
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(289, 327, 258, 19);
+		contentPane.add(textField_6);
+		
+		JLabel lblTaille = new JLabel("Taille");
+		lblTaille.setBounds(469, 141, 78, 13);
+		contentPane.add(lblTaille);
+		
+		JLabel lblPoids = new JLabel("Poids");
+		lblPoids.setBounds(456, 206, 78, 13);
+		contentPane.add(lblPoids);
+		
+		JLabel regi = new JLabel("New label");
+		regi.setIcon(new ImageIcon(Inbox.class.getResource("/images/registre.png")));
+		regi.setBounds(176, 0, 658, 459);
+		contentPane.add(regi);
+		
+		rdbtnNon.addActionListener(this);
+		rdbtnNewRadioButton.addActionListener(this);
 	}
 
 	
@@ -188,7 +220,7 @@ public class Register extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 }

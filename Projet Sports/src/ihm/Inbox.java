@@ -1,23 +1,19 @@
 package ihm;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
 
-/**
- * 
- * @author PDI_D2
- *
- */
+import ihm.Index.Cancel;
+import manager.Managers;
+
+import javax.swing.JLabel;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class Inbox extends JFrame {
 
@@ -25,177 +21,105 @@ public class Inbox extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane, panel_white;
-	private JLabel Label_inbox, Background;
-	private JButton Button1, Button2, Button3, Button4, Button5, Button6;
+	private JPanel contentPane;
+	Managers man=new Managers();
 
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
-		Inbox frame = new Inbox();
-		frame.setUndecorated(true);
-		frame.setVisible(true);
-	}*/
+	public static void main(String[] args) {
+		
+					Inbox frame = new Inbox();
+					frame.setVisible(true);
+	}
 
 	/**
 	 * Create the frame.
 	 */
 	public Inbox() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 646, 482);
+		setBounds(100, 100, 858, 496);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		panel_white = new JPanel();
-		panel_white.setBounds(102, 10, 415, 425);
-		panel_white.setBackground(Color.WHITE);
-		contentPane.add(panel_white);
-		panel_white.setLayout(null);
+		JLabel lblNewLabel_1 = new JLabel(man.getUser());
+		lblNewLabel_1.setBounds(138, 25, 128, 24);
+		contentPane.add(lblNewLabel_1);
 		
-		Label_inbox = new JLabel("INBOX");
-		Label_inbox.setFont(new Font("Times New Roman", Font.ITALIC, 14));
-		Label_inbox.setHorizontalAlignment(SwingConstants.CENTER);
-		Label_inbox.setBounds(110, 10, 208, 37);
-		panel_white.add(Label_inbox);
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setIcon(new ImageIcon(Inbox.class.getResource("/images/running_oo.png")));
+		btnNewButton.setBounds(160, 133, 142, 144);
+		contentPane.add(btnNewButton);
 		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBackground(Color.WHITE);
+		btnNewButton_1.setIcon(new ImageIcon(Inbox.class.getResource("/images/muscu.png")));
+		btnNewButton_1.setBounds(365, 133, 142, 140);
+		contentPane.add(btnNewButton_1);
 		
-		Button4 = new JButton("Itineraire");
-		Button4.setBackground(Color.WHITE);
-		Button4.setIcon(new ImageIcon(Inbox.class.getResource("/images/placeholder-filled-point.png")));
-		Button4.setBounds(227, 198, 163, 93);
-		panel_white.add(Button4);
+		JButton btnNewButton_3 = new JButton("");
+		btnNewButton_3.setForeground(Color.WHITE);
+		btnNewButton_3.setBackground(Color.WHITE);
+		btnNewButton_3.setIcon(new ImageIcon(Inbox.class.getResource("/images/swimming.png")));
+		btnNewButton_3.setBounds(552, 272, 136, 140);
+		contentPane.add(btnNewButton_3);
 		
-		Button3 = new JButton("Recherche");
-		Button3.setBackground(Color.WHITE);
-		Button3.setIcon(new ImageIcon(Inbox.class.getResource("/images/increase.png")));
-		Button3.setBounds(21, 198, 163, 93);
-		panel_white.add(Button3);
+		JButton btnNewButton_4 = new JButton("");
+		btnNewButton_4.setIcon(new ImageIcon(Inbox.class.getResource("/images/canoe.png")));
+		btnNewButton_4.setBackground(Color.WHITE);
+		btnNewButton_4.setBounds(365, 272, 142, 140);
+		contentPane.add(btnNewButton_4);
 		
-		Button1 = new JButton("Graphe");
-		Button1.setIcon(new ImageIcon(Inbox.class.getResource("/images/three-bars-graph.png")));
-		Button1.setBackground(Color.WHITE);
-		Button1.setBounds(21, 95, 163, 93);
-		panel_white.add(Button1);
+		JButton btnNewButton_5 = new JButton("");
+		btnNewButton_5.setIcon(new ImageIcon(Inbox.class.getResource("/images/climbing.png")));
+		btnNewButton_5.setBackground(Color.WHITE);
+		btnNewButton_5.setBounds(160, 272, 142, 140);
+		contentPane.add(btnNewButton_5);
 		
-		Button2 = new JButton("Amis");
-		Button2.setIcon(new ImageIcon(Inbox.class.getResource("/images/users-group.png")));
-		Button2.setBackground(Color.WHITE);
-		Button2.setBounds(227, 95, 163, 93);
-		panel_white.add(Button2);
+		JButton btnNewButton_3_1 = new JButton("");
+		btnNewButton_3_1.setBackground(Color.WHITE);
+		btnNewButton_3_1.setIcon(new ImageIcon(Inbox.class.getResource("/images/archery.png")));
+		btnNewButton_3_1.setBounds(552, 133, 136, 140);
+		contentPane.add(btnNewButton_3_1);
 		
-		Button5 = new JButton("D\u00E9connexion");
-		Button5.setIcon(new ImageIcon(Inbox.class.getResource("/images/login(1).png")));
-		Button5.setBackground(Color.WHITE);
-		Button5.setBounds(21, 301, 163, 93);
-		panel_white.add(Button5);
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setBackground(Color.WHITE);
+		btnNewButton_2.setIcon(new ImageIcon(Inbox.class.getResource("/images/power-off.png")));
+		btnNewButton_2.setBounds(625, 29, 63, 59);
+		contentPane.add(btnNewButton_2);
 		
-		Button6 = new JButton("Meilleur score");
-		Button6.setIcon(new ImageIcon(Inbox.class.getResource("/images/winner-runner-arriving-to-end-line.png")));
-		Button6.setBackground(Color.WHITE);
-		Button6.setBounds(227, 301, 163, 93);
-		panel_white.add(Button6);
+		JButton btnNewButton_6 = new JButton("");
+		btnNewButton_6.setBackground(Color.WHITE);
+		btnNewButton_6.setIcon(new ImageIcon(Inbox.class.getResource("/images/friends.png")));
+		btnNewButton_6.setBounds(524, 29, 74, 59);
+		contentPane.add(btnNewButton_6);
 		
-		Background = new JLabel("");
-		Background.setIcon(new ImageIcon(Inbox.class.getResource("/images/SportI.jpg")));
-		Background.setBounds(0, 0, 642, 455);
-		contentPane.add(Background);
+		JLabel fond = new JLabel("");
+		fond.setOpaque(true);
+		fond.setBackground(Color.WHITE);
+		fond.setBounds(127, 10, 589, 420);
+		contentPane.add(fond);
 		
-		
-		/**
-		 * 
-		 */
-		Button1.addActionListener(new ActionBoutton1());
-		Button2.addActionListener(new ActionBoutton2());
-		Button3.addActionListener(new ActionBoutton3());
-		Button4.addActionListener(new ActionBoutton4());
-		Button5.addActionListener(new ActionBoutton5());
-		Button6.addActionListener(new ActionBoutton6());
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Inbox.class.getResource("/images/fitnessPark.jpg")));
+		lblNewLabel.setBackground(Color.WHITE);
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBounds(0, 0, 844, 459);
+		contentPane.add(lblNewLabel);
+		//Cancel cancel=new Cancel();
+		btnNewButton_3.addActionListener(new Action());
+		//btnNewButton_2.addActionListener(new Cancel());
 		
 	}
 	
-	
-	/**
-	 * Create ActionListener
-	 *
-	 */
-	public class ActionBoutton1 implements ActionListener {
+	public class Action implements ActionListener {
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			System.out.println("Vous avez cliquer sur graphe");
-			
+			Swimming frame = new Swimming();
+			frame.setVisible(true);
 		}
-		  
 	}
-	
-	public class ActionBoutton2 implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-			System.out.println("Vous avez cliquer sur Amis");
-			
-		}
-		  
-	}
-	
-	public class ActionBoutton3 implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-			System.out.println("Vous avez cliquer sur recherche");
-			
-		}
-		  
-	}
-	
-	public class ActionBoutton4 implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-			System.out.println("Vous avez cliquer sur itinéraire");
-			
-		}
-		  
-	}
-	
-	public class ActionBoutton5 implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			int retour = JOptionPane.showOptionDialog(null, 
-                    "Voulez-vous vraiment vous déconnecter?", 
-                    "Erreur", 
-                    //JOptionPane yes no
-                    JOptionPane.YES_NO_OPTION, 
-                    JOptionPane.ERROR_MESSAGE, 
-                    null, null, null);
-			if(retour==0) {
-				dispose();
-			}
-			
-			
-		}
-		  
-	}
-	
-	public class ActionBoutton6 implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-			System.out.println("Vous avez cliquer sur meilleur");
-			
-		}
-		  
-	}
-	
-	
-	
 }

@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.SwingConstants;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -81,6 +82,12 @@ public class Swimming extends JFrame {
 		rdbtnmntmMettreArrire.setBackground(new Color(192, 192, 192));
 		rdbtnmntmMettreArrire.setBounds(59, 322, 131, 24);
 		contentPane.add(rdbtnmntmMettreArrire);
+		
+		ButtonGroup bg = new ButtonGroup();
+		bg.add(rdbtnmntmNewRadioItem);
+		bg.add(rdbtnmntmMettrePapillon);
+		bg.add(rdbtnmntmMettreCrowl);
+		bg.add(rdbtnmntmMettreCrowl);
 		
 		JButton btnNewButton_1 = new JButton("Valider");
 		btnNewButton_1.setForeground(new Color(169, 169, 169));

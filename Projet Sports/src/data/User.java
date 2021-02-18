@@ -1,8 +1,14 @@
 package data;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Iterator;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  * 
@@ -27,6 +33,7 @@ public class User {
 	private int age;
 	private float size;
 	private float weight;
+	private String name="",mt="",log="";
 	
 	public User() {	}
 	
@@ -144,6 +151,16 @@ public class User {
 	{
 		this.id = id;
 	}
+	
+	
+	public String validation(String login, String mdp) {
+		String val="";
+		
+		val=login+mdp;
+		
+		return val;
+	}
+	
 
 	/**
 	 * This method return the character string representing the objects

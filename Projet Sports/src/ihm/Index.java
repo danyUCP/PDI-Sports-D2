@@ -4,7 +4,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.hibernate.Session;
+
+import data.DBConnection;
 import util.HibernateUtil;
+import manager.Managers;
 import manager.UserManager;
 
 import javax.swing.JLabel;
@@ -32,6 +36,7 @@ public class Index extends JFrame {
 	private JLabel lblNewLabel,new_compte,id,id_name, id_name_1, lblNewLabel_1,lblNewLabel_2,present;
 	private JTextField textField;
 	JButton btnNewButton_1_1,btnNewButton_1;
+	private String user="";
 	
 
 	/**
@@ -147,40 +152,33 @@ public class Index extends JFrame {
 	 *
 	 */
 	public class Submit implements ActionListener {
-
+		
 		@SuppressWarnings("static-access")
 		public void actionPerformed(ActionEvent e) {
-			//User u=new User();
-			UserManager use= new UserManager();
+			final String SEPARATEUR = ";";
+			Session session = DBConnection.getSession();
+			Managers use= new Managers();
 			if(!textField.getText().equals("") && !last_Name.getText().equals("")) {
-				/*if(textField.getText()==u.getMdp() && last_Name.getText()==u.getMdp()) {
-					System.out.println("Vous avez renter "+ textField.getText()+" et "+last_Name.getText());
-					System.out.println("Vous avez cliquer sur Submit");
-				}*/
-				use.addUser("e-sn", "123", "NIL", "Sam", "M", 30, (float) 1.70, 60);
-				use.addUser("e-KL", "123", "LIL", "Kai", "F", 20, (float)1.60, 40);
-				use.addUser("e-xm", "123", "Mihuel", "xavier", "M", 25, (float)1.90, 80);
-				String a= use.getInfoUser(1);
-				HibernateUtil.sessionFactory.close();
-				if(a.equals(textField.getText()+last_Name.getText())) {
-					dispose();
-					Inbox frame = new Inbox();
-					frame.setUndecorated(true);
-					frame.setVisible(true);
+				String a= use.testWhereClause(session, textField.getText(),last_Name.getText());
+				System.out.println(a);
+				String word[] = a.split(SEPARATEUR);
+				if(!a.equals(";;")){
+					if(a.equals(word[0]+";"+word[1]+";"+word[2])) {
+						dispose();
+						Inbox frame = new Inbox();
+						frame.setUndecorated(true);
+						frame.setVisible(true);
 				}
-				
+				}
 				else {
+				if(a.equals(";;")) {
 					
 					JOptionPane warning;
 					warning = new JOptionPane();
 				    warning.showMessageDialog(null, "L'identifiant ou le mot de passe est incorecte", "Erreur", JOptionPane.ERROR_MESSAGE);
-				    if(a.equals(textField.getText()+last_Name.getText())) {
-						dispose();
-						Inbox frame = new Inbox();
-						frame.setVisible(true);
-					}
-				}
 				
+				}
+				}
 				
 			}
 			else {
