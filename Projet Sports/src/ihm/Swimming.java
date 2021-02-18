@@ -63,22 +63,22 @@ public class Swimming extends JFrame {
 		contentPane.setLayout(null);
 		
 		
-		JRadioButtonMenuItem rdbtnmntmNewRadioItem = new JRadioButtonMenuItem("Mettre basse");
+		JRadioButtonMenuItem rdbtnmntmNewRadioItem = new JRadioButtonMenuItem("basse");
 		rdbtnmntmNewRadioItem.setBackground(new Color(192, 192, 192));
 		rdbtnmntmNewRadioItem.setBounds(59, 129, 131, 24);
 		contentPane.add(rdbtnmntmNewRadioItem);
 		
-		JRadioButtonMenuItem rdbtnmntmMettrePapillon = new JRadioButtonMenuItem("Mettre papillon");
+		JRadioButtonMenuItem rdbtnmntmMettrePapillon = new JRadioButtonMenuItem("papillon");
 		rdbtnmntmMettrePapillon.setBackground(new Color(192, 192, 192));
 		rdbtnmntmMettrePapillon.setBounds(54, 194, 131, 24);
 		contentPane.add(rdbtnmntmMettrePapillon);
 		
-		JRadioButtonMenuItem rdbtnmntmMettreCrowl = new JRadioButtonMenuItem("Mettre Crowl");
+		JRadioButtonMenuItem rdbtnmntmMettreCrowl = new JRadioButtonMenuItem("Crowl");
 		rdbtnmntmMettreCrowl.setBackground(new Color(192, 192, 192));
 		rdbtnmntmMettreCrowl.setBounds(59, 259, 131, 24);
 		contentPane.add(rdbtnmntmMettreCrowl);
 		
-		JRadioButtonMenuItem rdbtnmntmMettreArrire = new JRadioButtonMenuItem("Mettre arri\u00E8re");
+		JRadioButtonMenuItem rdbtnmntmMettreArrire = new JRadioButtonMenuItem("arriere");
 		rdbtnmntmMettreArrire.setBackground(new Color(192, 192, 192));
 		rdbtnmntmMettreArrire.setBounds(59, 322, 131, 24);
 		contentPane.add(rdbtnmntmMettreArrire);

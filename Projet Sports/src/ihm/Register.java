@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import manager.Managers;
 
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -37,7 +38,7 @@ public class Register extends JFrame implements ActionListener{
 	private JPanel contentPane;
 	private JTextField textField,textField_1, textField_2, textField_4,textField_5,textField_3,textField_6;
 	private JRadioButton rdbtnNon,rdbtnNewRadioButton;
-
+	JButton btnSubmit;
 	/**
 	 * Launch the application.
 	 */
@@ -96,13 +97,13 @@ public class Register extends JFrame implements ActionListener{
 		textField_5.setBounds(509, 203, 258, 19);
 		contentPane.add(textField_5);
 		
-		JButton btnNewButton = new JButton("Cancel");
+		JButton btnNewButton = new JButton("Retour");
 		btnNewButton.setBackground(new Color(105, 105, 105));
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBounds(233, 380, 85, 21);
 		contentPane.add(btnNewButton);
 		
-		JButton btnSubmit = new JButton("Submit");
+		btnSubmit = new JButton("Envoyer");
 		btnSubmit.setForeground(new Color(255, 255, 255));
 		btnSubmit.setBackground(SystemColor.controlDkShadow);
 		btnSubmit.setBounds(484, 380, 85, 21);
@@ -170,13 +171,15 @@ public class Register extends JFrame implements ActionListener{
 		lblPoids.setBounds(456, 206, 78, 13);
 		contentPane.add(lblPoids);
 		
-		JLabel regi = new JLabel("New label");
+		JLabel regi = new JLabel("");
 		regi.setIcon(new ImageIcon(Inbox.class.getResource("/images/registre.png")));
 		regi.setBounds(176, 0, 658, 459);
 		contentPane.add(regi);
 		
-		rdbtnNon.addActionListener(this);
-		rdbtnNewRadioButton.addActionListener(this);
+		//rdbtnNon.addActionListener(this);
+		//rdbtnNewRadioButton.addActionListener(this);
+		btnSubmit.addActionListener(this);
+		
 	}
 
 	
@@ -220,6 +223,11 @@ public class Register extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()==btnSubmit) {
+		Managers mana=new Managers();
+		mana.addUser(textField.getText(), textField_6.getText(), textField.getText(), textField_1.getText(), textField_2.getText(), textField_4.getText(), textField_3.getText(), textField_5.getText());
+		}
 		
 		
 	}

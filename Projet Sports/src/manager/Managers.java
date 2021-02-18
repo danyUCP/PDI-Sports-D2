@@ -73,12 +73,14 @@ public class Managers {
 		
 	}
 	
-	public void addUser(String login, String mdp, String firstname, String lastname, String gender, int age, float size, float weight) {
+	public void addUser(String login, String mdp, String firstname, String lastname, String gender, String age, String size, String weight) {
 		Session session = DBConnection.getSession();
 		Transaction persistTransaction1 = session.beginTransaction();
 		Date date=new Date(0);	
-		
-		User u1 = new User(login,mdp,firstname,lastname,gender,age,size,weight);
+		int resultat = Integer.parseInt(age);
+		int resultat1 = Integer.parseInt(size);
+		int resultat2 = Integer.parseInt(weight);
+		User u1 = new User(login,mdp,firstname,lastname,gender,resultat,resultat1,resultat2);
 		session.save(u1);
    
 	    /*Workout w=new RowingWorkout(date,m3,m2,m1);
