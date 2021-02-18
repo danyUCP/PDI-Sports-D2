@@ -137,17 +137,8 @@ public class RowingWorkoutLine extends ApplicationFrame {
   		
   	}
   		readTransaction.commit();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+	
 		/*
 		series2.add(1.0, 60);
 		series2.add(2.0, 110);

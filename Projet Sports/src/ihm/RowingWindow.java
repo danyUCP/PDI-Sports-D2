@@ -14,6 +14,7 @@ import data.RowingWorkout;
 import data.User;
 import data.Workout;
 import graph.LineChartJogging;
+import graph.RowingWorkoutLine;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -77,7 +78,7 @@ public class RowingWindow  extends JFrame {
 				
 			
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				setBounds(100, 100, 646, 482);
+				setBounds(100, 100, 858, 496);
 				contentPane = new JPanel();
 				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 				setContentPane(contentPane);
@@ -193,6 +194,10 @@ public class RowingWindow  extends JFrame {
 						
 						persistTransaction1.commit();
 						session.close();
+						RowingWorkoutLine demo = new RowingWorkoutLine(" RowingLine Chart Demo 6");
+						demo.pack();
+						RefineryUtilities.centerFrameOnScreen(demo);
+						demo.setVisible(true);
 								} catch (NumberFormatException nfe) {
 							        settext("Erreur de format");
 									   

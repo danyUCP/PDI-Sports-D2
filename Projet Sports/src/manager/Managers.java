@@ -1,12 +1,13 @@
 package manager;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-
+import data.DBConnection;
 import data.User;
 import util.HibernateUtil;
 
@@ -70,6 +71,22 @@ public class Managers {
 	public String getUser() {
 		return user;
 		
+	}
+	
+	public void addUser(String login, String mdp, String firstname, String lastname, String gender, int age, float size, float weight) {
+		Session session = DBConnection.getSession();
+		Transaction persistTransaction1 = session.beginTransaction();
+		Date date=new Date(0);	
+		
+		User u1 = new User(login,mdp,firstname,lastname,gender,age,size,weight);
+		session.save(u1);
+   
+	    /*Workout w=new RowingWorkout(date,m3,m2,m1);
+	    w.setUser(u1);
+	  	session.save(w);*/
+		
+		persistTransaction1.commit();
+		session.close();
 	}
 
 }
