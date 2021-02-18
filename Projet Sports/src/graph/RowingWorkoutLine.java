@@ -1,9 +1,15 @@
 package graph;
 
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -25,8 +31,79 @@ public class RowingWorkoutLine extends ApplicationFrame {
 
 
 	private XYDataset createDataset() {
-
+		
+	/*	DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+		Session session = data.DBConnection.getSession();
+		Transaction readTransaction = session.beginTransaction();
+		
+		@SuppressWarnings("unchecked")
+		List result = session.createQuery("select Rowingworkout.distance from 	RowingWorkout Rowingworkout").list();  
+  		//	Query readQuery = session.createQuery("select distance from joggingworkout j");
+  		//List result = readQuery.list();
+  		Iterator iterator = result.iterator();
+  		int i=0;
+  		while (iterator.hasNext()) {
+  			int j = (int) iterator.next();
+           
+  			 
+      dataset.addValue( j , "Jogging distance vs temps" , ""+i+"" );
+      System.out.println(""+j+"");  
+      i+=24; 
+  		}
+  		readTransaction.commit();
+		*/
+		
 		XYSeries series1 = new XYSeries("distance ");
+		
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+		Session session = data.DBConnection.getSession();
+		Transaction readTransaction = session.beginTransaction();
+		
+		@SuppressWarnings("unchecked")
+		List result = session.createQuery("select rowingworkout.distance from RowingWorkout rowingworkout").list();  
+  		//	Query readQuery = session.createQuery("select distance from joggingworkout j");
+  		//List result = readQuery.list();
+  		Iterator iterator = result.iterator();
+  		int j=0;
+  		while (iterator.hasNext()) {
+  			int i = (int) iterator.next();
+           
+  			 
+     series1.add( j ,i );
+      System.out.println(""+i+"");  
+      j++; 
+      System.out.println(""+j+"");  
+  		
+  	}
+  		//readTransaction.commit();
+		
+		
+		
+	/*	DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+		Session session = data.DBConnection.getSession();
+		Transaction readTransaction = session.beginTransaction();
+		
+		@SuppressWarnings("unchecked")
+		List result = session.createQuery("select Rowingworkout.distance from 	RowingWorkout Rowingworkout").list();  
+  		//	Query readQuery = session.createQuery("select distance from joggingworkout j");
+  		//List result = readQuery.list();
+  		Iterator iterator = result.iterator();
+  		int i=0;
+  		while (iterator.hasNext()) {
+  			int j = (int) iterator.next();
+           
+  			 
+      dataset.addValue( j , "Jogging distance vs temps" , ""+i+"" );
+      System.out.println(""+j+"");  
+      i+=24; 
+  		}
+  		readTransaction.commit();
+		*/
+		
+		
+		
+		
+		/*
 		series1.add(1.0, 50.0);
 		series1.add(2.0, 100.0);
 		series1.add(3.0, 150.0);
@@ -34,9 +111,44 @@ public class RowingWorkoutLine extends ApplicationFrame {
 		series1.add(5.0, 250.0);
 		series1.add(6.0, 300.0);
 		series1.add(7.0, 350.0);
-		series1.add(8.0, 400.0);
-
+     	series1.add(8.0, 400.0);
+		*/
+		/*
+		Transaction readTransaction = session.beginTransaction();
+  		@SuppressWarnings("unchecked")
+		List result = session.createQuery("select joggingworkout.distance from JoggingWorkout joggingworkout").list();  
+        */
 		XYSeries series2 = new XYSeries(" paggaie strokes ");
+	
+		@SuppressWarnings("unchecked")
+		List result2 = session.createQuery("select rowingworkout.paddle_strokes from RowingWorkout rowingworkout").list();  
+  		//	Query readQuery = session.createQuery("select distance from joggingworkout j");
+  		//List result = readQuery.list();
+  		Iterator iterator2 = result2.iterator();
+  		int k=0;
+  		while (iterator2.hasNext()) {
+  			int i = (int) iterator2.next();
+           
+  			 
+     series2.add( k ,i );
+      System.out.println(""+i+"");  
+      k++; 
+      System.out.println(""+k+"");  
+  		
+  	}
+  		readTransaction.commit();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*
 		series2.add(1.0, 60);
 		series2.add(2.0, 110);
 		series2.add(3.0, 140);
@@ -45,7 +157,7 @@ public class RowingWorkoutLine extends ApplicationFrame {
 		series2.add(6.0, 310);
 		series2.add(7.0, 360);
 		series2.add(8.0, 375);
-
+        */
 		XYSeries series3 = new XYSeries("Third meeting");
 		series3.add(3.0, 4.0);
 		series3.add(4.0, 3.0);
@@ -56,12 +168,12 @@ public class RowingWorkoutLine extends ApplicationFrame {
 		series3.add(9.0, 4.0);
 		series3.add(10.0, 3.0);
 
-		XYSeriesCollection dataset = new XYSeriesCollection();
-		dataset.addSeries(series1);
-		dataset.addSeries(series2);
-		dataset.addSeries(series3);
+		XYSeriesCollection dataset2 = new XYSeriesCollection();
+		dataset2.addSeries(series1);
+		dataset2.addSeries(series2);
+		dataset2.addSeries(series3);
 
-		return dataset;
+		return dataset2;
 
 	}     
 
