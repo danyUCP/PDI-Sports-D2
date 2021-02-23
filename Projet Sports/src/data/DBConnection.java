@@ -31,6 +31,9 @@ public class DBConnection {
 			configFile = new File("resources/connection.cfg.xml");
 			System.out.println(configFile.getAbsolutePath());
 			config.configure(configFile);
+			
+			//String packageName = DBConnection.class.getPackage().getName();
+			//config.configure(packageName + "/connection.cfg.xml");
 		}
 		return config;
 	}
