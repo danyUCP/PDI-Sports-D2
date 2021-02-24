@@ -1,7 +1,9 @@
 package test;
 
 import java.sql.Date;
+import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -15,6 +17,7 @@ import data.SwimmingWorkout;
 import data.Target;
 import data.User;
 import data.Workout;
+import ihm.MainFrame;
 
 public class TestDataSample 
 {
@@ -58,7 +61,7 @@ public class TestDataSample
 		
 		Workout w5 = new MusculationWorkout(new Date(0), 40);
 		Exercise e1 = new Exercise("Pompes", 4, 12);
-		Exercise e2 = new Exercise("Traction", 4, 8);
+		Exercise e2 = new Exercise("Tractions", 4, 8);
 		Exercise e3 = new Exercise("Abdos", 3, 20);
 		((MusculationWorkout) w5).addExercise(e1);
 		((MusculationWorkout) w5).addExercise(e2);
@@ -68,7 +71,21 @@ public class TestDataSample
 		
 		persistTransaction1.commit();		
 		
+		Query selectQuery = session.createQuery("from MusculationWorkout");
+		List result = selectQuery.list();
+
+		System.out.println(result.size() + " workout found");
+
+		for(int i = 0 ; i < result.size() ; i++)
+		{
+			Workout w = (Workout)result.get(i);
+			System.out.print(w.getUser().getFirstname() + " : ");
+			System.out.println(w);
+		}
+		
 		session.close();
+		
+		MainFrame frame = new MainFrame();
 	
 	}
 

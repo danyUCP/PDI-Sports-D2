@@ -1,49 +1,35 @@
 package manager;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import util.HibernateUtil;
+import data.DBConnection;
 import data.User;
+import data.Workout;
 import manager.UserManager;
 
-/**
- * 
- * this class create and modify the manager table
- *@author PDI_D2
- */
-public class UserManager {
-	
-	public UserManager() {
-		
-	}
-	
-	/**
-	 * This method add the user in the base
-	 * @param login
-	 * @param mdp
-	 * @param firstname
-	 * @param lastname
-	 * @param gender
-	 * @param age
-	 * @param size
-	 * @param weight
-	 */
-	public void addUser(String login,String mdp,String firstname,String lastname,String gender,int age,float size,float weight) 
-	{
-		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		User u=new User();
 
-		u.setAge(age);
-		u.setLogin(login);
-		u.setFirstname(firstname);
-		u.setLastname(lastname);
-		u.setMdp(mdp);
-		u.setGender(gender);
-		u.setSize(size);
-		u.setWeight(weight);
+public class UserManager 
+{
+	private Session session;
+	private Transaction transaction;
+	
+	public UserManager() {	}
+	
+	
+	public void addUser(String login, String mdp, String firstname, String lastname, String gender, int age, float size, float weight) 
+	{
+		session = DBConnection.getSession();
+		transaction = session.beginTransaction();
+
+		User u = new User(login, mdp, firstname, lastname, gender, age, size, weight);
+		
 		session.save(u);
-		session.getTransaction().commit();
+		transaction.commit();
 	}
 	
 	/**
@@ -91,6 +77,32 @@ public class UserManager {
 			
 		return ide+mpd;
 		}
+	
+	public User findUser(String login, String mdp)
+	{
+		session = DBConnection.getSession();
+		
+		Query query = session.createQuery("from User where login = :login and mdp = :mdp");
+		query.setString("login", login);
+		query.setString("mdp", mdp);
+		User u = null;
+
+		List result = query.list();
+
+		if(result.size() == 1)
+		{
+			System.out.println(result.size() + " user found");
+			u = (User) result.get(0);
+			System.out.println(u);
+		}
+		else
+			System.out.println("User not found");
+
+			
+		
+		session.close();
+		return u;		
+	}
 		
 		
 		
