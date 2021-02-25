@@ -149,7 +149,7 @@ public class ClimbingWindow  extends JFrame {
 				if (text.length() > 0) {
 				    try {
 				         nombre = Integer.parseInt(text);
-				        
+ 				        
 				    } catch (NumberFormatException nfe) {
 				        settext("Erreur de format");
 				   

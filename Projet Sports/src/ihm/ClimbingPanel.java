@@ -109,7 +109,7 @@ public class ClimbingPanel extends JPanel {
 				
 				if ((text1.length() > 0)&&(text2.length()>0)){
 					try {
-		
+		 
 						
 			System.out.println(" difficulté "+text2+"");
 			
