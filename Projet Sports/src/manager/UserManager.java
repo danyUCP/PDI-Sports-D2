@@ -103,6 +103,33 @@ public class UserManager
 		session.close();
 		return u;		
 	}
+	
+	public int findID(String login, String mdp) {
+		
+		Query query = session.createQuery("from User where login = :login and mdp = :mdp");
+		query.setString("login", login);
+		query.setString("mdp", mdp);
+		User u = null;
+		int id=0;
+
+		List result = query.list();
+
+		if(result.size() == 1)
+		{
+			System.out.println(result.size() + " user found");
+			u = (User) result.get(0);
+			id=u.getId();
+			System.out.println(u);
+		}
+		else
+			System.out.println("User not found");
+
+			
+		
+		session.close();
+		
+		return id;
+	}
 		
 		
 		

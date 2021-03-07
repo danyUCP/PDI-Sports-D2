@@ -24,6 +24,7 @@ public class SwimmingWorkout extends Workout
 		this.backstroke_lenghts = backstroke_lenghts;
 	}
 
+	
 
 	public int getTotalLenghts() 
 	{

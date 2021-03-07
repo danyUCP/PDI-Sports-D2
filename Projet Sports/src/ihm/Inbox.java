@@ -118,7 +118,7 @@ public class Inbox extends JFrame {
 	public class Action implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			Swimming frame = new Swimming();
+			SwimmingPanel frame = new SwimmingPanel();
 			frame.setVisible(true);
 		}
 	}

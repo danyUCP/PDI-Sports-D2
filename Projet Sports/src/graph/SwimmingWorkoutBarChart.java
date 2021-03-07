@@ -1,7 +1,11 @@
 package graph;
 
 import java.awt.Dimension;
+import java.util.Iterator;
+import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -29,6 +33,7 @@ public class SwimmingWorkoutBarChart extends ApplicationFrame  {
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	private CategoryDataset createDataset() {
 
 		String series1 = "meterBreaststroke";
@@ -36,42 +41,45 @@ public class SwimmingWorkoutBarChart extends ApplicationFrame  {
 		String series3 = "meterCrowl";
 		String series4 = "meterback";
 		
-		String category1 = "session 1";
-		String category2 = "session 2";
-		String category3 = "session 3";
-		String category4 = "session 4";
-		String category5 = "session 5";
-
-		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-		dataset.addValue(2.0, series1, category1);
-		dataset.addValue(4.0, series1, category2);
-		dataset.addValue(3.0, series1, category3);
-		dataset.addValue(5.0, series1, category4);
-		dataset.addValue(5.0, series1, category5);
-
-		dataset.addValue(5.0, series2, category1);
-		dataset.addValue(7.0, series2, category2);
-		dataset.addValue(6.0, series2, category3);
-		dataset.addValue(8.0, series2, category4);
-		dataset.addValue(4.0, series2, category5);
-
-		dataset.addValue(4.0, series3, category1);
-		dataset.addValue(3.0, series3, category2);
-		dataset.addValue(2.0, series3, category3);
-		dataset.addValue(3.0, series3, category4);
-		dataset.addValue(6.0, series3, category5);
 		
-		dataset.addValue(5.0, series4, category1);
-		dataset.addValue(7.0, series4, category2);
-		dataset.addValue(6.0, series4, category3);
-		dataset.addValue(8.0, series4, category4);
-		dataset.addValue(4.0, series4, category5);
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+	     
+
+	  	Session session = data.DBConnection.getSession();
+	      
+	      Transaction readTransaction = session.beginTransaction();
+	  		List result = session.createQuery("select swimmingworkout.breaststroke_lenghts from SwimmingWorkout swimmingworkout").list();
+	  		List result1 = session.createQuery("select swimmingworkout.butterfly_lenghts from SwimmingWorkout swimmingworkout").list();
+	  		List result2 = session.createQuery("select swimmingworkout.crowl_lenghts from SwimmingWorkout swimmingworkout").list();
+	  		List result3 = session.createQuery("select swimmingworkout.backstroke_lenghts from SwimmingWorkout swimmingworkout").list();
+
+	  		Iterator iterator = result.iterator();
+	  		Iterator iterator1 = result1.iterator();
+	  		Iterator iterator2 = result2.iterator();
+	  		Iterator iterator3 = result3.iterator();
+	  		int i=0;
+	  		while (iterator.hasNext()&iterator1.hasNext()&iterator2.hasNext()&iterator3.hasNext()) {
+	  			int j = (int) iterator.next();
+	  			int k=(int) iterator1.next();
+	  			int l=(int) iterator2.next();
+	  			int m=(int) iterator3.next();
+	  			 
+	      dataset.addValue( j , ""+series1+"" , ""+i+"" );
+	      dataset.addValue( k , ""+series2+"" , ""+i+"" );
+	      dataset.addValue( l , ""+series3+"" , ""+i+"" );
+	      dataset.addValue( m , ""+series4+"" , ""+i+"" );
+	      
+	      System.out.println(""+j+"");  
+	      i++; 
+	  		}
+	  		readTransaction.commit();
+
 
 		return dataset;
             
 	}
-
+	
+	
 	private JFreeChart createChart(CategoryDataset dataset) {
 
 		JFreeChart chart = ChartFactory.createBarChart("Bar Chart Demo", "Category", "distance", dataset,
