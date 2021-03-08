@@ -44,8 +44,8 @@ public class MainFrame extends JFrame
 	private SportLabel title;
 	private SportTextField pseudo, mdp;
 	
-	private int width = 858;//800;
-	private int height = 496;//500;
+	private int width = 845;//800;
+	private int height = 460;//500;
 	private String id,pass;
 	
 	
