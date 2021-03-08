@@ -32,6 +32,11 @@ import data.User;
 
 public class HomePanel extends JPanel
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private User user;
 
 	private JPanel section, menu, header, footer, content, profile;
@@ -42,8 +47,8 @@ public class HomePanel extends JPanel
 	private Image background;
 
 	private Dimension dim;
-	private int width = 800;
-	private int height = 500;
+	private int width = 858;
+	private int height = 496;
 	
 	
 	public HomePanel(User user)
@@ -115,13 +120,14 @@ public class HomePanel extends JPanel
 		friendsButton = new MenuButton("Amis", "");
 		deconnexionButton = new MenuButton("Deconnexion", "");
 		
-		header.add(profileButton);		
-		header.add(friendsButton);
-		header.add(deconnexionButton);
+		//header.add(profileButton);		
+		//header.add(friendsButton);
+		//header.add(deconnexionButton);
 		
 		//profileButton.addActionListener(new ButtonListener());
 		//friendsButton.addActionListener(new ButtonListener());
-		deconnexionButton.addActionListener(new ButtonListener());
+		//deconnexionButton.addActionListener(new ButtonListener());
+		//friendsButton.addActionListener(new ButtonListener());
 	}
 	
 	public void initMenu()
@@ -140,9 +146,12 @@ public class HomePanel extends JPanel
 		menu.add(swimButton);	
 		menu.add(archButton);	
 		
-		//joggButton.addActionListener(new MenuListener());
-		//climbButton.addActionListener(new MenuListener());
-		//rowButton.addActionListener(new MenuListener());
+		joggButton.addActionListener(new MenuListener());
+		climbButton.addActionListener(new MenuListener());
+		rowButton.addActionListener(new MenuListener());
+		muscuButton.addActionListener(new MenuListener());
+		swimButton.addActionListener(new MenuListener());
+		archButton.addActionListener(new MenuListener());
 	}
 	
 	public void initProfile()
@@ -190,6 +199,24 @@ public class HomePanel extends JPanel
 		frame.resetHome();
 	}
 	
+	public void row() {
+		MainFrame frame = (MainFrame) (SwingUtilities.getRoot(MainFrame.getGlobal()));
+		
+		
+		this.removeAll();
+		
+		frame.change();
+	}
+	
+	public void swim() {
+		MainFrame fami = (MainFrame) (SwingUtilities.getRoot(MainFrame.getGlobal()));
+		
+		
+		this.removeAll();
+		
+		fami.siwmPanel();
+	}
+	
 	private class ButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e) 
@@ -206,8 +233,30 @@ public class HomePanel extends JPanel
 		}
 	}
 	
+	private class MenuListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e) 
+		{			
+			if(e.getSource() == swimButton) {
+				//Swimming frame = new Swimming();
+				//frame.setVisible(true);
+				swim();
+			}
+			else if(e.getSource() == rowButton) {
+				//MainFrame frame = (MainFrame) (SwingUtilities.getRoot(MainFrame.getGlobal()));
+				//frame.change();
+				row();
+				
+			}
+		}
+	}
+	
 	private class MenuButton extends JButton implements MouseListener
 	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public MenuButton(String nom, String iconFile)
 		{
 			super("  " + nom + "  ");

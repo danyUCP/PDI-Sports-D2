@@ -44,8 +44,9 @@ public class MainFrame extends JFrame
 	private SportLabel title;
 	private SportTextField pseudo, mdp;
 	
-	private int width = 800;
-	private int height = 500;
+	private int width = 858;//800;
+	private int height = 496;//500;
+	private String id,pass;
 	
 	
 	/**
@@ -151,6 +152,19 @@ public class MainFrame extends JFrame
 		this.repaint();
 	}
 	
+	public void change() {
+		global.removeAll();
+		global.add(new RowingPanel(), BorderLayout.CENTER);
+		global.revalidate();
+	}
+	
+	public void siwmPanel() {
+		global.removeAll();
+		global.add(new SwimmingPanel(), BorderLayout.CENTER);
+		global.revalidate();
+		
+	}
+	
 	public static JPanel getGlobal() 
 	{
 		return global;
@@ -172,6 +186,8 @@ public class MainFrame extends JFrame
 			{
 				UserManager um = new UserManager();
 				user = um.findUser(pseudo.getText(), mdp.getText());
+				id=pseudo.getText();
+				pass=mdp.getText();
 				
 				if(user == null)
 					JOptionPane.showMessageDialog(null, "Utilisateur inexistant");
@@ -192,8 +208,20 @@ public class MainFrame extends JFrame
 		}
 	}
 	
+	public String getId() {
+		return id;
+	}
+	
+	public String getPass() {
+		return pass;
+	}
+	
 	private class BackPanel extends JPanel
 	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private Image background;
 		
 		public BackPanel()
@@ -293,6 +321,8 @@ public class MainFrame extends JFrame
 		public void mousePressed(MouseEvent e) {}
 		public void mouseReleased(MouseEvent e) {}
 	}
+
+	
 
 
 	
