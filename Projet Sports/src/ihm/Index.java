@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import org.hibernate.Session;
 
 import data.DBConnection;
+import data.User;
 import util.HibernateUtil;
 import manager.Managers;
 import manager.UserManager;
@@ -14,6 +15,8 @@ import manager.UserManager;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -22,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -37,6 +41,10 @@ public class Index extends JFrame {
 	private JTextField textField;
 	JButton btnNewButton_1_1,btnNewButton_1;
 	private String user="";
+	private User use;
+	private SportTextField pseudo,mdp;
+	private static JPanel global;
+	
 	
 
 	/**
@@ -123,7 +131,7 @@ public class Index extends JFrame {
 		btnNewButton_1_1.setBounds(625, 344, 91, 21);
 		contentPane.add(btnNewButton_1_1);
 		
-		new_compte = new JLabel("Cr\u00E9er un nouveau compte");
+		new_compte = new JLabel("Creer un nouveau compte");
 		new_compte.setHorizontalAlignment(SwingConstants.CENTER);
 		new_compte.setForeground(Color.RED);
 		new_compte.setBounds(536, 394, 160, 13);
@@ -157,17 +165,33 @@ public class Index extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			final String SEPARATEUR = ";";
 			Session session = DBConnection.getSession();
-			Managers use= new Managers();
+			Managers usei= new Managers();
 			if(!textField.getText().equals("") && !last_Name.getText().equals("")) {
-				String a= use.testWhereClause(session, textField.getText(),last_Name.getText());
+				String a= usei.testWhereClause(session, textField.getText(),last_Name.getText());
 				System.out.println(a);
 				String word[] = a.split(SEPARATEUR);
 				if(!a.equals(";;")){
 					if(a.equals(word[0]+";"+word[1]+";"+word[2])) {
 						dispose();
-						Inbox frame = new Inbox();
-						frame.setUndecorated(true);
-						frame.setVisible(true);
+						UserManager um = new UserManager();
+				use = um.findUser(word[1], word[2]);
+						//Inbox frame = new Inbox();
+						//frame.setUndecorated(true);
+						//frame.setVisible(true);
+						 if(use == null)
+				JOptionPane.showMessageDialog(null, "Utilisateur inexistant");
+			else
+			{
+				//contentPane.removeAll();
+				//contentPane.add(new HomePanel(use));
+				//contentPane.revalidate();
+				SportGui frame= new SportGui();//use
+				frame.setUndecorated(true);
+				frame.setVisible(true);
+				//HomePanel p= new HomePanel(use);
+				//contentPane.setContentPane(p);
+				
+			}
 				}
 				}
 				else {
@@ -186,8 +210,29 @@ public class Index extends JFrame {
 				info.showMessageDialog(null, "Vous devez renter un identifiant et un mot de passe", "Information", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
+			
 		}
 		  
+	}
+	
+	private class SportTextField extends JTextField
+	{
+		private int size;
+		
+		public SportTextField(int size)
+		{
+			super(size);
+			
+			this.size = size;
+			
+
+			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+			this.setFont(new Font("Verdana", Font.PLAIN, 16));
+			this.setBackground(new Color(50, 50, 50));
+			this.setForeground(Color.WHITE);
+			this.setCaretColor(Color.WHITE);
+		}
+
 	}
 	public class Cancel implements ActionListener {
 

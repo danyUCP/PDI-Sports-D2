@@ -83,7 +83,7 @@ public class ClimbingPanel extends JPanel {
 		lblNewLabel.add(messagelabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\alexa\\eclipse-workspace\\PDI-Sports-D2\\Projet Sports\\src\\images\\climbing.png"));//"C:\\Users\\alexa\\OneDrive\\Images\\free-running-track-vector.jpg")); //C:\\Users\\Hp\\Documents\\projet d'integration\\Images\\free-running-track-vector.jpg"));
+		lblNewLabel_1.setIcon(new ImageIcon(ClimbingPanel.class.getResource("/images/climming.jpg")));
 		lblNewLabel_1.setBounds(255, 0, 626, 520); 
 		add(lblNewLabel_1);
 		
