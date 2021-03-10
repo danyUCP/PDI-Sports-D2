@@ -1,5 +1,6 @@
 package manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -22,7 +23,7 @@ public class WorkoutManager
 	}
 	
 	
-	public void getWorkoutList(int type)
+	public ArrayList<Workout> getWorkoutList(int type)
 	{
 		session = DBConnection.getSession();
 		
@@ -54,17 +55,16 @@ public class WorkoutManager
 		
 		Query query = session.createQuery("from " + table + " where user_id = :id");
 		query.setInteger("id", user.getId());
-		List result = query.list();
+		
+		@SuppressWarnings("unchecked")
+		ArrayList<Workout> result = (ArrayList<Workout>) query.list();
 
 		System.out.println(result.size() + " " + table + " found for " + user.getFirstname());
+		System.out.println(result);
 
-		for(int i = 0 ; i < result.size() ; i++)
-		{
-			Workout w = (Workout)result.get(i);
-			System.out.println(w);
-		}
-		
 		session.close();
+
+		return result;
 	}
 
 }

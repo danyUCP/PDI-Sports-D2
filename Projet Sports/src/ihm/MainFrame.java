@@ -12,22 +12,18 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import data.User;
+import ihm.components.SportButton;
+import ihm.components.SportLabel;
+import ihm.components.SportTextField;
 import manager.UserManager;
 
 public class MainFrame extends JFrame
@@ -46,7 +42,6 @@ public class MainFrame extends JFrame
 	
 	private int width = 845;//800;
 	private int height = 460;//500;
-	private String id,pass;
 	
 	
 	/**
@@ -93,7 +88,6 @@ public class MainFrame extends JFrame
 		section.setLayout(new GridLayout(3, 1));
 		back.add(section);
 		
-		
 		header = new JPanel();
 		header.setBackground(new Color(28, 28, 28));
 		header.setLayout(new BorderLayout());
@@ -106,7 +100,6 @@ public class MainFrame extends JFrame
 		connexion = new JPanel();
 		connexion.setBackground(new Color(28, 28, 28));
 		connexion.setLayout(new GridLayout(3, 1));		
-		
 
 		log1 = new JPanel();
 		log1.setBackground(new Color(28, 28, 28));
@@ -152,18 +145,6 @@ public class MainFrame extends JFrame
 		this.repaint();
 	}
 	
-	public void change() {
-		global.removeAll();
-		global.add(new RowingPanel(), BorderLayout.CENTER);
-		global.revalidate();
-	}
-	
-	public void siwmPanel() {
-		global.removeAll();
-		global.add(new SwimmingPanel(), BorderLayout.CENTER);
-		global.revalidate();
-		
-	}
 	
 	public static JPanel getGlobal() 
 	{
@@ -186,8 +167,6 @@ public class MainFrame extends JFrame
 			{
 				UserManager um = new UserManager();
 				user = um.findUser(pseudo.getText(), mdp.getText());
-				id=pseudo.getText();
-				pass=mdp.getText();
 				
 				if(user == null)
 					JOptionPane.showMessageDialog(null, "Utilisateur inexistant");
@@ -198,29 +177,19 @@ public class MainFrame extends JFrame
 				}
 				
 			}
-			/*
-			else if(e.getSource() == proteine)
-				global.add(new ARNPanel(), BorderLayout.CENTER);
-			else if(e.getSource() == heritage)
-				global.add(new HeritagePanel(),BorderLayout.CENTER);
-			*/
+			else if(e.getSource() == create)
+			{
+				//Actions pour le bouton create
+			}
+
 			global.revalidate();	
 		}
 	}
 	
-	public String getId() {
-		return id;
-	}
-	
-	public String getPass() {
-		return pass;
-	}
 	
 	private class BackPanel extends JPanel
 	{
-		/**
-		 * 
-		 */
+	
 		private static final long serialVersionUID = 1L;
 		private Image background;
 		
@@ -247,80 +216,9 @@ public class MainFrame extends JFrame
 			g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
 		}
 	}
-	
-	private class SportLabel extends JLabel
-	{
-		private String texte;
 		
-		public SportLabel(String texte)
-		{
-			super(texte);
-			
-			this.texte = texte;
-			
-
-			this.setFont(new Font("Verdana", Font.PLAIN, 16));
-			this.setBackground(new Color(50, 50, 50));
-			this.setForeground(Color.WHITE);
-			this.setVerticalAlignment(SwingConstants.CENTER);
-		    this.setHorizontalAlignment(SwingConstants.CENTER);
-
-		}
-
-	}
 	
-	private class SportTextField extends JTextField
-	{
-		private int size;
-		
-		public SportTextField(int size)
-		{
-			super(size);
-			
-			this.size = size;
-			
-
-			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-			this.setFont(new Font("Verdana", Font.PLAIN, 16));
-			this.setBackground(new Color(50, 50, 50));
-			this.setForeground(Color.WHITE);
-			this.setCaretColor(Color.WHITE);
-		}
-
-	}
 	
-	private class SportButton extends JButton implements MouseListener
-	{
-		public SportButton(String name)
-		{
-			super("  " + name + "  ");
-			
-			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-			this.setFocusPainted(false);
-			this.setFont(new Font("Verdana", Font.PLAIN, 16));
-			this.setVerticalTextPosition(SwingConstants.CENTER);
-		    this.setHorizontalTextPosition(SwingConstants.CENTER);
-			this.setBackground(new Color(50, 50, 50));
-			this.setForeground(Color.WHITE);
-			
-			this.addMouseListener(this);
-		}
-
-		public void mouseEntered(MouseEvent e) 
-		{
-			if(this.isEnabled())
-				this.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-		}
-
-		public void mouseExited(MouseEvent e) 
-		{
-			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		}
-		
-		public void mouseClicked(MouseEvent e) {}
-		public void mousePressed(MouseEvent e) {}
-		public void mouseReleased(MouseEvent e) {}
-	}
 
 	
 

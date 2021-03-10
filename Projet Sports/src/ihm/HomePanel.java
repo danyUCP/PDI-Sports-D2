@@ -11,24 +11,21 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import data.User;
+import ihm.components.SportButton;
+import ihm.components.SportLabel;
 
 public class HomePanel extends JPanel
 {
@@ -39,7 +36,7 @@ public class HomePanel extends JPanel
 
 	private User user;
 
-	private JPanel section, menu, header, footer, content, profile;
+	private JPanel section, menu, header, content, profile;
 	private JPanel userPanel, history;
 	private MenuButton profileButton, friendsButton, deconnexionButton;
 	private MenuButton joggButton, climbButton, rowButton, muscuButton, swimButton, archButton;
@@ -120,14 +117,13 @@ public class HomePanel extends JPanel
 		friendsButton = new MenuButton("Amis", "");
 		deconnexionButton = new MenuButton("Deconnexion", "");
 		
-		//header.add(profileButton);		
-		//header.add(friendsButton);
-		//header.add(deconnexionButton);
+		header.add(profileButton);		
+		header.add(friendsButton);
+		header.add(deconnexionButton);
 		
-		//profileButton.addActionListener(new ButtonListener());
-		//friendsButton.addActionListener(new ButtonListener());
-		//deconnexionButton.addActionListener(new ButtonListener());
-		//friendsButton.addActionListener(new ButtonListener());
+		profileButton.addActionListener(new ButtonListener());
+		friendsButton.addActionListener(new ButtonListener());
+		deconnexionButton.addActionListener(new ButtonListener());
 	}
 	
 	public void initMenu()
@@ -190,46 +186,29 @@ public class HomePanel extends JPanel
 		profile.add(history, BorderLayout.EAST);
 	}
 	
-	public void fermer()
+	public void close()
 	{
 		MainFrame frame = (MainFrame) (SwingUtilities.getRoot(MainFrame.getGlobal()));
-		
 		
 		this.removeAll();
 		frame.resetHome();
 	}
 	
-	public void row() {
-		MainFrame frame = (MainFrame) (SwingUtilities.getRoot(MainFrame.getGlobal()));
-		
-		
-		this.removeAll();
-		
-		frame.change();
-	}
-	
-	public void swim() {
-		MainFrame fami = (MainFrame) (SwingUtilities.getRoot(MainFrame.getGlobal()));
-		
-		
-		this.removeAll();
-		
-		fami.siwmPanel();
-	}
-	
+
 	private class ButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e) 
 		{			
-			if(e.getSource() == deconnexionButton)
-				fermer();
-			
-			/*
-			else if(e.getSource() == proteine)
-				global.add(new ARNPanel(), BorderLayout.CENTER);
-			else if(e.getSource() == heritage)
-				global.add(new HeritagePanel(),BorderLayout.CENTER);
-			*/
+			if(e.getSource() == profileButton)
+			{
+				//Actions pour le bouton Profil
+			}
+			else if(e.getSource() == friendsButton)
+			{
+				//Actions pour le bouton Amis
+			}
+			else if(e.getSource() == deconnexionButton)
+				close();
 		}
 	}
 	
@@ -237,89 +216,59 @@ public class HomePanel extends JPanel
 	{
 		public void actionPerformed(ActionEvent e) 
 		{			
-			if(e.getSource() == swimButton) {
-				//Swimming frame = new Swimming();
-				//frame.setVisible(true);
-				swim();
-			}
-			else if(e.getSource() == rowButton) {
-				//MainFrame frame = (MainFrame) (SwingUtilities.getRoot(MainFrame.getGlobal()));
-				//frame.change();
-				row();
-				
-			}
+			MainFrame.getGlobal().removeAll();
+			
+			if(e.getSource() == joggButton) 
+				MainFrame.getGlobal().add(new SportDataPanel(user, 1));
+			else if(e.getSource() == climbButton)
+				MainFrame.getGlobal().add(new SportDataPanel(user, 2));
+			else if(e.getSource() == rowButton)
+				MainFrame.getGlobal().add(new SportDataPanel(user, 3));
+			else if(e.getSource() == muscuButton)
+				MainFrame.getGlobal().add(new SportDataPanel(user, 4));
+			else if(e.getSource() == swimButton)
+				MainFrame.getGlobal().add(new SportDataPanel(user, 5));
+			else if(e.getSource() == archButton)
+				MainFrame.getGlobal().add(new SportDataPanel(user, 6));
+
+			MainFrame.getGlobal().revalidate();
 		}
 	}
 	
-	private class MenuButton extends JButton implements MouseListener
+	@SuppressWarnings("serial")
+	private class MenuButton extends SportButton
 	{
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
 		public MenuButton(String nom, String iconFile)
 		{
 			super("  " + nom + "  ");
 			
 			this.setIcon(new ImageIcon(iconFile));
-			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-			this.setFocusPainted(false);
 			this.setFont(new Font("Verdana", Font.PLAIN, 15));
 			this.setVerticalTextPosition(SwingConstants.CENTER);
-		    this.setHorizontalTextPosition(SwingConstants.RIGHT);
-			this.setBackground(new Color(50, 50, 50));
-			this.setForeground(Color.WHITE);
-			
-			this.addMouseListener(this);
+		    this.setHorizontalTextPosition(SwingConstants.RIGHT);			
 		}
-
-		public void mouseEntered(MouseEvent e) 
-		{
-			if(this.isEnabled())
-				this.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-		}
-
-		public void mouseExited(MouseEvent e) 
-		{
-			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		}
-		
-		public void mouseClicked(MouseEvent e) {}
-		public void mousePressed(MouseEvent e) {}
-		public void mouseReleased(MouseEvent e) {}
 	}
 	
-	private class ProfileLabel extends JLabel
-	{
-		private String texte;
-		
+	@SuppressWarnings("serial")
+	private class ProfileLabel extends SportLabel
+	{		
 		public ProfileLabel(String texte)
 		{
-			super(texte);
+			super(" " + texte);
 			
-			this.texte = texte;
-			
-
 			this.setFont(new Font("Verdana", Font.PLAIN, 20));
-			this.setBackground(new Color(28, 28, 28));
-			this.setForeground(Color.WHITE);
 			this.setVerticalAlignment(SwingConstants.CENTER);
 		    this.setHorizontalAlignment(SwingConstants.LEFT);
 		}
 		
 		public ProfileLabel(String texte, int style, int size)
 		{
-			super(texte);
-			
-			this.texte = texte;
-			
+			super(" " + texte);
+						
 			this.setFont(new Font("Verdana", style, size));
-			this.setBackground(new Color(28, 28, 28));
-			this.setForeground(Color.WHITE);
 			this.setVerticalAlignment(SwingConstants.CENTER);
 		    this.setHorizontalAlignment(SwingConstants.LEFT);
 		}
-
 	}
 
 }
