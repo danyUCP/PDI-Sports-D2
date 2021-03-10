@@ -11,6 +11,7 @@ import graph.SwimmingWorkoutBarChart;
 import manager.Managers;
 import manager.UserManager;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -26,7 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.swing.SwingConstants;
-
+import javax.swing.SwingUtilities;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -47,6 +48,7 @@ public class SwimmingPanel extends JPanel {
 	JLabel basse,Crowl,arriere,Papillon,time;
 	JTextPane papillon,crowl,papillon_2,papillon_3,papillon_2_1;
 	JComboBox comboBox,comboBox_1;
+	JButton btnNewButton;
 	
 
 	/**
@@ -87,7 +89,7 @@ public class SwimmingPanel extends JPanel {
 		btnNewButton_1.setBounds(759, 47, 85, 21);
 		add(btnNewButton_1);
 		
-		JButton btnNewButton = new JButton("Retour");
+		btnNewButton = new JButton("Retour");
 		btnNewButton.setForeground(new Color(192, 192, 192));
 		btnNewButton.setBounds(10, 428, 85, 21);
 		add(btnNewButton);
@@ -198,7 +200,17 @@ public class SwimmingPanel extends JPanel {
 		add(lblNewLabel_4);
 		
 		btnNewButton_1.addActionListener(new Graph());
+		btnNewButton.addActionListener(new Cancel());
 		
+	}
+	
+	public void previous() {
+		MainFrame fami = (MainFrame) (SwingUtilities.getRoot(MainFrame.getGlobal()));
+		
+		
+		this.removeAll();
+		
+		//fami.changePanel();
 	}
 	
 	private class Graph implements ActionListener {
@@ -224,6 +236,7 @@ public class SwimmingPanel extends JPanel {
 				/*else {
 					JOptionPane.showMessageDialog(null, "Tous les champs doivent être remplis");
 				}*/
+			
 			}
 		
 		private int ConvertIntoNumeric(String xVal)
@@ -237,10 +250,22 @@ public class SwimmingPanel extends JPanel {
 		     return 0; 
 		  }
 		}
+	}
+		
+		
+		public class Cancel implements ActionListener {
+
+			public void actionPerformed(ActionEvent e) {
+				
+				if(e.getSource()==btnNewButton) {
+					
+					previous();
+					
+				}
+			}
 			
 		}
-		
-		
-		
 	}
+		
+		
 
