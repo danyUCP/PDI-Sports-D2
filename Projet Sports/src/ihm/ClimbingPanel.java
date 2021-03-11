@@ -4,22 +4,27 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.jfree.ui.RefineryUtilities;
 
 import data.ClimbingWorkout;
 import data.DBConnection;
-import data.JoggingWorkout;
 import data.User;
 import data.Workout;
+import graph.SwimmingWorkoutBarChart;
+import manager.Managers;
+import manager.UserManager;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+
 
 public class ClimbingPanel extends JPanel {
 	/**
@@ -27,49 +32,80 @@ public class ClimbingPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField time;
-	private JTextField difficulte;
+	private JTextField final_date;
 	private JLabel messagelabel;
+	@SuppressWarnings("rawtypes")
+	JComboBox comboBox,comboBox_1;
+	String[] liste={"White", "Yellow","Orange","Blue","Red","Grey"};
+	String[] liste1={"Alter", "Add"};
+	User user;
+	JButton btnNewButton_1;
 
 	/**
 	 * Create the panel.
 	 */
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ClimbingPanel() {
 		setLayout(null);
 		
-		JButton btnNewButton = new JButton("Valider");
-		btnNewButton.setBounds(10, 360, 97, 40);
-		add(btnNewButton);
+		btnNewButton_1 = new JButton("Submit");
+		btnNewButton_1.setBounds(10, 360, 97, 40);
+		add(btnNewButton_1);
 		
-		JButton btnAnnuler = new JButton("Annuler");
+		JButton btnAnnuler = new JButton("Cancel");
 		btnAnnuler.setBounds(143, 360, 97, 40);
 		add(btnAnnuler);
 		
-		JLabel lblNewLabel_3 = new JLabel("Durée");
-		lblNewLabel_3.setBounds(154, 143, 86, 24);
+		JLabel lblNewLabel_3 = new JLabel("Duration");
+		lblNewLabel_3.setBounds(154, 140, 86, 24);
 		add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("Difficulté");
-		lblNewLabel_3_1.setBounds(154, 261, 86, 24);
+		JLabel lblNewLabel_3_1 = new JLabel("Difficulty");
+		lblNewLabel_3_1.setBounds(154, 220, 86, 24);
 		add(lblNewLabel_3_1);
+		
+		JLabel lblNewLabel_option = new JLabel("Option");
+		lblNewLabel_option.setBounds(160, 70, 86, 24);
+		add(lblNewLabel_option);
+		
+		JLabel lblNewLabel_date=new JLabel("Date format :");
+		lblNewLabel_date.setBounds(154,280,86,24);
+		add(lblNewLabel_date);
+		
+		JLabel lblNewLabel_date_2=new JLabel("aa-m-j");
+		lblNewLabel_date_2.setBounds(154, 300, 86, 24);
+		add(lblNewLabel_date_2);
+		
+		comboBox_1 = new JComboBox();
+		comboBox_1.setBackground(Color.WHITE);
+		comboBox_1.setBounds(21, 70, 123, 32);
+		add(comboBox_1);
+		comboBox_1.setModel(new javax.swing.DefaultComboBoxModel(liste1));
 		
 		time = new JTextField();
 		time.setBackground(new Color(255, 255, 255));
-		time.setBounds(21, 143, 123, 32);
+		time.setBounds(21, 140, 123, 32);
 		add(time);
 		time.setColumns(10);
 		
+		final_date=new JTextField();
+		final_date.setBackground(new Color(255, 255, 255));
+		final_date.setBounds(21, 280, 123, 32);
+		add(final_date);
+		final_date.setColumns(10);
 		
-		difficulte = new JTextField();
-		difficulte.setColumns(10);
-		difficulte.setBackground(Color.WHITE);
-		difficulte.setBounds(21, 253, 123, 32);
-		add(difficulte);
+		comboBox = new JComboBox();
+		comboBox.setBackground(Color.WHITE);
+		comboBox.setBounds(21, 220, 123, 32);
+		add(comboBox);
+		comboBox.setModel(new javax.swing.DefaultComboBoxModel(liste));
 		
 		
 		JLabel user = new JLabel("User");
 		user.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		user.setHorizontalAlignment(SwingConstants.CENTER);
-		user.setBounds(71, 79, 103, 24);
+		user.setBounds(71, 20, 90, 24);
 		add(user);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -87,7 +123,7 @@ public class ClimbingPanel extends JPanel {
 		lblNewLabel_1.setBounds(255, 0, 626, 520); 
 		add(lblNewLabel_1);
 		
-		btnNewButton.addActionListener(new ActionBoutton1());
+		btnNewButton_1.addActionListener(new Graph());
 		btnAnnuler.addActionListener(new ActionBoutton2());
 		
 
@@ -98,7 +134,7 @@ public class ClimbingPanel extends JPanel {
 	 *
 	 */
 	
-	public class ActionBoutton1 implements ActionListener {
+	/*public class ActionBoutton1 implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -113,7 +149,7 @@ public class ClimbingPanel extends JPanel {
 						
 			System.out.println(" difficulté "+text2+"");
 			
-			if((text2.equals("red"))||(text2.equals("black"))||(text2.equals("orange"))||(text2.equals("brown"))) {			
+			if((text2.equals("Red"))||(text2.equals("Black"))||(text2.equals("Orange"))||(text2.equals("White"))) {			
 			int m1 = Integer.parseInt(text1);
 	       	//	int m2 = Integer.parseInt(text2);
 			
@@ -130,36 +166,71 @@ public class ClimbingPanel extends JPanel {
 			
 			persistTransaction1.commit();
 			session.close();
-			}else{
-				
-				settext("cette difficulté n'éxiste pas");
-				
-		     }
-					
-					
-					
-					
-					} catch (NumberFormatException nfe) {
-				        settext("Erreur de format");
-						   
-					    
-				    }
-					
-					}else {
-				      settext("Un paramètre est requis");
-				}
-		
-			}else {
-			
-				
-				settext("Veuillez remplir tout les champs");	
-				
 			}
+					} 
+			catch (NumberFormatException nfe) {
+				        settext("Erreur de format");
+						   					}
+					
+					}
+				else {
+				      settext("Un paramètre est requis");
+					}
+		
+			}
+			else {
+			settext("Veuillez remplir tout les champs");	
+				}
 		}
-		  
 	}
 	
-	
+	*/
+	public class Graph implements ActionListener {
+		
+	public void actionPerformed(ActionEvent e1) {
+		String text1=time.getText();
+		String text_date= final_date.getText();
+		String text2=comboBox.getSelectedItem().toString();
+		String text3=comboBox_1.getSelectedItem().toString();
+		
+		if(e1.getSource()== btnNewButton_1) {
+				if(text3 == "Add") {
+			//	Graph p=new Graph();
+				
+				int m1 = Integer.parseInt(text1);
+				
+				Session session = DBConnection.getSession();
+				Transaction persistTransaction1 = session.beginTransaction();	
+				
+				
+				Date dates=ConvertDateToSql(text_date);
+				
+				
+				User u1 = new User("Alex","1311","Alexander","Bubb","M",20,186,65);
+				session.save(u1);
+		   
+				Workout w=new ClimbingWorkout(dates,m1,text2);
+				w.setUser(u1);
+				session.save(w);
+				
+				persistTransaction1.commit();
+				session.close();
+				
+				//um.addSwimming(user,new Date(0),p.ConvertIntoNumeric(papillon_2_1.getText()),p.ConvertIntoNumeric(papillon.getText()),p.ConvertIntoNumeric(crowl.getText()),p.ConvertIntoNumeric(papillon_2.getText()),p.ConvertIntoNumeric(papillon_3.getText()));
+				//SwimmingWorkoutBarChart demo = new SwimmingWorkoutBarChart("SwimmingWorkoutBar Chart");
+				//demo.pack();
+				//RefineryUtilities.centerFrameOnScreen(demo);
+				//demo.setVisible(true);
+				}
+				/*else {
+					Ici voir pour la modification
+				}*/
+			}
+			/*else {
+				JOptionPane.showMessageDialog(null, "Tous les champs doivent être remplis");
+			}*/
+		}
+	}
 	/**
 	 * Create ActionListener
 	 *
@@ -175,6 +246,20 @@ public class ClimbingPanel extends JPanel {
 		}
 		  
 	}
+		
+		/*private int ConvertIntoNumeric(String xVal)
+		{
+		 try
+		  { 
+		     return Integer.parseInt(xVal);
+		  }
+		 catch(Exception ex) 
+		  {
+		     return 0; 
+		  }
+		}*/
+			
+		
 	
 	public int Convettexttomesure(String text) {
 		
@@ -201,5 +286,12 @@ public class ClimbingPanel extends JPanel {
 		messagelabel.setText(text);	
 			
 		}
+	
+	public Date ConvertDateToSql(String date) {  
+	    Date dates=Date.valueOf(date); 
+	    System.out.println(date);
+		return dates;  
+	}
+	
 }
 
