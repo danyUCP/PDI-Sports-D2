@@ -1,6 +1,5 @@
 package ihm;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -9,22 +8,13 @@ import org.hibernate.Transaction;
 import org.jfree.ui.RefineryUtilities;
 
 import data.DBConnection;
-import data.JoggingWorkout;
+
 import data.RowingWorkout;
 import data.User;
 import data.Workout;
-import graph.LineChartJogging;
+
 import graph.RowingWorkoutLine;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -52,7 +42,7 @@ public class RowingWindow  extends JFrame {
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			private JPanel contentPane, panel_white;
+			private RowingPanel contentPane, panel_white;
 			private JLabel Label_inbox, Background;
 			private JTextField mesure1text=new JTextField("");//padlle strokes
 			private JTextField mesure2text=new JTextField("");//distance
@@ -72,84 +62,84 @@ public class RowingWindow  extends JFrame {
 			 * Create the frame.
 			 */
 			
-			private Dashboard dashboard = new Dashboard();
+		//	private Dashboard dashboard = new Dashboard();
 			
 			public RowingWindow(){
 				
 			
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				setBounds(100, 100, 858, 496);
-				contentPane = new JPanel();
+				contentPane = new RowingPanel();
 				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 				setContentPane(contentPane);
 				contentPane.setLayout(null);
 				
-				panel_white = new JPanel();
+				/*panel_white = new RowingPanel();
 				panel_white.setBounds(102, 10, 415, 425);
 				panel_white.setBackground(Color.WHITE);
 				contentPane.add(panel_white);
 				panel_white.setLayout(null);
-				
+				*/
 				Label_inbox = new JLabel("Alexander BUBB");
 				Label_inbox.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 				Label_inbox.setHorizontalAlignment(SwingConstants.CENTER);
 				Label_inbox.setBounds(110, 10, 208, 37);
-				panel_white.add(Label_inbox);
+			//	panel_white.add(Label_inbox);
 				
-				mesure1text=new JTextField("");
-				mesure1text.setBounds(51, 101, 100, 30);
-				panel_white.add(mesure1text);
+			//	mesure1text=new JTextField("");
+			//	mesure1text.setBounds(51, 101, 100, 30);
+			//	panel_white.add(mesure1text);
 				
-				durationlabel=new JLabel("paddle_strokes");
-				durationlabel.setBounds(151, 101, 100, 30);
-				panel_white.add(durationlabel);
+			//	durationlabel=new JLabel("paddle_strokes");
+			//	durationlabel.setBounds(151, 101, 100, 30);
+			//	panel_white.add(durationlabel);
 				
-				mesure2text=new JTextField("");
-				mesure2text.setBounds(51, 161, 100, 30);
-				panel_white.add(mesure2text);
+			//	mesure2text=new JTextField("");
+			//	mesure2text.setBounds(51, 161, 100, 30);
+			//	panel_white.add(mesure2text);
 				
-				distancelabel=new JLabel("distance");
-				distancelabel.setBounds(151, 161, 100, 30);
-				panel_white.add(distancelabel);
+			//	distancelabel=new JLabel("distance");
+			//	distancelabel.setBounds(151, 161, 100, 30);
+			//	panel_white.add(distancelabel);
 
-				mesure3text=new JTextField("");
-				mesure3text.setBounds(51, 161, 100, 30);
-				panel_white.add(mesure3text);
+			//	mesure3text=new JTextField("");
+			//	mesure3text.setBounds(51, 161, 100, 30);
+			//	panel_white.add(mesure3text);
 				
-				durationlabel=new JLabel("duration");
-				durationlabel.setBounds(151, 201, 100, 30);
-				panel_white.add(durationlabel);
+			//	durationlabel=new JLabel("duration");
+			//	durationlabel.setBounds(151, 201, 100, 30);
+			//	panel_white.add(durationlabel);
 				
 				
 				messagelabel=new JLabel("");
 				messagelabel.setBounds(151, 251, 100, 30);
-				panel_white.add(messagelabel);
+				contentPane.add(messagelabel);
 				
-				mesure3text=new JTextField("");
-				mesure3text.setBounds(51, 201, 100, 30);
-				panel_white.add(mesure3text);
+			//	mesure3text=new JTextField("");
+			//	mesure3text.setBounds(51, 201, 100, 30);
+			//	panel_white.add(mesure3text);
 				
 				
 
-				Button1 = new JButton("Valid");
+			//	Button1 = new JButton("Valid");
 		
 				
-				Button1.setBackground(Color.WHITE);
-				Button1.setBounds(21, 301, 120, 50);
-				Button1.addActionListener(new ActionBoutton1());
-				panel_white.add(Button1);
+			//	Button1.setBackground(Color.WHITE);
+			//	Button1.setBounds(21, 301, 120, 50);
+			//	Button1.addActionListener(new ActionBoutton1());
+			//	panel_white.add(Button1);
 				
-				Button2 = new JButton("Cancel");
+			//	Button2 = new JButton("Cancel");
 
-				Button2.setBackground(Color.WHITE);
-				Button2.setBounds(227, 301, 120, 50);
-				Button2.addActionListener(new ActionBoutton2());
-				panel_white.add(Button2);
+			//	Button2.setBackground(Color.WHITE);
+			//	Button2.setBounds(227, 301, 120, 50);
+			//	Button2.addActionListener(new ActionBoutton2());
+			//	panel_white.add(Button2);
 				
-				Background = new JLabel("");
-				Background.setIcon(new ImageIcon(Inbox.class.getResource("/images/SportI.jpg")));
-				Background.setBounds(0, 0, 642, 455);
-				contentPane.add(Background);
+			//	Background = new JLabel("");
+			//	Background.setIcon(new ImageIcon(Inbox.class.getResource("/images/SportI.jpg")));
+			//	Background.setBounds(0, 0, 642, 455);
+	        //	contentPane.add(Background);
 				
 				
 				/**

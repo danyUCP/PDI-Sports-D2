@@ -1,6 +1,5 @@
 package ihm;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -47,20 +46,20 @@ public class JoggingWindow  extends JFrame {
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			private JPanel contentPane, panel_white;
+			private JoggingPanel contentPane, panel_white;
 			private JLabel Label_inbox, Background;
 			private JTextField mesure1text=new JTextField("");
 			private JTextField mesure2text=new JTextField("");
-			private JButton  Button1;
+		/*	private JButton  Button1;
 			private JButton Button2;
 			private JLabel durationlabel;
 			private JLabel distancelabel;
 			private JLabel messagelabel;
-			
-			private JPanel control = new JPanel();
+			*/
+		/*	private RowingPanel control = new RowingPanel();
 			private static Font font = new Font(Font.MONOSPACED, Font.BOLD, 20);
 			private static final Dimension IDEAL_DASHBOARD_DIMENSION = new Dimension(900, 650);
-		
+		*/
 			/**
 			 * Launch the application.
 			 */
@@ -70,71 +69,25 @@ public class JoggingWindow  extends JFrame {
 			 * Create the frame.
 			 */
 			
-			private Dashboard dashboard = new Dashboard();
+			//private Dashboard dashboard = new Dashboard();
 			
 			public JoggingWindow(){
 				
 			
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				setBounds(100, 100, 646, 482);
-				contentPane = new JPanel();
+				contentPane = new JoggingPanel();
 				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 				setContentPane(contentPane);
 				contentPane.setLayout(null);
-				
-				panel_white = new JPanel();
-				panel_white.setBounds(102, 10, 415, 425);
-				panel_white.setBackground(Color.WHITE);
-				contentPane.add(panel_white);
-				panel_white.setLayout(null);
-				
+
 				Label_inbox = new JLabel("Alexander BUBB");
 				Label_inbox.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 				Label_inbox.setHorizontalAlignment(SwingConstants.CENTER);
 				Label_inbox.setBounds(110, 10, 208, 37);
-				panel_white.add(Label_inbox);
+		
 				
-				mesure1text=new JTextField("");
-				mesure1text.setBounds(51, 101, 100, 30);
-				panel_white.add(mesure1text);
-				
-				durationlabel=new JLabel("duration");
-				durationlabel.setBounds(151, 101, 100, 30);
-				panel_white.add(durationlabel);
-				
-				mesure2text=new JTextField("");
-				mesure2text.setBounds(51, 161, 100, 30);
-				panel_white.add(mesure2text);
-				
-				distancelabel=new JLabel("distance");
-				distancelabel.setBounds(151, 161, 100, 30);
-				panel_white.add(distancelabel);
-				
-				messagelabel=new JLabel("");
-				messagelabel.setBounds(151, 181, 100, 30);
-				panel_white.add(messagelabel);
-				
-				
-
-				Button1 = new JButton("Valid");
-				
-				Button1.setBackground(Color.WHITE);
-				Button1.setBounds(21, 301, 120, 50);
-				Button1.addActionListener(new ActionBoutton1());
-				panel_white.add(Button1);
-				
-				Button2 = new JButton("Cancel");
-				Button2.setBackground(Color.WHITE);
-				Button2.setBounds(227, 301, 120, 50);
-				Button2.addActionListener(new ActionBoutton2());
-				panel_white.add(Button2);
-				
-				Background = new JLabel("");
-				Background.setIcon(new ImageIcon(Inbox.class.getResource("/images/SportI.jpg")));
-				Background.setBounds(0, 0, 642, 455);
-				contentPane.add(Background);
-				
-				
+			
 				/**
 				 * 
 				 */
@@ -145,55 +98,13 @@ public class JoggingWindow  extends JFrame {
 				
 			}
 			
-	         public void init() {
-	        	 
-	     	Container contentPane = getContentPane();
-	    	contentPane.setLayout(new BorderLayout());
-	    	control.setLayout(new FlowLayout(FlowLayout.CENTER));
-	    	mesure1text.setFont(font);
-	    	control.add(mesure1text);
-	    	
-	    	mesure1text.setFont(font);
-	    	control.add(mesure1text);
-	    	
-	    	mesure2text.setFont(font);
-	    	control.add(mesure2text);
-	    	
-	    	
-	    	
-	    	mesure1text.setFont(font);
-	    	control.add(mesure2text);
-	    	
-	    	Button1.setFont(font);
-	    	Button1.addActionListener(new ActionBoutton1());
-	    	control.add(Button1);
-	    	
-	    	Button2.setFont(font);
-	    	Button2.addActionListener(new ActionBoutton2());
-	    	control.add(Button2);
-	    	
-	    	dashboard.setPreferredSize(IDEAL_DASHBOARD_DIMENSION);
-			contentPane.add(BorderLayout.SOUTH, dashboard);
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
-			pack();
-			setVisible(true);
-			setPreferredSize(new Dimension(900, 500));
-	    	
-		
-	    	
-	    	
-	    	
-			
-	    	
-	        	 
-			 }
-			
+	     
 			/**
 			 * Create ActionListener
 			 *
 			 */
 			
-			public class ActionBoutton1 implements ActionListener {
+		/*	public class ActionBoutton1 implements ActionListener {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -240,12 +151,12 @@ public class JoggingWindow  extends JFrame {
 				  
 			}
 			
-			
+			*/
 			/**
 			 * Create ActionListener
 			 *
 			 */
-			
+		/*	
 	 		public class ActionBoutton2 implements ActionListener {
 
 				@Override
@@ -284,7 +195,7 @@ public class JoggingWindow  extends JFrame {
 				}
 				
 
-			
+			*/
 			public static void main(String[] args) {
 				JoggingWindow frame = new JoggingWindow();
 				frame.setVisible(true);
