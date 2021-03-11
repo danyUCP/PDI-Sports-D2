@@ -206,11 +206,16 @@ public class ClimbingPanel extends JPanel {
 				Date dates=ConvertDateToSql(text_date);
 				
 				
-				User u1 = new User("Alex","1311","Alexander","Bubb","M",20,186,65);
-				session.save(u1);
+				String logintest=user.getLogin();
+				String mdp=user.getMdp();
+				UserManager m=new UserManager();
+				user=m.findUser(logintest, mdp);
+				
+				//User u1 = new User("Alex","1311","Alexander","Bubb","M",20,186,65);
+				//session.save(u1);
 		   
 				Workout w=new ClimbingWorkout(dates,m1,text2);
-				w.setUser(u1);
+				w.setUser(user);
 				session.save(w);
 				
 				persistTransaction1.commit();
