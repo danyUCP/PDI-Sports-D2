@@ -16,7 +16,6 @@ import data.DBConnection;
 import data.JoggingWorkout;
 import data.User;
 import data.Workout;
-import ihm.ModificationJoggingPanel.ActionBoutton1;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
