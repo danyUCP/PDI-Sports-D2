@@ -1,5 +1,6 @@
 package manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -21,62 +22,23 @@ public class UserManager
 	public UserManager() {	}
 	
 	
-	public void addUser(String login, String mdp, String firstname, String lastname, String gender, int age, float size, float weight) 
+	public void addUser(User u) 
 	{
 		session = DBConnection.getSession();
 		transaction = session.beginTransaction();
-
-		User u = new User(login, mdp, firstname, lastname, gender, age, size, weight);
 		
 		session.save(u);
 		transaction.commit();
 	}
 	
-	/**
-	 * This method removes the user by his id in the base
-	 * @param idUser
-	 */
-	public void deletteUser(int idUser) {
-		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+	public void deleteUser(User u) 
+	{
+		session = DBConnection.getSession();
+		transaction = session.beginTransaction();
 		
-		User u=(User) session.load(User.class,idUser);
 		session.delete(u);
-		session.getTransaction().commit();
-		
+		transaction.commit();
 	}
-	
-	public void getInfoUser() {
-		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		Object ob=session.load(User.class,new Integer(1));
-		User u=(User) ob;
-		//session.select();
-		System.out.println("Nom: "+u.getFirstname());
-		
-	}
-	
-	public String getInfoUser(int id) {
-		//SessionFactory sessionFactory=new AnnotationConfiguration().configure().buildSessionFactory();
-		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-		//Session session=sessionFactory.openSession();
-		session.beginTransaction();
-		User u=(User) session.get(User.class, id);
-		//User u=(User) session.createQuery("SELECT * FROM `user` WHERE `idUser`=1;");
-		/*if(u.getFirstname().equals(user)&&u.getLastname().equals(name)) {
-			//String name=u.getFirstname()
-			System.out.println("Nom: "+u.getLogin()+" Prenom: "+u.getMdp());
-			session.getTransaction().commit();
-		}
-		else {
-			System.out.println("quelque chose ne va pas");
-		}*/
-		String ide=u.getLogin();
-		String mpd=u.getMdp();
-		session.getTransaction().commit();
-			
-		return ide+mpd;
-		}
 	
 	public User findUser(String login, String mdp)
 	{
@@ -131,6 +93,50 @@ public class UserManager
 		return id;
 	}
 		
+	
+	public ArrayList<User> findUsersFromSport(int type)
+	{
+		session = DBConnection.getSession();
+		
+		String table = "";
+		switch(type)
+		{
+			case 1:
+				table = "JoggingWorkout";
+				break;
+			case 2:
+				table = "ClimbingWorkout";
+				break;
+			case 3:
+				table = "RowingWorkout";
+				break;
+			case 4:
+				table = "MusculationWorkout";
+				break;
+			case 5:
+				table = "SwimmingWorkout";
+				break;
+			case 6:
+				table = "ArcheryWorkout";
+				break;
+			default:
+				table = "Workout";
+				break;				
+		}
+		
+		Query query = session.createQuery("select distinct user from " + table);
+		
+		@SuppressWarnings("unchecked")
+		ArrayList<User> result = (ArrayList<User>) query.list();
+
+		System.out.println(result.size() + " users found for " + table);
+		System.out.println(result);
+
+
+		session.close();
+
+		return result;
+	}
 		
 		
 		
