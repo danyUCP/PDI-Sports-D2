@@ -208,7 +208,7 @@ public class HomePanel extends JPanel
 			else if(e.getSource() == friendsButton)
 			{
 				MainFrame.getGlobal().removeAll();
-				MainFrame.getGlobal().add(new SwimmingPanel());
+				MainFrame.getGlobal().add(new Friends());
 				MainFrame.getGlobal().revalidate();
 			
 			}

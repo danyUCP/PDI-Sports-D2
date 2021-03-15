@@ -51,7 +51,7 @@ public class SportDataPanel extends JPanel
 	private Image background;
 
 	private Dimension dim;
-	private int width = 858;
+	private int width = 845;
 	private int height = 496;
 	
 	
@@ -211,7 +211,7 @@ public class SportDataPanel extends JPanel
 		footer.add(seeGraph);
 		
 		addWorkout.addActionListener(new ButtonListener());
-		seeGraph.addActionListener(new ButtonListener());
+		//seeGraph.addActionListener(new ButtonListener());
 	}
 	
 	public void close()
@@ -244,13 +244,13 @@ public class SportDataPanel extends JPanel
 						MainFrame.getGlobal().add(new RowingPanel());
 						break;
 					case 4:
-						//MainFrame.getGlobal().add(new MusculationPanel());
+						MainFrame.getGlobal().add(new MusculationPanel(user));
 						break;
 					case 5:
 						MainFrame.getGlobal().add(new SwimmingPanel());
 						break;
 					case 6:
-						//MainFrame.getGlobal().add(new ArcheryPanel());
+						MainFrame.getGlobal().add(new ArcheryPanel(user));
 						break;
 				}
 			}
