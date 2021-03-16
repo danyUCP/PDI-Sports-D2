@@ -14,31 +14,34 @@ import org.hibernate.Transaction;
 import org.jfree.ui.RefineryUtilities;
 
 import data.DBConnection;
+import data.JoggingWorkout;
 import data.RowingWorkout;
 import data.User;
 import data.Workout;
 import graph.RowingWorkoutLine;
 import ihm.JoggingPanel.ActionBoutton2;
-import ihm.RowingWindow.ActionBoutton1;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class RowingPanel extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField time;
-	private JTextField distance;
-	private JTextField textField;
-	private JTextField textChange;
 	private JLabel messagelabel;
 	private	JTextPane paddleText,timeText,distanceText;
 	private long time1= System.currentTimeMillis();
-	/**
+  	private Connection  connection;
+	private JComboBox comboBox,comboBox_1;
+  	private JButton ValidButton;
+  	
+  	/**
 	 * Create the panel.
 	 */  
 	
@@ -65,10 +68,8 @@ public class RowingPanel extends JPanel {
 	  
 	  		String[] liste={"1 jour","Une semaine","1 mois"};
 	  		String[] liste1={"Modifier","Ajouter"};
-	  		JButton AddButton_1,ValidButton;
-	  		User user;
-	  		JLabel basse,Crowl,arriere,Papillon;
-	  		JComboBox comboBox,comboBox_1;
+	  		JButton AddButton_1;
+	  		
 	  		
 
 	  		/**
@@ -179,7 +180,7 @@ public class RowingPanel extends JPanel {
 	  			add(left);
 	  			
 	  			
-	    ValidButton.addActionListener(new ActionBoutton1());
+	   
 	  			
 		setLayout(null);
 
@@ -193,20 +194,6 @@ public class RowingPanel extends JPanel {
 		lblNewLabel_3_1.setBounds(154, 261, 86, 24);
 		add(lblNewLabel_3_1);
 		
-	/*	time = new JTextField();
-		time.setBackground(new Color(255, 255, 255));
-		time.setBounds(21, 143, 123, 32);
-		add(time);
-		time.setColumns(10);
-		
-		
-		distance = new JTextField();
-		distance.setColumns(10);
-		distance.setBackground(Color.WHITE);
-		distance.setBounds(21, 253, 123, 32);
-		add(distance);
-		*/
-		
 		
 		messagelabel=new JLabel("");
 		messagelabel.setBounds(151, 181, 100, 30);
@@ -217,8 +204,8 @@ public class RowingPanel extends JPanel {
 		imageLabel_1.setBounds(255, 0, 626, 520); 
 		add(imageLabel_1);
 		
-		btnNewButton.addActionListener(new ActionBoutton1());
-		btnAnnuler.addActionListener(new ActionBoutton2());
+	   ValidButton.addActionListener(new Graph());	 
+	   btnAnnuler.addActionListener(new ActionBoutton2());
 		
 
 	}
@@ -228,57 +215,81 @@ public class RowingPanel extends JPanel {
 	 * Create ActionListener
 	 *
 	 */
-		public class ActionBoutton1 implements ActionListener {
+	public class Graph implements ActionListener {
+		
+		public void actionPerformed(ActionEvent e1) {
+		
+			
+			String text1=timeText.getText();
+			String text2=distanceText.getText();
+			String text3=paddleText.getText();
 
-			@Override  
-			public void actionPerformed(ActionEvent e) {
-				String text1=paddleText.getText();
-				String text2=distanceText.getText();
-				String text3=timeText.getText();
-				if(!text1.equals("") && !text2.equals("")) {
-			    
+			String text4=comboBox_1.getSelectedItem().toString();
+			int m1 = Integer.parseInt(text1);
+	        int m2 = Integer.parseInt(text2);
+	        int m3=  Integer.parseInt(text3);
+
+			
+			System.out.println(" "+text3+"  graph  ");
+			
+			Date date=new Date(time1);	
+			if(e1.getSource()== ValidButton) {
 					
-					if ((text1.length() > 0)&&(text2.length()>0)){
-						try {
-				int m1 = Integer.parseInt(text1);
-				int m2 = Integer.parseInt(text2);
-				int m3 = Integer.parseInt(text3);	
-				Session session = DBConnection.getSession();
-				Transaction persistTransaction1 = session.beginTransaction();
-				Date date=new Date(time1);	
 				
-				User u1 = new User("Alex","1311","Alexander","Bubb","M",20,186,65);
-				session.save(u1);
-		   
-			    Workout w=new RowingWorkout(date,m3,m2,m1);
-			    w.setUser(u1);
-			  	session.save(w);
-				
-				persistTransaction1.commit();
-				session.close();
-				RowingWorkoutLine demo = new RowingWorkoutLine(" RowingLine Chart Demo 6");
-				demo.pack();
-				RefineryUtilities.centerFrameOnScreen(demo);
-				demo.setVisible(true);
-						} catch (NumberFormatException nfe) {
-					        settext("Erreur de format");
-							   
-						    
-					    }
+				if(text4 == "Ajouter") {  
+	
+					
+						System.out.println(" ajouter ");		
+					
+					Session session = DBConnection.getSession();
+					Transaction persistTransaction1 = session.beginTransaction();	
+					
+					
+					
+					
+					
+					User u1 = new User("Alex","1311","Alexander","Bubb","M",20,186,65);
+					session.save(u1);
+			   
+					Workout w=new RowingWorkout(date,m1,m2,m3);
+					w.setUser(u1);
+					session.save(w);
+					
+					persistTransaction1.commit();
+					session.close();
+					
+					}else if(text4=="Modifier") {
 						
-						}else {
-					      settext("Un paramètre est requis");
+						
+						
+						System.out.println(" modifier ");	
+						
+						Session session = data.DBConnection.getSession();
+						
+					System.out.println("UPDATE climbingworkout set distance="+m1+", time='"+text2+"' where date="+date+";"); 
+					try {
+						connection	=DriverManager.getConnection("jdbc:mysql://localhost:3306/sport_d3","root","");
+					    PreparedStatement preparedStatement = connection.prepareStatement("	UPDATE climbingworkout set duration="+m1+", course_difficulty='"+text2+"' where date="+date+";");
+					   preparedStatement.executeUpdate();
+					
+					
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+						  	 
+
+					session.close();
+						
+						
+						
 					}
 			
-				}else {
-				
-					
-					settext("Veuillez remplir tout les champs");	
-					
 				}
+		
 			}
-			  
-		}			
+		}
+	
 
 
 	/**
@@ -296,63 +307,7 @@ public class RowingPanel extends JPanel {
 		}
 		  
 	}
-	
-	public class ActionBoutton3 implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String text1=textField.getText();
-			String text2=distance.getText();
-			String text3=time.getText();
-			if(!text1.equals("") && !text2.equals("")) {
-		    
-				
-				if ((text1.length() > 0)&&(text2.length()>0)){
-					try {
-			int m1 = Integer.parseInt(text1);
-			int m2 = Integer.parseInt(text2);
-			int m3 = Integer.parseInt(text3);	
-			Session session = DBConnection.getSession();
-			Transaction persistTransaction1 = session.beginTransaction();
 			
-			Date date=new Date(time1);		
-			
-			User u1 = new User("Alex","1311","Alexander","Bubb","M",20,186,65);
-			session.save(u1);
-	   
-		    Workout w=new RowingWorkout(date,m3,m2,m1);
-		    w.setUser(u1);
-		  	session.save(w);
-			
-			persistTransaction1.commit();
-			session.close();
-			RowingWorkoutLine demo = new RowingWorkoutLine(" RowingLine Chart Demo 6");
-			demo.pack();
-			RefineryUtilities.centerFrameOnScreen(demo);
-			demo.setVisible(true);
-					} catch (NumberFormatException nfe) {
-				        settext("Erreur de format");
-						   
-					    
-				    }
-					
-					}else {
-				      settext("Un paramètre est requis");
-				}
-		
-			}else {
-			
-				
-				settext("Veuillez remplir tout les champs");	
-				
-			}
-		}
-		  
-	}			
-	
-	
-
-	
 	public int Convettexttomesure(String text) {
 		
 	

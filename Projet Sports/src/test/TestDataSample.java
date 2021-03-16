@@ -45,7 +45,7 @@ public class TestDataSample
 		w2.setUser(u1);
 		session.save(w2);
 		
-		Workout w3 = new JoggingWorkout(new Date(0), 80, 20);
+		Workout w3 = new JoggingWorkout(new Date(0), 80, 20); 
 		w3.setUser(u1);
 		session.save(w3);
 		

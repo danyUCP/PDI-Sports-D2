@@ -168,8 +168,7 @@ public class ModificationPanel extends JPanel {
 		  		
 		  		
 		  	 System.out.println("UPDATE rowingworkout set distance="+m1+", paddle_strokes="+m2+" where id="+m3+";"); 
-		 //	PreparedStatement preparedStatement = connection.prepareStatement("UPDATE rowingworkout set distance='"+m1+"', paddle_strokes='"+m2+"' where id='"+m3+"';");
-		  	
+		  	 
 		    connection	=DriverManager.getConnection("jdbc:mysql://localhost:3306/sport_d3","root","");
 		  	 
 		  	 PreparedStatement preparedStatement = connection.prepareStatement("	UPDATE rowingworkout set distance='"+m1+"', paddle_strokes='"+m2+"' where id='"+m3+"';");
@@ -177,46 +176,7 @@ public class ModificationPanel extends JPanel {
 		  	
 		  	
 		  	System.out.print("UPDATE rowingworkout set distance=rowingworkout.'"+m1+"', paddle_strokes=rowingworkout.'"+m2+"' where id='"+m3+"';");
-		  //	System.out.print("UPDATE rowingworkout set distance="+m1+", paddle_strokes="+m2+" where id="+m3+";");
-		  	preparedStatement.executeUpdate();
-		  	
-		  	//	state2 = (PreparedStatement) ((Connection) connection.getConfig()).prepareStatement("DELETE FROM inscription WHERE id ="+m3+"");
-		  	//	state2.execute();
-		  		
-		  	//	int nbMaj= stm.executeUpdate("DELETE FROM inscription WHERE id ="+m3+"");
-		  		
-		    //    String sql = "DELETE FROM inscription WHERE id ="+m3+"";
-		        
-		    //    stmt.executeUpdate(sql);
-		     
-				//	Query readQuery = session.createQuery("select distance from joggingworkout j");
-		  		//List result = readQuery.list();
-		  	
-				
-				
-				
-			/*	Iterator<RowingWorkout> iterator = result.iterate();
-		  		int j=0;
-		  		while (iterator.hasNext()) {
-		  			RowingWorkout i = (RowingWorkout) iterator.next();
-		  		  System.out.println(i.getDate()); 
-		  			 
-		    
-		         System.out.println(""+i+"");  
-		           //   j++; 
-		            //  System.out.println(""+j+"");  
-		  		
-		  	}*/
-				
-				
-			//	User u1 = new User("Alex","1311","Alexander","Bubb","M",20,186,65);
-			//	session.save(u1);
-		   
-			 //   Workout w=new RowingWorkout(date,m3,m2,m1);
-			  //  w.setUser(u1);
-			 // 	session.save(w);
-				
-			//	persistTransaction1.commit();
+                preparedStatement.executeUpdate();
 				session.close();
 				RowingWorkoutLine demo = new RowingWorkoutLine(" RowingLine Chart Demo 6");
 				demo.pack();

@@ -28,7 +28,10 @@ public class SportGui extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 858, 496);
 		//contentPane = new JoggingPanel();
-		contentPane=new RowingPanel();
+		//contentPane=new RowingPanel();
+		contentPane= new ClimbingTest();
+		//contentPane = new ClimbingPanel();
+		//contentPane = new SwimmingPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
