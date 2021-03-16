@@ -28,6 +28,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import data.User;
 import data.Workout;
@@ -54,12 +55,15 @@ public class SportDataPanel extends JPanel
 	private int width = 845;
 	private int height = 496;
 	
+	private ArrayList<Workout> listData;
+	
 	
 	public SportDataPanel(User user, int mode)
 	{
 		this.user = user;
 		this.wm = new WorkoutManager(this.user);
 		this.mode = mode;
+		this.listData = wm.getWorkoutList(mode);
 		
 		this.dim = new Dimension(width, height);
 		this.setSize(dim);
@@ -146,29 +150,42 @@ public class SportDataPanel extends JPanel
 	{	
 		summary.setLayout(new GridLayout(2, 1));
 
-		averageData = new JPanel();
-		averageData.setBackground(new Color(28, 28, 28));
-		averageData.setLayout(new BoxLayout(averageData, BoxLayout.Y_AXIS));
-		
-		averageData.add(new SportLabel(" Nombre total de séance : 0"));
-		averageData.add(new SportLabel(" Séances ces 7 derniers jours : 0"));
-		averageData.add(new SportLabel(" Durée moyenne par séance : 0 min"));
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		int totalDuration = 0;
 
+		for(int i = 0 ; i < listData.size() ; i++)
+		{
+			int dur = listData.get(i).getDuration();
+			dataset.addValue(dur, "Durée", "Séance " + (i + 1));
+			totalDuration += dur;
+		}
+			
 		//Graphe simplifié à remplacer ================================================
-		JFreeChart lineGraph = ChartFactory.createLineChart("Résumé", null, null, null, PlotOrientation.VERTICAL, false, false, false);
+		JFreeChart lineGraph = ChartFactory.createBarChart3D("Résumé", null, "Temps (min)", dataset, PlotOrientation.VERTICAL, false, false, false);
 		lineGraph.setBackgroundPaint(new Color(28, 28, 28));
 		lineGraph.getTitle().setFont(new Font("Verdana", Font.PLAIN, 16));
 		lineGraph.getTitle().setPaint(Color.WHITE);
 		lineGraph.getCategoryPlot().getDomainAxis().setLabelPaint(Color.WHITE);
+		lineGraph.getCategoryPlot().getRangeAxis().setLabelPaint(Color.WHITE);
 		lineGraph.getPlot().setBackgroundPaint(new Color(50, 50, 50));
 		lineGraph.getCategoryPlot().getRangeAxis().setAxisLinePaint(Color.WHITE);
 		lineGraph.getCategoryPlot().getRangeAxis().setTickLabelPaint(Color.WHITE);
 		lineGraph.getCategoryPlot().getDomainAxis().setAxisLinePaint(Color.WHITE);
+		lineGraph.getCategoryPlot().getDomainAxis().setTickLabelPaint(Color.WHITE);
 		lineGraph.getCategoryPlot().setRangeGridlinePaint(Color.WHITE);
 		//=============================================================================
 		
 		ChartPanel graph = new ChartPanel(lineGraph);
 		graph.setBackground(new Color(28, 28, 28));
+		
+		averageData = new JPanel();
+		averageData.setBackground(new Color(28, 28, 28));
+		averageData.setLayout(new BoxLayout(averageData, BoxLayout.Y_AXIS));
+		
+		averageData.add(new SportLabel(" Nombre total de séance : " + listData.size()));
+		averageData.add(new SportLabel(" Séances ces 7 derniers jours : " + listData.size()));
+		averageData.add(new SportLabel(" Durée moyenne par séance : " + (totalDuration / listData.size()) + " min"));
+
 		
 		summary.add(graph);
 		summary.add(averageData);
@@ -182,12 +199,9 @@ public class SportDataPanel extends JPanel
 		workoutList.setBackground(new Color(28, 28, 28));
 		workoutList.setLayout(new BoxLayout(workoutList, BoxLayout.Y_AXIS));
 		
-		//A supprimer et à adapter avec l'utilisateur connecté		
-
-		ArrayList<Workout> list = wm.getWorkoutList(mode);
 		
-		for(int i = 0 ; i < list.size() ; i++)
-			workoutList.add(new WorkoutButton(list.get(i)));
+		for(int i = 0 ; i < listData.size() ; i++)
+			workoutList.add(new WorkoutButton(listData.get(i)));
 		
 		JScrollPane scroll = new JScrollPane(workoutList);
 		scroll.setPreferredSize(new Dimension(listPanel.getWidth(), listPanel.getHeight()));

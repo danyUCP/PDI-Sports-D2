@@ -210,7 +210,7 @@ public class HomePanel extends JPanel
 				MainFrame.getGlobal().removeAll();
 				MainFrame.getGlobal().add(new Friends());
 				MainFrame.getGlobal().revalidate();
-			
+				MainFrame.getGlobal().repaint();
 			}
 			else if(e.getSource() == deconnexionButton)
 				close();

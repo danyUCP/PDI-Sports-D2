@@ -29,6 +29,7 @@ import data.Exercise;
 import data.MusculationWorkout;
 import data.User;
 import ihm.components.SportButton;
+import ihm.components.SportComboBox;
 import ihm.components.SportLabel;
 import ihm.components.SportTextField;
 import manager.WorkoutManager;
@@ -239,11 +240,7 @@ public class MusculationPanel extends JPanel
 			type.setBackground(new Color(28, 28, 28));
 			type.add(new SportLabel("              Type : "));
 			String[] types = {"Pompes", "Tractions", "Squats"};
-			typeList = new JComboBox<String>(types);
-			typeList.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-			typeList.setFont(new Font("Verdana", Font.PLAIN, 16));
-			typeList.setBackground(new Color(50, 50, 50));
-			typeList.setForeground(Color.WHITE);
+			typeList = new SportComboBox(types);
 			type.add(typeList);
 			
 			JPanel p2 = new JPanel();
