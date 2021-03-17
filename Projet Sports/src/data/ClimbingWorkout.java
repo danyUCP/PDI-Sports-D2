@@ -9,7 +9,7 @@ public class ClimbingWorkout extends Workout
 {
 	private String course_difficulty;
 
-
+	public ClimbingWorkout() {	}
 	public ClimbingWorkout(Date date, int duration, String course_difficulty) 
 	{
 		super(date, duration);
