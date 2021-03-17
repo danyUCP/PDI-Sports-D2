@@ -246,6 +246,7 @@ public class ClimbingTest extends JPanel {
 				add(time);
 				add(btn_submit);
 				add(final_date);
+				//Commit
 			}
 			
 			if (choix_modif == "Alter"){
