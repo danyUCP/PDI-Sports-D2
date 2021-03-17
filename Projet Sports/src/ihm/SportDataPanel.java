@@ -184,7 +184,7 @@ public class SportDataPanel extends JPanel
 		
 		averageData.add(new SportLabel(" Nombre total de séance : " + listData.size()));
 		averageData.add(new SportLabel(" Séances ces 7 derniers jours : " + listData.size()));
-		averageData.add(new SportLabel(" Durée moyenne par séance : " + (totalDuration / listData.size()) + " min"));
+		averageData.add(new SportLabel(" Durée moyenne par séance : " + (totalDuration / (listData.size() == 0 ? 1 : listData.size())) + " min"));
 
 		
 		summary.add(graph);
