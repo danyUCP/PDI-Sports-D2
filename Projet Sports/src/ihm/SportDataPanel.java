@@ -225,7 +225,7 @@ public class SportDataPanel extends JPanel
 		footer.add(seeGraph);
 		
 		addWorkout.addActionListener(new ButtonListener());
-		//seeGraph.addActionListener(new ButtonListener());
+		seeGraph.addActionListener(new ButtonListener());
 	}
 	
 	public void close()
@@ -270,7 +270,27 @@ public class SportDataPanel extends JPanel
 			}
 			else if(e.getSource() == seeGraph)
 			{
-				//Actions pour le bouton Visualiser
+				switch(mode)
+				{
+					case 1:
+						//MainFrame.getGlobal().add(new JoggingGraphPanel());
+						break;
+					case 2:
+						//MainFrame.getGlobal().add(new ClimbingGraphPanel());
+						break;
+					case 3:
+						//MainFrame.getGlobal().add(new RowingGraphPanel());
+						break;
+					case 4:
+						//MainFrame.getGlobal().add(new MusculationGraphPanel(user));
+						break;
+					case 5:
+						//MainFrame.getGlobal().add(new SwimmingGraphPanel());
+						break;
+					case 6:
+						MainFrame.getGlobal().add(new ArcheryGraphPanel(user));
+						break;
+				}
 			}
 			else if(e.getSource() == returnButton)
 			{

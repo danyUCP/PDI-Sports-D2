@@ -38,7 +38,12 @@ public class ArcheryWorkout extends Workout
 		
 		return total;
 	}
-	
+
+	public List<Target> getTargets() 
+	{
+		return targets;
+	}
+
 
 	@Override
 	public String toString() 

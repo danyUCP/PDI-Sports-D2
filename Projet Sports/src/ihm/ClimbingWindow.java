@@ -25,7 +25,7 @@ public class ClimbingWindow  extends JFrame {
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			private ClimbingPanel contentPane= new ClimbingPanel();
+			//private ClimbingPanel contentPane= new ClimbingPanel();
 			
 			private JLabel Label_inbox;
 			private JLabel messagelabel;
@@ -42,9 +42,9 @@ public class ClimbingWindow  extends JFrame {
 	
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				setBounds(100, 100, 646, 482);
-				contentPane = new ClimbingPanel();
-				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-				setContentPane(contentPane);
+				//contentPane = new ClimbingPanel();
+				//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+				//setContentPane(contentPane);
 			
 
 				Label_inbox = new JLabel("Alexander BUBB");
