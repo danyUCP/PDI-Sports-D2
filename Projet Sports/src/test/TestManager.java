@@ -9,19 +9,17 @@ public class TestManager
 {
 	public static void main(String[] args) 
 	{
-		UserManager um = new UserManager();
-		
-		//User u1 = new User("Alexander","1311","Alexander","Bubb","M",20,186,65);
+		UserManager um = new UserManager();		
 		User u1 = um.findUser("Alexander", "1311");
 		
 		WorkoutManager wm = new WorkoutManager(u1);
-		
 		System.out.println(u1.getId());
 		wm.getWorkoutList(1);
 
-		MainFrame frame = new MainFrame();
+		//MainFrame frame = new MainFrame();
 
-
+		um.findUsersFromSport(4);
+		
 
 	}
 

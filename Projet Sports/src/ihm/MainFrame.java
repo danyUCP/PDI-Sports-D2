@@ -146,6 +146,7 @@ public class MainFrame extends JFrame
 	}
 	
 	
+	
 	public static JPanel getGlobal() 
 	{
 		return global;

@@ -87,6 +87,38 @@ public class Managers {
 		
 	}
 	
+	public void getInfoUser() {
+		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Object ob=session.load(User.class,new Integer(1));
+		User u=(User) ob;
+		//session.select();
+		System.out.println("Nom: "+u.getFirstname());
+		
+	}
+	
+	public String getInfoUser(int id) {
+		//SessionFactory sessionFactory=new AnnotationConfiguration().configure().buildSessionFactory();
+		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
+		//Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		User u=(User) session.get(User.class, id);
+		//User u=(User) session.createQuery("SELECT * FROM `user` WHERE `idUser`=1;");
+		/*if(u.getFirstname().equals(user)&&u.getLastname().equals(name)) {
+			//String name=u.getFirstname()
+			System.out.println("Nom: "+u.getLogin()+" Prenom: "+u.getMdp());
+			session.getTransaction().commit();
+		}
+		else {
+			System.out.println("quelque chose ne va pas");
+		}*/
+		String ide=u.getLogin();
+		String mpd=u.getMdp();
+		session.getTransaction().commit();
+			
+		return ide+mpd;
+		}
+	
 	public String getUser() {
 		return user;
 		

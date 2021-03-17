@@ -16,6 +16,8 @@ import data.ClimbingWorkout;
 import data.DBConnection;
 import data.User;
 import data.Workout;
+import graph.ClimbingWorkoutLine;
+import graph.ClimbingWorkoutPie;
 import graph.SwimmingWorkoutBarChart;
 import manager.Managers;
 import manager.UserManager;
@@ -23,7 +25,13 @@ import manager.UserManager;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class ClimbingPanel extends JPanel {
@@ -33,13 +41,53 @@ public class ClimbingPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField time;
 	private JTextField final_date;
-	private JLabel messagelabel;
+	private JLabel messagelabel,date_choice_label,lblNewLabel_date;
 	@SuppressWarnings("rawtypes")
 	JComboBox comboBox,comboBox_1;
+	private JComboBox comboBox_3=new JComboBox();
+	
+	public JComboBox getComboBox_1() {
+		return comboBox_1;
+	}
+
+	public void setComboBox_1(JComboBox comboBox_1) {
+		this.comboBox_1 = comboBox_1;
+	}
+
 	String[] liste={"White", "Yellow","Orange","Blue","Red","Grey"};
-	String[] liste1={"Alter", "Add"};
+	String[] liste1={"Add","Alter"};
 	User user;
-	JButton btnNewButton_1;
+	JButton btnNewButton_1,choicebtn;
+  	public JButton getChoicebtn() {
+		return choicebtn;
+	}
+
+	public void setChoicebtn(JButton choicebtn) {
+		this.choicebtn = choicebtn;
+	}
+
+	public JButton getBtnNewButton_1() {
+		return btnNewButton_1;
+	}
+
+	public void setBtnNewButton_1(JButton btnNewButton_1) {
+		this.btnNewButton_1 = btnNewButton_1;
+	}
+
+	private Connection  connection;
+ // 	private ClimbingPanelAlter climbingPanelAlter;
+  	private boolean choice_panel=true;
+  	
+	public boolean isChoice_panel() {
+		return choice_panel;
+	}
+
+	public void setChoice_panel(boolean choice_panel) {
+		this.choice_panel = choice_panel;
+	}
+
+	private long time1= System.currentTimeMillis();
+  	
 
 	/**
 	 * Create the panel.
@@ -47,8 +95,8 @@ public class ClimbingPanel extends JPanel {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ClimbingPanel() {
+
 		setLayout(null);
-		
 		btnNewButton_1 = new JButton("Submit");
 		btnNewButton_1.setBounds(10, 360, 97, 40);
 		add(btnNewButton_1);
@@ -56,6 +104,12 @@ public class ClimbingPanel extends JPanel {
 		JButton btnAnnuler = new JButton("Cancel");
 		btnAnnuler.setBounds(143, 360, 97, 40);
 		add(btnAnnuler);
+
+		choicebtn  = new JButton("valid");
+		choicebtn.setBounds(203, 70, 67, 40);
+		add(choicebtn);
+		
+		
 		
 		JLabel lblNewLabel_3 = new JLabel("Duration");
 		lblNewLabel_3.setBounds(154, 140, 86, 24);
@@ -101,6 +155,10 @@ public class ClimbingPanel extends JPanel {
 		add(comboBox);
 		comboBox.setModel(new javax.swing.DefaultComboBoxModel(liste));
 		
+		comboBox_3 = new JComboBox();
+		comboBox_3.setBackground(Color.WHITE);
+		comboBox_3.setBounds(21,280, 123, 32);
+		
 		
 		JLabel user = new JLabel("User");
 		user.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -125,6 +183,7 @@ public class ClimbingPanel extends JPanel {
 		
 		btnNewButton_1.addActionListener(new Graph());
 		btnAnnuler.addActionListener(new ActionBoutton2());
+		choicebtn.addActionListener(new ChoiceBoutton());
 		
 
 	}
@@ -134,57 +193,6 @@ public class ClimbingPanel extends JPanel {
 	 *
 	 */
 	
-	/*public class ActionBoutton1 implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String text1=time.getText();
-			String text2=difficulte.getText();
-			if(!text1.equals("") && !text2.equals("")) {
-		    
-				
-				if ((text1.length() > 0)&&(text2.length()>0)){
-					try {
-		 
-						
-			System.out.println(" difficulté "+text2+"");
-			
-			if((text2.equals("Red"))||(text2.equals("Black"))||(text2.equals("Orange"))||(text2.equals("White"))) {			
-			int m1 = Integer.parseInt(text1);
-	       	//	int m2 = Integer.parseInt(text2);
-			
-			Session session = DBConnection.getSession();
-			Transaction persistTransaction1 = session.beginTransaction();
-			Date date=new Date(0);	
-			
-			User u1 = new User("Alex","1311","Alexander","Bubb","M",20,186,65);
-			session.save(u1);
-	   
-			Workout w=new ClimbingWorkout(date,m1,text2);
-			w.setUser(u1);
-			session.save(w);
-			
-			persistTransaction1.commit();
-			session.close();
-			}
-					} 
-			catch (NumberFormatException nfe) {
-				        settext("Erreur de format");
-						   					}
-					
-					}
-				else {
-				      settext("Un paramètre est requis");
-					}
-		
-			}
-			else {
-			settext("Veuillez remplir tout les champs");	
-				}
-		}
-	}
-	
-	*/
 	public class Graph implements ActionListener {
 		
 	public void actionPerformed(ActionEvent e1) {
@@ -192,18 +200,17 @@ public class ClimbingPanel extends JPanel {
 		String text_date= final_date.getText();
 		String text2=comboBox.getSelectedItem().toString();
 		String text3=comboBox_1.getSelectedItem().toString();
-		
+	
+		int m1 = Integer.parseInt(text1);
+		Date date=new Date(time1);	
 		if(e1.getSource()== btnNewButton_1) {
-				if(text3 == "Add") {
-			//	Graph p=new Graph();
-				
-				int m1 = Integer.parseInt(text1);
+				if(text3 == "Add") {				
 				
 				Session session = DBConnection.getSession();
 				Transaction persistTransaction1 = session.beginTransaction();	
+				Date dates=ConvertDateToSql(text_date); 
 				
 				
-				Date dates=ConvertDateToSql(text_date);
 				
 				
 				String logintest=user.getLogin();
@@ -221,25 +228,121 @@ public class ClimbingPanel extends JPanel {
 				persistTransaction1.commit();
 				session.close();
 				
-				//um.addSwimming(user,new Date(0),p.ConvertIntoNumeric(papillon_2_1.getText()),p.ConvertIntoNumeric(papillon.getText()),p.ConvertIntoNumeric(crowl.getText()),p.ConvertIntoNumeric(papillon_2.getText()),p.ConvertIntoNumeric(papillon_3.getText()));
-				//SwimmingWorkoutBarChart demo = new SwimmingWorkoutBarChart("SwimmingWorkoutBar Chart");
-				//demo.pack();
-				//RefineryUtilities.centerFrameOnScreen(demo);
-				//demo.setVisible(true);
+				
+				ClimbingWorkoutLine Climbingworkoutline=new ClimbingWorkoutLine("climbingworkoutline");
+				Climbingworkoutline.setVisible(true);
+				ClimbingWorkoutPie Climbingworkoutpie=new ClimbingWorkoutPie("climbingworkoutpie");
+				Climbingworkoutpie.setVisible(true);
+				
+				
+				}else if(text3=="Alter") {
+					
+					Session session = data.DBConnection.getSession();
+					String textmodify=comboBox_3.getSelectedItem().toString();
+				try {
+					connection	=DriverManager.getConnection("jdbc:mysql://localhost:3306/sport_d3","root","");
+					text_date=textmodify.replace('-','/');
+				    PreparedStatement preparedStatement = connection.prepareStatement("	UPDATE climbingworkout set duration="+m1+", course_difficulty='"+text2+"' where date=str_to_date('"+text_date+"','%Y/%m/%d');");
+				   preparedStatement.executeUpdate();
+				
+				   
+					ClimbingWorkoutLine Climbingworkoutline=new ClimbingWorkoutLine("climbingworkoutline");
+					Climbingworkoutline.setVisible(true);
+					ClimbingWorkoutPie Climbingworkoutpie=new ClimbingWorkoutPie("climbingworkoutpie");
+					Climbingworkoutpie.setVisible(true);
+				    
+				   
+				   
+				   
+				    
+					
+				
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				/*else {
-					Ici voir pour la modification
-				}*/
+					  	 
+
+				session.close();
+					
+					
+					
+				}
+			
 			}
-			/*else {
-				JOptionPane.showMessageDialog(null, "Tous les champs doivent être remplis");
-			}*/
+		
 		}
 	}
 	/**
 	 * Create ActionListener
 	 *
 	 */
+	
+	public class ChoiceBoutton implements ActionListener {
+	
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			String text=comboBox_1.getSelectedItem().toString();
+			
+			
+			if(text=="Add") {
+				
+				
+				remove(comboBox_3);
+				final_date=new JTextField();
+				final_date.setBackground(new Color(255, 255, 255));
+				final_date.setBounds(21, 280, 123, 32);
+				add(final_date);
+				final_date.setColumns(10);
+				
+				repaint();
+			
+		
+				
+				
+			}else if(text=="Alter") {
+				remove(final_date);
+				
+				
+				Session session = data.DBConnection.getSession();
+				@SuppressWarnings("unchecked")
+				List result = session.createQuery("select climbingworkout.date from ClimbingWorkout climbingworkout").list();  
+
+				
+					Iterator iterator = result.iterator();
+					int j=0;
+					String[] liste3=new String[100];
+					while (iterator.hasNext()) {
+						Date i = (Date) iterator.next();
+						liste3[j]=" "+i+"";
+						 
+			  System.out.println(""+i+"");  
+			  j++; 
+			   
+					
+				}
+				
+				
+				comboBox_3.setBackground(Color.WHITE);
+				comboBox_3.setBounds(21,280, 123, 32);
+				add(comboBox_3);
+				comboBox_3.setModel(new javax.swing.DefaultComboBoxModel(liste3));
+				
+				
+				
+				
+				repaint();
+			
+				
+				
+			}
+			
+			
+		}
+				
+	}
+		
 	
 		public class ActionBoutton2 implements ActionListener {
 
@@ -250,20 +353,7 @@ public class ClimbingPanel extends JPanel {
 			
 		}
 		  
-	}
-		
-		/*private int ConvertIntoNumeric(String xVal)
-		{
-		 try
-		  { 
-		     return Integer.parseInt(xVal);
-		  }
-		 catch(Exception ex) 
-		  {
-		     return 0; 
-		  }
-		}*/
-			
+	}			
 		
 	
 	public int Convettexttomesure(String text) {
@@ -292,11 +382,17 @@ public class ClimbingPanel extends JPanel {
 			
 		}
 	
+	public Date text_date(String date) {  
+	    Date dates=Date.valueOf(date); 
+	    System.out.println(date);
+		return dates;  
+	}
+	
 	public Date ConvertDateToSql(String date) {  
 	    Date dates=Date.valueOf(date); 
 	    System.out.println(date);
 		return dates;  
 	}
 	
-}
+	}
 

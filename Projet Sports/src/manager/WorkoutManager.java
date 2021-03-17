@@ -66,5 +66,18 @@ public class WorkoutManager
 
 		return result;
 	}
+	
+	public void createNewWorkout(Workout w)
+	{
+		session = DBConnection.getSession();
+		transaction = session.beginTransaction();
+
+		w.setUser(user);
+		
+		session.save(w);
+		transaction.commit();
+		
+		session.close();
+	}
 
 }

@@ -194,21 +194,28 @@ public class HomePanel extends JPanel
 		frame.resetHome();
 	}
 	
+	
 
 	private class ButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e) 
 		{			
+			
 			if(e.getSource() == profileButton)
 			{
 				//Actions pour le bouton Profil
 			}
 			else if(e.getSource() == friendsButton)
 			{
-				//Actions pour le bouton Amis
+				MainFrame.getGlobal().removeAll();
+				MainFrame.getGlobal().add(new Friends());
+				MainFrame.getGlobal().revalidate();
+				MainFrame.getGlobal().repaint();
 			}
 			else if(e.getSource() == deconnexionButton)
 				close();
+			
+			
 		}
 	}
 	
