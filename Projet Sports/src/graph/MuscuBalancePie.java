@@ -16,25 +16,26 @@ import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
 
-import data.ArcheryWorkout;
+import data.Exercise;
+import data.MusculationWorkout;
 import data.Workout;
 
 @SuppressWarnings("serial")
-public class ArcheryPrecisionPie extends JPanel
+public class MuscuBalancePie extends JPanel
 {
 	private JFreeChart pieGraph;
 	private DefaultPieDataset dataset;
 
 	private ArrayList<Workout> workoutList;
 	
-	public ArcheryPrecisionPie(ArrayList<Workout> workoutList) 
+	public MuscuBalancePie(ArrayList<Workout> workoutList) 
 	{
 		this.setLayout(new BorderLayout());
 
 		this.workoutList = workoutList;
 		
 		initDataset();
-		pieGraph = ChartFactory.createPieChart3D("Flèches par zone", dataset, true, true, false);
+		pieGraph = ChartFactory.createPieChart3D("Répartition des exercices", dataset, true, true, false);
 
 		formatGraph();
 		
@@ -43,33 +44,44 @@ public class ArcheryPrecisionPie extends JPanel
 	
 	public void initDataset() 
 	{
-		int yellow = 0, red = 0, blue = 0, black = 0, white = 0, misses = 0;
+		int pushUps = 0, pullUps = 0, squats = 0, abs = 0;
 		dataset = new DefaultPieDataset();
 		
 		if(!workoutList.isEmpty())
 		{
 			for(int i = 0 ; i < workoutList.size() ; i++)
 			{
-				ArcheryWorkout w = (ArcheryWorkout) workoutList.get(i);
+				MusculationWorkout w = (MusculationWorkout) workoutList.get(i);
 
-				for(int j = 0 ; j < w.getTargets().size() ; j++)
+				for(int j = 0 ; j < w.getExercises().size() ; j++)
 				{
-					yellow += w.getTargets().get(j).getYellow_area();
-					red += w.getTargets().get(j).getRed_area();
-					blue += w.getTargets().get(j).getBlue_area();
-					black += w.getTargets().get(j).getBlack_area();
-					white += w.getTargets().get(j).getWhite_area();
-					misses += w.getTargets().get(j).getMisses();
+					Exercise e = w.getExercises().get(j);
+					
+					switch(e.getType())
+					{
+						case "Pompes":
+							pushUps += e.getExerciseReps();
+							break;
+						case "Tractions":
+							pullUps += e.getExerciseReps();
+							break;
+						case "Squats":
+							squats += e.getExerciseReps();
+							break;
+						case "Abdos":
+							abs += e.getExerciseReps();
+							break;
+					}
+					
 				}
 			}
 		}
 
-		dataset.setValue("Zone jaune",yellow);
-		dataset.setValue("Zone rouge", red);
-		dataset.setValue("Zone bleue",blue);
-		dataset.setValue("Zone noire",black);
-		dataset.setValue("Zone blanche", white);
-		dataset.setValue("Ratées", misses);
+		dataset.setValue("Pompes", pushUps);
+		dataset.setValue("Tractions", pullUps);
+		dataset.setValue("Squats", squats);
+		dataset.setValue("Abdos", abs);
+
 	}
 	
 	public void formatGraph()
@@ -84,13 +96,10 @@ public class ArcheryPrecisionPie extends JPanel
 		((PiePlot) pieGraph.getPlot()).setSectionPaint(0, new Color(255, 255, 85));
 		((PiePlot) pieGraph.getPlot()).setSectionPaint(1, new Color(255, 85, 85));
 		((PiePlot) pieGraph.getPlot()).setSectionPaint(2, new Color(85, 85, 255));
-		((PiePlot) pieGraph.getPlot()).setSectionPaint(3, new Color(85, 85, 85));
-		((PiePlot) pieGraph.getPlot()).setSectionPaint(4, new Color(240, 240, 240));
-		((PiePlot) pieGraph.getPlot()).setSectionPaint(5, Color.LIGHT_GRAY);
+		((PiePlot) pieGraph.getPlot()).setSectionPaint(3, new Color(85, 255, 85));
 		
 		PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
 	            "{0} : {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0.0%"));
 	    ((PiePlot) pieGraph.getPlot()).setLabelGenerator(gen);
 	}
-
 }

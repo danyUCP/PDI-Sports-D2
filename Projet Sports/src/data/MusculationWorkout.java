@@ -29,6 +29,22 @@ public class MusculationWorkout extends Workout
 		exercises.add(e);
 	}
 	
+	public int getTotalReps()
+	{
+		int total = 0;
+		
+		for(int i = 0 ; i < exercises.size() ; i++)
+			total += exercises.get(i).getExerciseReps();
+		
+		return total;
+	}
+	
+	public List<Exercise> getExercises() 
+	{
+		return exercises;
+	}
+	
+
 	@Override
 	public String toString() 
 	{

@@ -13,25 +13,24 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import data.ArcheryWorkout;
+import data.MusculationWorkout;
 import data.Workout;
 
-@SuppressWarnings("serial")
-public class ArcherySummaryBar extends JPanel
+public class MuscuSummaryBar extends JPanel
 {
 	private JFreeChart barGraph;
 	private DefaultCategoryDataset dataset;
 
 	private ArrayList<Workout> workoutList;
 	
-	public ArcherySummaryBar(ArrayList<Workout> workoutList) 
+	public MuscuSummaryBar(ArrayList<Workout> workoutList) 
 	{
 		this.setLayout(new BorderLayout());
 
 		this.workoutList = workoutList;
 		
 		initDataset();
-		barGraph = ChartFactory.createBarChart3D("Résumé de Tir à l'arc", "Séances", "Temps (min)", dataset, PlotOrientation.VERTICAL, true, true, false);
+		barGraph = ChartFactory.createBarChart3D("Résumé de Musculation", "Séances", "Temps (min)", dataset, PlotOrientation.VERTICAL, true, true, false);
 
 		formatGraph();
 		
@@ -46,7 +45,7 @@ public class ArcherySummaryBar extends JPanel
 		{
 			for(int i = 0 ; i < workoutList.size() ; i++)
 			{
-				ArcheryWorkout w = (ArcheryWorkout) workoutList.get(i);
+				MusculationWorkout w = (MusculationWorkout) workoutList.get(i);
 
 				dataset.addValue(w.getDuration(), "Durée", "" + (i + 1));
 			}
@@ -68,6 +67,6 @@ public class ArcherySummaryBar extends JPanel
 		barGraph.getLegend().setBackgroundPaint(new Color(50, 50, 50));
 		barGraph.getLegend().setItemPaint(Color.WHITE);
 		barGraph.getCategoryPlot().setRangeGridlinePaint(Color.WHITE);
+		
 	}
-
 }

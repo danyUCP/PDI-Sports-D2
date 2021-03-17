@@ -185,7 +185,7 @@ public class MusculationPanel extends JPanel
 			
 			if(e.getSource() == addExercise)
 			{
-				if(exerciseList.size() < 3)
+				if(exerciseList.size() < 4)
 				{
 					ExercisePanel ex = new ExercisePanel();
 					exerciseList.add(ex);
@@ -239,7 +239,7 @@ public class MusculationPanel extends JPanel
 			type = new JPanel();
 			type.setBackground(new Color(28, 28, 28));
 			type.add(new SportLabel("              Type : "));
-			String[] types = {"Pompes", "Tractions", "Squats"};
+			String[] types = {"Pompes", "Tractions", "Squats", "Abdominaux"};
 			typeList = new SportComboBox(types);
 			type.add(typeList);
 			

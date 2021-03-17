@@ -24,6 +24,12 @@ public class Exercise
 		this.sets = sets;
 		this.repetitions = repetitions;
 	}
+	
+	
+	public int getExerciseReps()
+	{
+		return sets * repetitions;
+	}
 
 	public int getId() 
 	{
