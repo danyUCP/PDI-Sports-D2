@@ -140,7 +140,7 @@ public class UserManager
 	
 	public User[] userFriends() {
 		String listElem[] =null; 
-		User result1[]= {},result2[]={},result3[]={},result4[]={},result5[]={},result6[]={};
+		User result1[]= {},result2[]={},result3[]={},result4[]={},result5[]=null,result6[]={};
 		ArrayList<User> listFriends1=null, listFriends2=null, listFriends3=null, listFriends4=null, listFriends5=null, listFriends6=null;
 
 		
@@ -186,10 +186,12 @@ public class UserManager
 				result5=new User[listFriends5.size()];
 				result5[i] = (User) listFriends5.get(i);
 				System.out.println("Vide mais afficher 5"+result5[i]);
-				
-				
+			}
+			for(int i=0;i<result5.length;i++) {
+				System.out.println("Affiche Table 5"+result5[i]);
 			}
 		}
+		
 		if(!wm.getWorkoutList(6).isEmpty()) {
 			listFriends6=um.findUsersFromSport(6);
 			for (int i = 0; i < listFriends6.size(); i++) {
@@ -200,9 +202,9 @@ public class UserManager
 		}
 		System.out.println("Aucun tableau afficher pour l'instant");
 		
-		for(int i=0;i<result5.length;i++) {
+		/*for(int i=0;i<result5.length;i++) {
 			System.out.println("Affiche Table 5"+result5[i]);
-		}
+		}*/
 		
 		int len = result1.length + result2.length+ result3.length+ result4.length+ result5.length+ result6.length;
 		System.out.println("total longeur: "+len);
@@ -264,7 +266,7 @@ public class UserManager
 		
 		for(int k=0;k<result.length;k++) {
 			//if(result[k]!=null)
-				//System.out.println(result[k]);
+				System.out.println(result[k]);
 		}
 		
 		return result;

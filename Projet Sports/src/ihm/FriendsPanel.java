@@ -16,15 +16,20 @@ import graph.Compare;
 import manager.UserManager;
 import manager.WorkoutManager;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JList;
 
@@ -146,10 +151,10 @@ public class FriendsPanel extends JPanel {
 		lblNewLabel.setBounds(60, 22, 279, 21);
 		friends_1.add(lblNewLabel);
 		
-		JLabel regi = new JLabel("");
+		/*JLabel regi = new JLabel("");
 		regi.setIcon(new ImageIcon("resources/images/backImage.jpg"));
 		regi.setBounds(176, 0, 658, 459);
-		this.add(regi);
+		this.add(regi);*/
 	
 		
 		addFriend.addActionListener(new ActionFriends());
@@ -157,8 +162,26 @@ public class FriendsPanel extends JPanel {
 		btnComparer.addActionListener(new ActionFriends());
 		btnOK.addActionListener(new ActionFriends());
 
+		try
+		{
+			background = ImageIO.read(new File("resources/images/backImage.jpg"));
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
 		
 
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		Graphics2D g2d = (Graphics2D)g;
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+		super.paintComponent(g2d);
+
+		g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
 	}
 
 	

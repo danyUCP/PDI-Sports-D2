@@ -15,6 +15,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+
 public class Inbox extends JFrame {
 
 	/**

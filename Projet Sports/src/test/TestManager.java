@@ -11,7 +11,26 @@ public class TestManager
 {
 	public static void main(String[] args) 
 	{
-		UserManager um = new UserManager();		
+		
+		
+		//User u=new User();
+		UserManager u=new UserManager();
+		
+		u.userFriends();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*UserManager um = new UserManager();		
 		User u1 = um.findUser("Seruche", "1311");
 		
 		WorkoutManager wm = new WorkoutManager(u1);
@@ -35,9 +54,9 @@ public class TestManager
 		}
 		if(!wm.getWorkoutList(6).isEmpty()) {
 			name+="ArcheryWorkout"+" | ";
-		}
+		}*/
 		
-		System.out.println(name);
+		//System.out.println(name);
 		//System.out.println(u1.getId());
 		/*if(!wm.getWorkoutList(1).isEmpty()) {
 			System.out.println("Les utilisateurs du sports 1");
