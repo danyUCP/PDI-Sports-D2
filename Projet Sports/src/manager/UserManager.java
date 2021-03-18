@@ -267,8 +267,7 @@ public class UserManager
 		for(int k=0;k<result.length;k++) {
 			//if(result[k]!=null)
 				System.out.println(result[k]);
-		}
-		
+		}		
 		return result;
 		
 	}

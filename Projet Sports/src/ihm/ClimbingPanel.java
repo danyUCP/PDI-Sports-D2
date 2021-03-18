@@ -10,38 +10,30 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.jfree.ui.RefineryUtilities;
 
-import data.ArcheryWorkout;
 import data.ClimbingWorkout;
+
 import data.User;
 import data.Workout;
-import graph.ClimbingWorkoutLine;
-import graph.ClimbingWorkoutPie;
-import graph.SwimmingWorkoutBarChart;
+
 import ihm.components.SportLabel;
-import manager.Managers;
-import manager.UserManager;
+
 import manager.WorkoutManager;
-import orm.DBConnection;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
+
 import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.List;
+
 
 
 public class ClimbingPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 
 	 */
@@ -84,11 +76,11 @@ public class ClimbingPanel extends JPanel {
 		messagelabel=new JLabel("");
 		messagelabel.setBounds(151, 181, 100, 30);
 
-		JButton btnAnnuler = new JButton("Cancel");
+		btnAnnuler = new JButton("Cancel");
 		btnAnnuler.setBounds(143, 360, 97, 40);
 		add(btnAnnuler);
 		
-		JButton Valider = new JButton("Valider");
+		Valider = new JButton("Valider");
 		Valider.setBounds(20, 360, 97, 40);
 		add(Valider);
 		
