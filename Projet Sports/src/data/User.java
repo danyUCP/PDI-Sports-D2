@@ -33,7 +33,7 @@ public class User {
 	private int age;
 	private float size;
 	private float weight;
-	private String name="",mt="",log="";
+
 	
 	public User() {	}
 	
