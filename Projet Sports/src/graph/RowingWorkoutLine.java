@@ -56,7 +56,7 @@ public class RowingWorkoutLine extends ApplicationFrame {
 		XYSeries series1 = new XYSeries("distance ");
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-		Session session = data.DBConnection.getSession();
+		Session session = orm.DBConnection.getSession();
 		Transaction readTransaction = session.beginTransaction();
 		
 		@SuppressWarnings("unchecked")

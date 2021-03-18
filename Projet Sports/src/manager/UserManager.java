@@ -8,10 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import util.HibernateUtil;
-import data.DBConnection;
 import data.User;
 import data.Workout;
 import manager.UserManager;
+import orm.DBConnection;
 
 
 public class UserManager 

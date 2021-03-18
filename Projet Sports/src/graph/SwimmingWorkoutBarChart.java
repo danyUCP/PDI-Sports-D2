@@ -45,7 +45,7 @@ public class SwimmingWorkoutBarChart extends ApplicationFrame  {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
 	     
 
-	  	Session session = data.DBConnection.getSession();
+	  	Session session = orm.DBConnection.getSession();
 	      
 	      Transaction readTransaction = session.beginTransaction();
 	  		List result = session.createQuery("select swimmingworkout.breaststroke_lenghts from SwimmingWorkout swimmingworkout").list();

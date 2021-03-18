@@ -6,10 +6,10 @@ import javax.swing.border.EmptyBorder;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import data.DBConnection;
 import data.JoggingWorkout;
 import data.User;
 import data.Workout;
+import orm.DBConnection;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

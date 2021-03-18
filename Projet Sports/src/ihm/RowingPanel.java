@@ -13,13 +13,14 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jfree.ui.RefineryUtilities;
 
-import data.DBConnection;
 import data.JoggingWorkout;
 import data.RowingWorkout;
 import data.User;
 import data.Workout;
 import graph.RowingWorkoutLine;
 import ihm.JoggingPanel.ActionBoutton2;
+import orm.DBConnection;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -264,7 +265,7 @@ public class RowingPanel extends JPanel {
 						
 						System.out.println(" modifier ");	
 						
-						Session session = data.DBConnection.getSession();
+						Session session = orm.DBConnection.getSession();
 						
 					System.out.println("UPDATE climbingworkout set distance="+m1+", time='"+text2+"' where date="+date+";"); 
 					try {

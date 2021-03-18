@@ -7,9 +7,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import data.DBConnection;
 import data.User;
 import data.Workout;
+import orm.DBConnection;
 
 public class WorkoutManager 
 {

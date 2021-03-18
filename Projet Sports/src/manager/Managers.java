@@ -7,11 +7,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import data.DBConnection;
 import data.SwimmingWorkout;
 import data.User;
 import data.Workout;
 import ihm.MainFrame;
+import orm.DBConnection;
 import util.HibernateUtil;
 
 /**

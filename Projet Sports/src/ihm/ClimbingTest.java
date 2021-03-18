@@ -12,11 +12,12 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import data.ClimbingWorkout;
-import data.DBConnection;
 import data.User;
 import data.Workout;
 import graph.ClimbingWorkoutLine;
 import graph.ClimbingWorkoutPie;
+import orm.DBConnection;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -162,7 +163,7 @@ public class ClimbingTest extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e4) {
 			String result_date=comboBox_date.getSelectedItem().toString();
-			Session session = data.DBConnection.getSession();
+			Session session = orm.DBConnection.getSession();
 			if (e4.getSource()==comboBox_date) {
 				
 				
@@ -250,7 +251,7 @@ public class ClimbingTest extends JPanel {
 			}
 			
 			if (choix_modif == "Alter"){
-				Session session = data.DBConnection.getSession();
+				Session session = orm.DBConnection.getSession();
 				@SuppressWarnings("unchecked")
 				List result = session.createQuery("select climbingworkout.date from ClimbingWorkout climbingworkout").list();  
 

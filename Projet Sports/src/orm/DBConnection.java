@@ -1,4 +1,4 @@
-package data;
+package orm;
 
 import java.io.File;
 
@@ -6,7 +6,18 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-public class DBConnection {
+import data.ArcheryWorkout;
+import data.ClimbingWorkout;
+import data.Exercise;
+import data.JoggingWorkout;
+import data.MusculationWorkout;
+import data.RowingWorkout;
+import data.SwimmingWorkout;
+import data.Target;
+import data.User;
+
+public class DBConnection 
+{
 	private static SessionFactory sessionFactory;
 	private static AnnotationConfiguration config;
 	private static File configFile;
@@ -17,7 +28,7 @@ public class DBConnection {
 		if (config == null) 
 		{
 			config = new AnnotationConfiguration();
-			
+
 			config.addAnnotatedClass(ArcheryWorkout.class);
 			config.addAnnotatedClass(User.class);
 			config.addAnnotatedClass(ClimbingWorkout.class);
@@ -31,7 +42,7 @@ public class DBConnection {
 			configFile = new File("resources/connection.cfg.xml");
 			System.out.println(configFile.getAbsolutePath());
 			config.configure(configFile);
-			
+
 			//String packageName = DBConnection.class.getPackage().getName();
 			//config.configure(packageName + "/connection.cfg.xml");
 		}

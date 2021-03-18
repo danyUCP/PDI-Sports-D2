@@ -6,11 +6,11 @@ import javax.swing.border.EmptyBorder;
 
 import org.hibernate.Session;
 
-import data.DBConnection;
 import data.User;
 import util.HibernateUtil;
 import manager.Managers;
 import manager.UserManager;
+import orm.DBConnection;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

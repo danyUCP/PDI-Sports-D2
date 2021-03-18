@@ -15,6 +15,7 @@ public class MusculationWorkout extends Workout
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Exercise.class)
 	private List<Exercise> exercises;
 	
+	
 	public MusculationWorkout() {	}
 	
 	public MusculationWorkout(Date date, int duration) 

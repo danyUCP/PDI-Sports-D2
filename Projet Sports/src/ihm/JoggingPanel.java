@@ -12,10 +12,10 @@ import javax.swing.SwingConstants;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import data.DBConnection;
 import data.JoggingWorkout;
 import data.User;
 import data.Workout;
+import orm.DBConnection;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

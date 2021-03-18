@@ -75,7 +75,7 @@ public class ModificationJoggingWindow extends JFrame {
 
 					
 					DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-					Session session = data.DBConnection.getSession();
+					Session session = orm.DBConnection.getSession();
 					Transaction readTransaction = session.beginTransaction();
 					
 		

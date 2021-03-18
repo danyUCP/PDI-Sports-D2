@@ -17,7 +17,7 @@ import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
 import data.JoggingWorkout;
-import data.DBConnection;
+import orm.DBConnection;
 
 /**
  * Main GUI class for chronometer.
@@ -58,7 +58,7 @@ public class LineChartJogging extends ApplicationFrame {
 		      DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
 		     
 
-		  	Session session = data.DBConnection.getSession();
+		  	Session session = orm.DBConnection.getSession();
 		      
 		      Transaction readTransaction = session.beginTransaction();
 		  		@SuppressWarnings("unchecked")

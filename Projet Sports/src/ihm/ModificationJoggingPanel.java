@@ -246,7 +246,7 @@ public class ModificationJoggingPanel extends JPanel {
 					Date date=new Date(0);	
 					
 					DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-					Session session = data.DBConnection.getSession();
+					Session session = orm.DBConnection.getSession();
 					Transaction readTransaction = session.beginTransaction();
 					
 					@SuppressWarnings("unchecked")

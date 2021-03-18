@@ -8,8 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import data.ArcheryWorkout;
-import data.DBConnection;
-import data.DataInit;
 import data.Exercise;
 import data.JoggingWorkout;
 import data.MusculationWorkout;
@@ -17,6 +15,8 @@ import data.SwimmingWorkout;
 import data.Target;
 import data.User;
 import data.Workout;
+import orm.DBConnection;
+import orm.DataInit;
 
 public class TestWorkout 
 {

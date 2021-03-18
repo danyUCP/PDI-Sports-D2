@@ -7,10 +7,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import data.DBConnection;
-import data.DataInit;
 import data.User;
 import manager.Managers;
+import orm.DBConnection;
+import orm.DataInit;
 
 
 public class Test {

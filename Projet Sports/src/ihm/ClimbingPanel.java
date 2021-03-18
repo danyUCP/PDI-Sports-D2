@@ -18,7 +18,6 @@ import org.jfree.ui.RefineryUtilities;
 
 import data.ArcheryWorkout;
 import data.ClimbingWorkout;
-import data.DBConnection;
 import data.User;
 import data.Workout;
 import graph.ClimbingWorkoutLine;
@@ -28,6 +27,7 @@ import ihm.components.SportLabel;
 import manager.Managers;
 import manager.UserManager;
 import manager.WorkoutManager;
+import orm.DBConnection;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

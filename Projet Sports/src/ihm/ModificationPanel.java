@@ -15,11 +15,11 @@ import org.jfree.ui.RefineryUtilities;
 
 import java.sql.PreparedStatement;
 
-import data.DBConnection;
 import data.RowingWorkout;
 import data.User;
 import data.Workout;
 import graph.RowingWorkoutLine;
+import orm.DBConnection;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -140,7 +140,7 @@ public class ModificationPanel extends JPanel {
 				Date date=new Date(0);	
 				
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-				Session session = data.DBConnection.getSession();
+				Session session = orm.DBConnection.getSession();
 				Transaction readTransaction = session.beginTransaction();
 				
 				@SuppressWarnings("unchecked")

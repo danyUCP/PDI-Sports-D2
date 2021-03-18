@@ -8,9 +8,10 @@ import javax.persistence.Entity;
 public class JoggingWorkout extends Workout
 {
 	private int distance;
-	
+
+
 	public JoggingWorkout() {	}
-	
+
 	public JoggingWorkout(Date date, int duration, int distance) 
 	{
 		super(date, duration);
@@ -35,5 +36,5 @@ public class JoggingWorkout extends Workout
 		return "Jogging Workout -> " + super.toString() + " | Distance : " + distance + "m";
 	}
 
-	
+
 }
