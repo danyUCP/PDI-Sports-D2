@@ -59,8 +59,8 @@ public class WorkoutManager
 		@SuppressWarnings("unchecked")
 		ArrayList<Workout> result = (ArrayList<Workout>) query.list();
 
-		System.out.println(result.size() + " " + table + " found for " + user.getFirstname());
-		System.out.println(result);
+		//System.out.println(result.size() + " " + table + " found for " + user.getFirstname());
+		//System.out.println(result);
 
 		session.close();
 

@@ -39,25 +39,7 @@ public class JoggingPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public JoggingPanel() {
-		
-		
-	
-		/**
-		 * Create the panel.
-		 * 
-		 * 
-		 * 
-		 */
-	  	
-	  	
-	  
 
-
-
-
-	  		/**
-	  		 * 
-	  		 */
   		@SuppressWarnings({ "unchecked", "rawtypes" })
 	  
 	  		String[] liste={"1 jour","Une semaine","1 mois"};
@@ -76,9 +58,6 @@ public class JoggingPanel extends JPanel {
 	  		/**
 	  		 * Create the frame.
 	  		 */
-	  		
-
-	  		
 	  			
 	  			setLayout(null);
 	  			
@@ -100,7 +79,7 @@ public class JoggingPanel extends JPanel {
 	  			lblNewLabel_3.setBounds(54, 64, 136, 30);
 	  			add(lblNewLabel_3);
 	  			
-	  			JLabel lblNewLabel_1 = new JLabel("Lets go");
+	  			JLabel lblNewLabel_1 = new JLabel(" ");//title
 	  			lblNewLabel_1.setForeground(new Color(255, 255, 255));
 	  			lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 	  			lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 16));
@@ -155,29 +134,16 @@ public class JoggingPanel extends JPanel {
 	  			
 	  			JLabel left_1 = new JLabel("");
 	  			left_1.setOpaque(true);
-	  			left_1.setBackground(new Color(0, 0, 128));
+	  			left_1.setBackground(new Color(128, 0, 0));
 	  			left_1.setBounds(263, 0, 581, 94);
 	  			add(left_1);
 	  			
-
-
-	  			
-	  			lblNewLabel_3 = new JLabel("Durée");
-	  			lblNewLabel_3.setForeground(Color.WHITE);
-	  			lblNewLabel_3.setBounds(77, 364, 119, 30);
-	  			add(lblNewLabel_3);
 	  			
 	  			JLabel left = new JLabel("");
 	  			left.setOpaque(true);
-	  			left.setBackground(new Color(0, 0, 128));
+	  			left.setBackground(new Color(128, 0, 0));
 	  			left.setBounds(0, 0, 266, 459);
 	  			add(left);
-	  			
-	  			
-	  		//	JLabel lblNewLabel_4 = new JLabel("");
-	  		//	lblNewLabel_4.setIcon(new ImageIcon(SwimmingPanel.class.getResource("/images/row.png")));
-	  		//	lblNewLabel_4.setBounds(266, 92, 578, 367);
-	  		//	add(lblNewLabel_4);
 	  			
 	  			ValidButton.addActionListener(new ActionBoutton1());
 	  			
@@ -193,27 +159,13 @@ public class JoggingPanel extends JPanel {
 		lblNewLabel_3_1.setBounds(154, 261, 86, 24);
 		add(lblNewLabel_3_1);
 		
-	/*	time = new JTextField();
-		time.setBackground(new Color(255, 255, 255));
-		time.setBounds(21, 143, 123, 32);
-		add(time);
-		time.setColumns(10);
-		
-		
-		distance = new JTextField();
-		distance.setColumns(10);
-		distance.setBackground(Color.WHITE);
-		distance.setBounds(21, 253, 123, 32);
-		add(distance);
-		*/
-		
 		
 		messagelabel=new JLabel("");
 		messagelabel.setBounds(151, 181, 100, 30);
 		lblNewLabel.add(messagelabel);
 		
 		JLabel imageLabel_1 = new JLabel("");
-		imageLabel_1.setIcon(new ImageIcon("C:\\Users\\alexa\\eclipse-workspace\\PDI-Sports-D2\\Projet Sports\\src\\images\\free-running-track-vector.jpg"));//"C:\\Users\\alexa\\OneDrive\\Images\\free-running-track-vector.jpg")); //C:\\Users\\Hp\\Documents\\projet d'integration\\Images\\free-running-track-vector.jpg"));
+		imageLabel_1.setIcon(new ImageIcon(JoggingPanel.class.getResource("/images/free-running-track-vector.jpg")));
 		imageLabel_1.setBounds(255, 0, 626, 520); 
 		add(imageLabel_1);
 		

@@ -51,7 +51,7 @@ public class MainFrame extends JFrame
 	 */
 	public MainFrame()
 	{
-		this.setTitle("Bon... Qui a une idée ?");
+		this.setTitle("Sport D2");
 		this.setSize(width, height);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
