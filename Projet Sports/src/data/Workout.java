@@ -25,7 +25,7 @@ public abstract class Workout
 	private Date date;
 	private int duration;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = User.class)
+	@ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER, targetEntity = User.class)
 	private User user;
 	
 	

@@ -15,6 +15,7 @@ import data.RowingWorkout;
 import data.SwimmingWorkout;
 import data.Target;
 import data.User;
+import data.Workout;
 
 public class DBConnection 
 {
@@ -29,8 +30,9 @@ public class DBConnection
 		{
 			config = new AnnotationConfiguration();
 
-			config.addAnnotatedClass(ArcheryWorkout.class);
 			config.addAnnotatedClass(User.class);
+			config.addAnnotatedClass(Workout.class);
+			config.addAnnotatedClass(ArcheryWorkout.class);
 			config.addAnnotatedClass(ClimbingWorkout.class);
 			config.addAnnotatedClass(JoggingWorkout.class);
 			config.addAnnotatedClass(RowingWorkout.class);
@@ -42,10 +44,8 @@ public class DBConnection
 			configFile = new File("resources/connection.cfg.xml");
 			System.out.println(configFile.getAbsolutePath());
 			config.configure(configFile);
-
-			//String packageName = DBConnection.class.getPackage().getName();
-			//config.configure(packageName + "/connection.cfg.xml");
 		}
+		
 		return config;
 	}
 

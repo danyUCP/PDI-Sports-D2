@@ -37,18 +37,6 @@ public class User {
 	
 	public User() {	}
 	
-	/**
-	 * Constructor
-	 * @param id
-	 * @param login
-	 * @param mdp
-	 * @param firstname
-	 * @param lastname
-	 * @param gender
-	 * @param age
-	 * @param size
-	 * @param weight
-	 */
 	public User(String login, String mdp, String firstname, String lastname, String gender, int age, float size, float weight) 
 	{
 		this.login = login;

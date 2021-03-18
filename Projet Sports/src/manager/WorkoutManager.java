@@ -79,5 +79,27 @@ public class WorkoutManager
 		
 		session.close();
 	}
+	
+	public void updateWorkout(Workout w)
+	{
+		session = DBConnection.getSession();
+		transaction = session.beginTransaction();
+		
+		session.update(w);
+		transaction.commit();
+		
+		session.close();
+	}
+	
+	public void deleteWorkout(Workout w)
+	{
+		session = DBConnection.getSession();
+		transaction = session.beginTransaction();
+				
+		session.delete(w);
+		transaction.commit();
+		
+		session.close();
+	}
 
 }

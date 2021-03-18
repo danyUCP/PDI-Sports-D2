@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import data.Exercise;
 import data.MusculationWorkout;
 import data.User;
+import data.Workout;
 import ihm.components.SportButton;
 import ihm.components.SportComboBox;
 import ihm.components.SportLabel;
@@ -38,10 +39,11 @@ public class MusculationPanel extends JPanel
 {
 	private User user;
 	private WorkoutManager wm;
+	private MusculationWorkout w;
 
 	private JPanel section, content, sportData, footer;
 	private IllustrationPanel imagePanel;
-	private SportButton cancelButton, confirmButton, addExercise;
+	private SportButton cancelButton, confirmButton, updateButton, deleteButton, addExercise;
 	private SportLabel title;
 	private SportTextField dateField, durationField;
 	private JPanel date, duration, dataPanel, listPanel;
@@ -56,6 +58,52 @@ public class MusculationPanel extends JPanel
 		this.user = user;
 		this.wm = new WorkoutManager(this.user);
 		
+		displayElements();
+		
+		sportData = new JPanel();
+		sportData.setPreferredSize(new Dimension(width, 60));
+		sportData.setBackground(new Color(28, 28, 28));
+		sportData.setLayout(new BorderLayout());
+		initSportData();
+		content.add(sportData);
+		
+		imagePanel = new IllustrationPanel();
+		content.add(imagePanel);
+		
+		footer = new JPanel();
+		footer.setPreferredSize(new Dimension(width, 85));
+		footer.setBackground(new Color(28, 28, 28));
+		initFooter();
+		sportData.add(footer, BorderLayout.SOUTH);
+	}
+
+	public MusculationPanel(User user, Workout w)
+	{
+		this.user = user;
+		this.wm = new WorkoutManager(this.user);
+		this.w = (MusculationWorkout) w;
+		
+		displayElements();
+		
+		sportData = new JPanel();
+		sportData.setPreferredSize(new Dimension(width, 60));
+		sportData.setBackground(new Color(28, 28, 28));
+		sportData.setLayout(new BorderLayout());
+		initSportData2();
+		content.add(sportData);
+
+		imagePanel = new IllustrationPanel();
+		content.add(imagePanel);
+		
+		footer = new JPanel();
+		footer.setPreferredSize(new Dimension(width, 85));
+		footer.setBackground(new Color(28, 28, 28));
+		initFooter2();
+		sportData.add(footer, BorderLayout.SOUTH);
+	}
+	
+	public void displayElements()
+	{
 		this.dim = new Dimension(width, height);
 		this.setSize(dim);
 		this.setBackground(Color.ORANGE);
@@ -73,26 +121,9 @@ public class MusculationPanel extends JPanel
 		content.setBackground(Color.BLUE);
 		content.setLayout(new GridLayout(1, 2));
 		section.add(content, BorderLayout.CENTER);
-		
-		sportData = new JPanel();
-		sportData.setPreferredSize(new Dimension(width, 60));
-		sportData.setBackground(new Color(28, 28, 28));
-		sportData.setLayout(new BorderLayout());
-		initSportData();
-		content.add(sportData);
-		
-		imagePanel = new IllustrationPanel();
-		content.add(imagePanel);
-		
-		footer = new JPanel();
-		footer.setPreferredSize(new Dimension(width, 85));
-		footer.setBackground(new Color(28, 28, 28));
-		initFooter();
-		sportData.add(footer, BorderLayout.SOUTH);
-
-		
 	}
-
+	
+	
 	public void initFooter()
 	{	
 		footer.setLayout(new BoxLayout(footer, BoxLayout.Y_AXIS));
@@ -116,6 +147,35 @@ public class MusculationPanel extends JPanel
 		addExercise.addActionListener(new ButtonListener());		
 		confirmButton.addActionListener(new ButtonListener());
 		cancelButton.addActionListener(new ButtonListener());
+	}
+	
+	public void initFooter2()
+	{	
+		footer.setLayout(new BoxLayout(footer, BoxLayout.Y_AXIS));
+
+		addExercise  = new SportButton("Ajouter exercice");
+		updateButton = new SportButton("Modifier");
+		deleteButton = new SportButton("Supprimer");
+		cancelButton = new SportButton("Retour");
+		
+		JPanel f1 = new JPanel();
+		f1.setBackground(new Color(28, 28, 28));
+		f1.add(addExercise);
+		
+		JPanel f2 = new JPanel();
+		f2.setBackground(new Color(28, 28, 28));
+		f2.add(updateButton);
+		f2.add(deleteButton);
+		f2.add(cancelButton);
+		
+		footer.add(f1);
+		footer.add(f2);
+
+		addExercise.addActionListener(new ButtonListener());		
+		updateButton.addActionListener(new ButtonListener());
+		deleteButton.addActionListener(new ButtonListener());
+		cancelButton.addActionListener(new ButtonListener());
+
 	}
 	
 	
@@ -171,6 +231,68 @@ public class MusculationPanel extends JPanel
 		sportData.add(dataPanel, BorderLayout.CENTER);
 	}
 	
+	public void initSportData2()
+	{	
+		title = new SportLabel("Séance : Musculation");
+		title.setFont(new Font("Verdana", Font.BOLD, 24));
+		title.setPreferredSize(new Dimension(width, 80));
+
+		sportData.add(title, BorderLayout.NORTH);
+		
+		dataPanel = new JPanel();
+		dataPanel.setBackground(new Color(28, 28, 28));
+		dataPanel.setLayout(new BorderLayout());
+		
+		//dataPanel.setLayout(new BoxLayout(dataPanel, BoxLayout.Y_AXIS));
+		dataPanel.setLayout(new FlowLayout());
+
+		date = new JPanel();
+		date.setBackground(new Color(28, 28, 28));
+		date.add(new SportLabel("Date : "));
+		dateField = new SportTextField(8);
+		dateField.setText("" + w.getDate());
+		date.add(dateField);
+		
+		duration = new JPanel();
+		duration.setBackground(new Color(28, 28, 28));
+		duration.add(new SportLabel("   Durée : "));
+		durationField = new SportTextField(3);
+		durationField.setText("" + w.getDuration());
+		duration.add(durationField);
+		duration.add(new SportLabel("min"));
+		
+		listPanel = new JPanel();
+		listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
+		listPanel.setBackground(new Color(28, 28, 28));
+		
+		exerciseList = new ArrayList<ExercisePanel>();
+		
+		for(int i = 0 ; i < w.getExercises().size() ; i++)
+		{
+			ExercisePanel ep = new ExercisePanel();
+			Exercise ex = w.getExercises().get(i);
+
+			ep.setBoxSelection(ex.getType());
+			ep.fillFields("" + ex.getSets(), "" + ex.getRepetitions());
+			
+			exerciseList.add(ep);		
+			listPanel.add(exerciseList.get(i));
+		}
+		
+		
+		JScrollPane scroll = new JScrollPane(listPanel);
+		scroll.setPreferredSize(new Dimension(350, height/2));
+		scroll.getVerticalScrollBar().setBackground(new Color(50, 50, 50));
+		scroll.setBorder(null);
+
+		dataPanel.add(date);
+		dataPanel.add(duration);
+		dataPanel.add(scroll);
+
+
+		sportData.add(dataPanel, BorderLayout.CENTER);
+	}
+	
 	public void retour()
 	{
 		MainFrame.getGlobal().removeAll();;		
@@ -207,6 +329,43 @@ public class MusculationPanel extends JPanel
 				
 				wm.createNewWorkout(mw);
 				JOptionPane.showMessageDialog(null, "Nouvelle séance de Musculation enregistrée pour " + user.getFirstname());
+				retour();
+			
+			}
+			else if(e.getSource() == updateButton)
+			{
+				System.out.println("Ancienne séance : " + w);
+
+				w.setDate(new Date(0));
+				w.setDuration(Integer.parseInt(durationField.getText()));
+				
+				for(int i = 0 ; i < exerciseList.size() ; i++)
+				{
+					if(i < w.getExercises().size())
+					{
+						Exercise ex = w.getExercises().get(i);
+						ex.setType(exerciseList.get(i).getExerciseData().getType());
+						ex.setSets(exerciseList.get(i).getExerciseData().getSets());
+						ex.setRepetitions(exerciseList.get(i).getExerciseData().getRepetitions());
+					}
+					else
+						w.addExercise(exerciseList.get(i).getExerciseData());
+
+				}
+
+				System.out.println("Nouvelle séance : " + w);
+				
+				wm.updateWorkout(w);
+				JOptionPane.showMessageDialog(null, "Séance de Musculation modifiée pour " + user.getFirstname());
+				retour();
+			
+			}
+			else if(e.getSource() == deleteButton)
+			{
+				System.out.println(w);
+				
+				wm.deleteWorkout(w);
+				JOptionPane.showMessageDialog(null, "Séance de Musculation supprimée pour " + user.getFirstname());
 				retour();
 			
 			}
@@ -278,6 +437,31 @@ public class MusculationPanel extends JPanel
 			e.setRepetitions(Integer.parseInt(this.repsField.getText()));
 			
 			return e;
+		}
+		
+		public void fillFields(String eSets, String eReps)
+		{
+			this.setsField.setText(eSets);
+			this.repsField.setText(eReps);
+		}
+		
+		public void setBoxSelection(String eType)
+		{
+			switch(eType)
+			{
+				case "Pompes":
+					this.typeList.setSelectedIndex(0);
+					break;
+				case "Tractions":
+					this.typeList.setSelectedIndex(1);
+					break;
+				case "Squats":
+					this.typeList.setSelectedIndex(2);
+					break;
+				case "Abdominaux":
+					this.typeList.setSelectedIndex(3);
+					break;
+			}
 		}
 			
 	}

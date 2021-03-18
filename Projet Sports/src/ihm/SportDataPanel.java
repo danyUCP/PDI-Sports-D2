@@ -334,6 +334,35 @@ public class SportDataPanel extends JPanel
 		{
 			this.setBorder(BorderFactory.createLineBorder(new Color(28, 28, 28), 5));
 		}
+		
+		public void mouseClicked(MouseEvent e) 
+		{
+			MainFrame.getGlobal().removeAll();
+
+			switch(mode)
+			{
+				case 1:
+					MainFrame.getGlobal().add(new JoggingPanel());
+					break;
+				case 2:
+					MainFrame.getGlobal().add(new ClimbingPanel(user));
+					break;
+				case 3:
+					MainFrame.getGlobal().add(new RowingPanel());
+					break;
+				case 4:
+					MainFrame.getGlobal().add(new MusculationPanel(user, getWorkout()));
+					break;
+				case 5:
+					MainFrame.getGlobal().add(new SwimmingPanel());
+					break;
+				case 6:
+					MainFrame.getGlobal().add(new ArcheryPanel(user));
+					break;
+			}
+			
+			MainFrame.getGlobal().revalidate();
+		}
 	}
 	
 
