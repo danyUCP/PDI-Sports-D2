@@ -272,8 +272,7 @@ public class MusculationPanel extends JPanel
 			ExercisePanel ep = new ExercisePanel();
 			Exercise ex = w.getExercises().get(i);
 
-			ep.setBoxSelection(ex.getType());
-			ep.fillFields("" + ex.getSets(), "" + ex.getRepetitions());
+			ep.setExerciseData(ex);
 			
 			exerciseList.add(ep);		
 			listPanel.add(exerciseList.get(i));
@@ -439,15 +438,9 @@ public class MusculationPanel extends JPanel
 			return e;
 		}
 		
-		public void fillFields(String eSets, String eReps)
+		public void setExerciseData(Exercise e)
 		{
-			this.setsField.setText(eSets);
-			this.repsField.setText(eReps);
-		}
-		
-		public void setBoxSelection(String eType)
-		{
-			switch(eType)
+			switch(e.getType())
 			{
 				case "Pompes":
 					this.typeList.setSelectedIndex(0);
@@ -462,7 +455,11 @@ public class MusculationPanel extends JPanel
 					this.typeList.setSelectedIndex(3);
 					break;
 			}
+			
+			this.setsField.setText("" + e.getSets());
+			this.repsField.setText("" + e.getRepetitions());
 		}
+
 			
 	}
 
