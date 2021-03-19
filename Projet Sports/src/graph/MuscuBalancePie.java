@@ -68,7 +68,7 @@ public class MuscuBalancePie extends JPanel
 						case "Squats":
 							squats += e.getExerciseReps();
 							break;
-						case "Abdos":
+						case "Abdominaux":
 							abs += e.getExerciseReps();
 							break;
 					}

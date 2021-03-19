@@ -53,7 +53,7 @@ public class WorkoutManager
 				break;				
 		}
 		
-		Query query = session.createQuery("from " + table + " where user_id = :id");
+		Query query = session.createQuery("from " + table + " where user_id = :id order by date DESC, id DESC");
 		query.setInteger("id", user.getId());
 		
 		@SuppressWarnings("unchecked")

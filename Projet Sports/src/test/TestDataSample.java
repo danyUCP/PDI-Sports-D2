@@ -70,7 +70,7 @@ public class TestDataSample
 		Workout w5 = new MusculationWorkout(new Date(0), 40);
 		Exercise e1 = new Exercise("Pompes", 4, 12);
 		Exercise e2 = new Exercise("Tractions", 4, 8);
-		Exercise e3 = new Exercise("Abdos", 3, 20);
+		Exercise e3 = new Exercise("Abdominaux", 3, 20);
 		((MusculationWorkout) w5).addExercise(e1);
 		((MusculationWorkout) w5).addExercise(e2);
 		((MusculationWorkout) w5).addExercise(e3);

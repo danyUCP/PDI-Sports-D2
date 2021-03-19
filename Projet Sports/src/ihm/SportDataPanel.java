@@ -153,29 +153,29 @@ public class SportDataPanel extends JPanel
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		int totalDuration = 0;
 
-		for(int i = 0 ; i < listData.size() ; i++)
+		for(int i = 0 ; i < listData.size() && i < 4 ; i++)
 		{
 			int dur = listData.get(i).getDuration();
 			dataset.addValue(dur, "Durée", "Séance " + (i + 1));
 			totalDuration += dur;
 		}
 			
-		//Graphe simplifié à remplacer ================================================
-		JFreeChart lineGraph = ChartFactory.createBarChart3D("Résumé", null, "Temps (min)", dataset, PlotOrientation.VERTICAL, false, false, false);
-		lineGraph.setBackgroundPaint(new Color(28, 28, 28));
-		lineGraph.getTitle().setFont(new Font("Verdana", Font.PLAIN, 16));
-		lineGraph.getTitle().setPaint(Color.WHITE);
-		lineGraph.getCategoryPlot().getDomainAxis().setLabelPaint(Color.WHITE);
-		lineGraph.getCategoryPlot().getRangeAxis().setLabelPaint(Color.WHITE);
-		lineGraph.getPlot().setBackgroundPaint(new Color(50, 50, 50));
-		lineGraph.getCategoryPlot().getRangeAxis().setAxisLinePaint(Color.WHITE);
-		lineGraph.getCategoryPlot().getRangeAxis().setTickLabelPaint(Color.WHITE);
-		lineGraph.getCategoryPlot().getDomainAxis().setAxisLinePaint(Color.WHITE);
-		lineGraph.getCategoryPlot().getDomainAxis().setTickLabelPaint(Color.WHITE);
-		lineGraph.getCategoryPlot().setRangeGridlinePaint(Color.WHITE);
+		//Graphe simplifié  ==========================================================
+		JFreeChart summaryGraph = ChartFactory.createBarChart3D("Résumé", null, "Temps (min)", dataset, PlotOrientation.VERTICAL, false, false, false);
+		summaryGraph.setBackgroundPaint(new Color(28, 28, 28));
+		summaryGraph.getTitle().setFont(new Font("Verdana", Font.PLAIN, 16));
+		summaryGraph.getTitle().setPaint(Color.WHITE);
+		summaryGraph.getCategoryPlot().getDomainAxis().setLabelPaint(Color.WHITE);
+		summaryGraph.getCategoryPlot().getRangeAxis().setLabelPaint(Color.WHITE);
+		summaryGraph.getPlot().setBackgroundPaint(new Color(50, 50, 50));
+		summaryGraph.getCategoryPlot().getRangeAxis().setAxisLinePaint(Color.WHITE);
+		summaryGraph.getCategoryPlot().getRangeAxis().setTickLabelPaint(Color.WHITE);
+		summaryGraph.getCategoryPlot().getDomainAxis().setAxisLinePaint(Color.WHITE);
+		summaryGraph.getCategoryPlot().getDomainAxis().setTickLabelPaint(Color.WHITE);
+		summaryGraph.getCategoryPlot().setRangeGridlinePaint(Color.WHITE);
 		//=============================================================================
 		
-		ChartPanel graph = new ChartPanel(lineGraph);
+		ChartPanel graph = new ChartPanel(summaryGraph);
 		graph.setBackground(new Color(28, 28, 28));
 		
 		averageData = new JPanel();
