@@ -29,6 +29,7 @@ import data.Target;
 import data.User;
 import data.Workout;
 import ihm.components.SportButton;
+import ihm.components.SportDateBox;
 import ihm.components.SportLabel;
 import ihm.components.SportTextField;
 import manager.WorkoutManager;
@@ -43,7 +44,8 @@ public class ArcheryPanel extends JPanel
 	private IllustrationPanel imagePanel;
 	private SportButton cancelButton, confirmButton, updateButton, deleteButton, addTarget;
 	private SportLabel title;
-	private SportTextField dateField, durationField;
+	private SportTextField durationField;
+	private SportDateBox dateBox;
 	private JPanel date, duration, dataPanel, listPanel;
 	private ArrayList<TargetPanel> targetList;
 	
@@ -192,13 +194,13 @@ public class ArcheryPanel extends JPanel
 
 		date = new JPanel();
 		date.setBackground(new Color(28, 28, 28));
-		date.add(new SportLabel("Date : "));
-		dateField = new SportTextField(8);
-		date.add(dateField);
+		date.add(new SportLabel("Date:"));
+		dateBox = new SportDateBox();
+		date.add(dateBox);
 		
 		duration = new JPanel();
 		duration.setBackground(new Color(28, 28, 28));
-		duration.add(new SportLabel("   Durée : "));
+		duration.add(new SportLabel("Durée:"));
 		durationField = new SportTextField(3);
 		duration.add(durationField);
 		duration.add(new SportLabel("min"));
@@ -244,14 +246,13 @@ public class ArcheryPanel extends JPanel
 
 		date = new JPanel();
 		date.setBackground(new Color(28, 28, 28));
-		date.add(new SportLabel("Date : "));
-		dateField = new SportTextField(8);
-		dateField.setText("" + w.getDate());
-		date.add(dateField);
+		date.add(new SportLabel("Date:"));
+		dateBox = new SportDateBox(w.getDate());
+		date.add(dateBox);
 		
 		duration = new JPanel();
 		duration.setBackground(new Color(28, 28, 28));
-		duration.add(new SportLabel("   Durée : "));
+		duration.add(new SportLabel("Durée:"));
 		durationField = new SportTextField(3);
 		durationField.setText("" + w.getDuration());
 		duration.add(durationField);
