@@ -276,7 +276,7 @@ public class SportDataPanel extends JPanel
 						//MainFrame.getGlobal().add(new JoggingGraphPanel());
 						break;
 					case 2:
-						//MainFrame.getGlobal().add(new ClimbingGraphPanel());
+						MainFrame.getGlobal().add(new ClimbingGraphPanel(user));
 						break;
 					case 3:
 						//MainFrame.getGlobal().add(new RowingGraphPanel());
