@@ -1,337 +1,422 @@
 package ihm;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.SwingConstants;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.jfree.ui.RefineryUtilities;
+import data.Exercise;
 
-import data.JoggingWorkout;
 import data.RowingWorkout;
 import data.User;
 import data.Workout;
-import graph.RowingWorkoutLine;
-import ihm.JoggingPanel.ActionBoutton2;
-import orm.DBConnection;
+import ihm.components.SportButton;
+import ihm.components.SportComboBox;
+import ihm.components.SportLabel;
+import ihm.components.SportTextField;
+import manager.WorkoutManager;
 
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+public class RowingPanel extends JPanel
+{
+	private User user;
+	private WorkoutManager wm;
+	private RowingWorkout w;
+	
+	private JPanel section, content, sportData, footer;
+	private IllustrationPanel imagePanel;
+	private SportButton cancelButton, confirmButton, updateButton, deleteButton, addExercise;
+	private SportLabel title;
+	private SportTextField dateField, durationField,distanceField,paddle_strokesField;
+	private JPanel date, duration, dataPanel, listPanel,distance,paddle_strokes;
+	private ArrayList<ExercisePanel> exerciseList;
+	
+	private Dimension dim;
+	private int width = 858;
+	private int height = 460;
 
-public class RowingPanel extends JPanel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JLabel messagelabel;
-	private	JTextPane paddleText,timeText,distanceText;
-	private long time1= System.currentTimeMillis();
-  	private Connection  connection;
-	private JComboBox comboBox,comboBox_1;
-  	private JButton ValidButton;
-  	
-  	/**
-	 * Create the panel.
-	 */  
+	public RowingPanel(User user)
+	{
+		this.user = user;
+		this.wm = new WorkoutManager(this.user);
+		
+		displayElements();
+		
+		sportData = new JPanel();
+		sportData.setPreferredSize(new Dimension(width, 60));
+		sportData.setBackground(new Color(28, 28, 28));
+		sportData.setLayout(new BorderLayout());
+		initSportData();
+		content.add(sportData);
+		
+		imagePanel = new IllustrationPanel();
+		content.add(imagePanel);
+		
+		footer = new JPanel();
+		footer.setPreferredSize(new Dimension(width, 85));
+		footer.setBackground(new Color(28, 28, 28));
+		initFooter();
+		sportData.add(footer, BorderLayout.SOUTH);
+	}
+
+	public RowingPanel(User user, Workout w)
+	{
+		this.user = user;
+		this.wm = new WorkoutManager(this.user);
+		this.w = (RowingWorkout) w;
+		
+		displayElements();
+		
+		sportData = new JPanel();
+		sportData.setPreferredSize(new Dimension(width, 60));
+		sportData.setBackground(new Color(28, 28, 28));
+		sportData.setLayout(new BorderLayout());
+		initSportData2();
+		content.add(sportData);
+
+		imagePanel = new IllustrationPanel();
+		content.add(imagePanel);
+		
+		footer = new JPanel();
+		footer.setPreferredSize(new Dimension(width, 85));
+		footer.setBackground(new Color(28, 28, 28));
+		initFooter2();
+		sportData.add(footer, BorderLayout.SOUTH);
+	}
+	
+	public void displayElements()
+	{
+		this.dim = new Dimension(width, height);
+		this.setSize(dim);
+		this.setBackground(Color.ORANGE);
+		this.setLayout(null);
+		
+		section = new JPanel();
+		section.setBounds(0, 0, width, height);
+		section.setBackground(new Color(28, 28, 28));
+		section.setLayout(new BorderLayout());
+		this.add(section);
+		
+
+		content = new JPanel();
+		content.setPreferredSize(new Dimension(width, height));
+		content.setBackground(Color.BLUE);
+		content.setLayout(new GridLayout(1, 2));
+		section.add(content, BorderLayout.CENTER);
+	}
 	
 	
+	public void initFooter()
+	{	
+		footer.setLayout(new BoxLayout(footer, BoxLayout.Y_AXIS));
+
+		addExercise  = new SportButton("Ajouter exercice");
+		confirmButton = new SportButton("Valider");
+		cancelButton = new SportButton("Retour");
+		
+		JPanel f1 = new JPanel();
+		f1.setBackground(new Color(28, 28, 28));
+		f1.add(addExercise);
+		
+		JPanel f2 = new JPanel();
+		f2.setBackground(new Color(28, 28, 28));
+		f2.add(confirmButton);
+		f2.add(cancelButton);
+		
+		footer.add(f1);
+		footer.add(f2);
+
+		addExercise.addActionListener(new ButtonListener());		
+		confirmButton.addActionListener(new ButtonListener());
+		cancelButton.addActionListener(new ButtonListener());
+	} 
 	
-	
-	
-	
-	public RowingPanel() {
-		
-		
-		
-		/**
-		 * Create the panel.
-		 * 
-		 * 
-		 * 
-		 */
+	public void initFooter2()
+	{	
+		footer.setLayout(new BoxLayout(footer, BoxLayout.Y_AXIS));
 
-	  		/**
-	  		 * 
-	  		 */
-  		@SuppressWarnings({ "unchecked", "rawtypes" })
-	  
-	  		String[] liste={"1 jour","Une semaine","1 mois"};
-	  		String[] liste1={"Modifier","Ajouter"};
-	  		JButton AddButton_1;
-	  		
-	  		
+		addExercise  = new SportButton("Ajouter exercice");
+		updateButton = new SportButton("Modifier");
+		deleteButton = new SportButton("Supprimer");
+		cancelButton = new SportButton("Retour");
+		
+		JPanel f1 = new JPanel();
+		f1.setBackground(new Color(28, 28, 28));
+		f1.add(addExercise);
+		
+		JPanel f2 = new JPanel();
+		f2.setBackground(new Color(28, 28, 28));
+		f2.add(updateButton);
+		f2.add(deleteButton);
+		f2.add(cancelButton);
+		
+		footer.add(f1);
+		footer.add(f2);
 
-	  		/**
-	  		 * Launch the application.
-	  		 */
-
-	  		/**
-	  		 * Create the frame.
-	  		 */
-	  			setLayout(null);
-	  			
-	  			
-	  			ValidButton = new JButton("Valider");
-	  			ValidButton.setForeground(new Color(169, 169, 169));
-	  			ValidButton.setBackground(new Color(192, 192, 192));
-	  			ValidButton.setBounds(759, 47, 85, 21);
-	  			add(ValidButton);
-	  			
-	  			JButton btnNewButton = new JButton("Retour");
-	  			btnNewButton.setForeground(new Color(192, 192, 192));
-	  			btnNewButton.setBounds(10, 428, 85, 21);
-	  			add(btnNewButton);
-	  			
-	  			JLabel lblNewLabel_3 = new JLabel("Données jogging");
-	  			lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-	  			lblNewLabel_3.setForeground(new Color(255, 255, 255));
-	  			lblNewLabel_3.setBounds(54, 64, 136, 30);
-	  			add(lblNewLabel_3);
-	  			
-	  			JLabel lblNewLabel_1 = new JLabel("Lets go");
-	  			lblNewLabel_1.setForeground(new Color(255, 255, 255));
-	  			lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-	  			lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 16));
-	  			lblNewLabel_1.setBounds(10, 10, 243, 23);
-	  			add(lblNewLabel_1);
-	  			
-	  			JLabel lblNewLabel = new JLabel("Option");
-	  			lblNewLabel.setForeground(new Color(255, 255, 255));
-	  			lblNewLabel.setBounds(306, 50, 126, 18);
-	  			add(lblNewLabel);
-	  			
-	  			JLabel lblNewLabel_2 = new JLabel("Periode");
-	  			lblNewLabel_2.setForeground(new Color(255, 255, 255));
-	  			lblNewLabel_2.setBounds(520, 51, 66, 18);
-	  			add(lblNewLabel_2);
-	  			
-	  			
-	  			JLabel paddlelabel  = new JLabel("paddletext");
-	  			paddlelabel.setForeground(new Color(255, 255, 255));
-	  			paddlelabel.setBounds(40, 132, 100, 19);
-	  			add(paddlelabel);
-	  			
-	  			paddleText = new JTextPane();
-	  			paddleText.setBackground(Color.LIGHT_GRAY);
-	  			paddleText.setBounds(100, 132, 100, 19);
-	  			add(paddleText);
-                
-	  			JLabel distancelabel  = new JLabel("distance");
-	  			distancelabel.setForeground(new Color(255, 255, 255));
-	  			distancelabel.setBounds(40, 172, 100, 19);
-	  			add(distancelabel);
-	  			
-	  			distanceText = new JTextPane();
-	  			distanceText.setBackground(Color.LIGHT_GRAY);
-	  			distanceText.setBounds(100, 172, 100, 19);
-	  			add(distanceText);
-	  			
-	  			JLabel dureelabel  = new JLabel("dureetext");
-	  			dureelabel.setForeground(new Color(255, 255, 255));
-	  			dureelabel.setBounds(40, 202, 100, 19);
-	  			add(dureelabel);
-	  			
-	  			timeText = new JTextPane();
-	  			timeText.setBackground(Color.LIGHT_GRAY);
-	  			timeText.setBounds(100, 202, 100, 19);
-	  			add(timeText);
-
-	  			
-	  			comboBox = new JComboBox();
-	  			comboBox.setForeground(new Color(169, 169, 169));
-	  			comboBox.setBackground(new Color(192, 192, 192));
-	  			comboBox.setBounds(581, 46, 136, 23);
-	  			add(comboBox);
-	  			comboBox.setModel(new javax.swing.DefaultComboBoxModel(liste));
-	  			
-	  			comboBox_1 = new JComboBox();
-	  			comboBox_1.setForeground(new Color(169, 169, 169));
-	  			comboBox_1.setBackground(new Color(192, 192, 192));
-	  			comboBox_1.setBounds(352, 49, 136, 23);
-	  			add(comboBox_1);
-	  			comboBox_1.setModel(new javax.swing.DefaultComboBoxModel(liste1));
-	  			
-	  			JLabel left_1 = new JLabel("");
-	  			left_1.setOpaque(true);
-	  			left_1.setBackground(new Color(0, 0, 128));
-	  			left_1.setBounds(263, 0, 581, 94);
-	  			add(left_1);
-	  			
-	  			lblNewLabel_3 = new JLabel("Durée");
-	  			lblNewLabel_3.setForeground(Color.WHITE);
-	  			lblNewLabel_3.setBounds(77, 364, 119, 30);
-	  			add(lblNewLabel_3);
-	  			
-	  			JLabel left = new JLabel("");
-	  			left.setOpaque(true);
-	  			left.setBackground(new Color(0, 0, 128));
-	  			left.setBounds(0, 0, 266, 459);
-	  			add(left);
-	  			
-	  			
-	   
-	  			
-		setLayout(null);
-
-		
-		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.setBounds(143, 360, 97, 40);
-		add(btnAnnuler);
-		
-		
-		JLabel lblNewLabel_3_1 = new JLabel("Distance");
-		lblNewLabel_3_1.setBounds(154, 261, 86, 24);
-		add(lblNewLabel_3_1);
-		
-		
-		messagelabel=new JLabel("");
-		messagelabel.setBounds(151, 181, 100, 30);
-		lblNewLabel.add(messagelabel);
-		
-		JLabel imageLabel_1 = new JLabel("");
-		imageLabel_1.setIcon(new ImageIcon("C:\\Users\\alexa\\eclipse-workspace\\PDI-Sports-D2\\Projet Sports\\src\\images\\row.jpg"));//"C:\\Users\\alexa\\OneDrive\\Images\\free-running-track-vector.jpg")); //C:\\Users\\Hp\\Documents\\projet d'integration\\Images\\free-running-track-vector.jpg"));
-		imageLabel_1.setBounds(255, 0, 626, 520); 
-		add(imageLabel_1);
-		
-	   ValidButton.addActionListener(new Graph());	 
-	   btnAnnuler.addActionListener(new ActionBoutton2());
-		
+		addExercise.addActionListener(new ButtonListener());		
+		updateButton.addActionListener(new ButtonListener());
+		deleteButton.addActionListener(new ButtonListener());
+		cancelButton.addActionListener(new ButtonListener());
 
 	}
 	
 	
-	/**
-	 * Create ActionListener
-	 *
-	 */
-	public class Graph implements ActionListener {
-		
-		public void actionPerformed(ActionEvent e1) {
-		
-			
-			String text1=timeText.getText();
-			String text2=distanceText.getText();
-			String text3=paddleText.getText();
+	public void initSportData()
+	{	
+		title = new SportLabel("Séance : Rowing");
+		title.setFont(new Font("Verdana", Font.BOLD, 24));
+		title.setPreferredSize(new Dimension(width, 80));
 
-			String text4=comboBox_1.getSelectedItem().toString();
-			int m1 = Integer.parseInt(text1);
-	        int m2 = Integer.parseInt(text2);
-	        int m3=  Integer.parseInt(text3);
+		sportData.add(title, BorderLayout.NORTH);
+		
+		dataPanel = new JPanel();
+		dataPanel.setBackground(new Color(28, 28, 28));
+		dataPanel.setLayout(new BorderLayout());
+		
+		//dataPanel.setLayout(new BoxLayout(dataPanel, BoxLayout.Y_AXIS));
+		dataPanel.setLayout(new FlowLayout());
 
-			
-			System.out.println(" "+text3+"  graph  ");
-			
-			Date date=new Date(time1);	
-			if(e1.getSource()== ValidButton) {
-					
-				
-				if(text4 == "Ajouter") {  
+		date = new JPanel();
+		date.setBackground(new Color(28, 28, 28));
+		date.add(new SportLabel("Date : "));
+		dateField = new SportTextField(8);
+		date.add(dateField);
+		
+		duration = new JPanel();
+		duration.setBackground(new Color(28, 28, 28));
+		duration.add(new SportLabel("   Durée : "));
+		durationField = new SportTextField(3);
+		duration.add(durationField);
+		duration.add(new SportLabel("min"));
+		
+		paddle_strokes=new JPanel();
+		paddle_strokes.setBackground(new Color(28, 28, 28));
+		paddle_strokes.add(new SportLabel("   Paddle Strokes : "));
+		paddle_strokesField = new SportTextField(3);
+		paddle_strokes.add(paddle_strokesField);
+		paddle_strokes.add(new SportLabel("nb"));
+		
+		distance=new JPanel();
+		distance.setBackground(new Color(28, 28, 28));
+		distance.add(new SportLabel("   Distance : "));
+		distanceField = new SportTextField(3);
+		distance.add(distanceField);
+		distance.add(new SportLabel("m"));
+		
+		
+		
+		
+		listPanel = new JPanel();
+		listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
+		listPanel.setBackground(new Color(28, 28, 28));
+		
+		exerciseList = new ArrayList<ExercisePanel>();
+		exerciseList.add(new ExercisePanel());
+
+		dataPanel.add(date);
+		dataPanel.add(duration);
+		dataPanel.add(distance);
+        dataPanel.add(paddle_strokes);
+
+		sportData.add(dataPanel, BorderLayout.CENTER);
+	}
 	
-					
-						System.out.println(" ajouter ");		
-					
-					Session session = DBConnection.getSession();
-					Transaction persistTransaction1 = session.beginTransaction();	
-					
-					
-					
-					
-					
-					User u1 = new User("Alex","1311","Alexander","Bubb","M",20,186,65);
-					session.save(u1);
-			   
-					Workout w=new RowingWorkout(date,m1,m2,m3);
-					w.setUser(u1);
-					session.save(w);
-					
-					persistTransaction1.commit();
-					session.close();
-					
-					}else if(text4=="Modifier") {
-						
-						
-						
-						System.out.println(" modifier ");	
-						
-						Session session = orm.DBConnection.getSession();
-						
-					System.out.println("UPDATE climbingworkout set distance="+m1+", time='"+text2+"' where date="+date+";"); 
-					try {
-						connection	=DriverManager.getConnection("jdbc:mysql://localhost:3306/sport_d3","root","");
-					    PreparedStatement preparedStatement = connection.prepareStatement("	UPDATE climbingworkout set duration="+m1+", course_difficulty='"+text2+"' where date="+date+";");
-					   preparedStatement.executeUpdate();
-					
-					
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-						  	 
+	public void initSportData2()
+	{	
+		title = new SportLabel("Séance : Aviron");
+		title.setFont(new Font("Verdana", Font.BOLD, 24));
+		title.setPreferredSize(new Dimension(width, 80));
 
-					session.close();
-						
-						
-						
-					}
-			
-				}
+		sportData.add(title, BorderLayout.NORTH);
 		
+		dataPanel = new JPanel();
+		dataPanel.setBackground(new Color(28, 28, 28));
+		dataPanel.setLayout(new BorderLayout());
+		
+		//dataPanel.setLayout(new BoxLayout(dataPanel, BoxLayout.Y_AXIS));
+		dataPanel.setLayout(new FlowLayout());
+
+		date = new JPanel();
+		date.setBackground(new Color(28, 28, 28));
+		date.add(new SportLabel("Date : "));
+		dateField = new SportTextField(8);
+		dateField.setText("" + w.getDate());
+		date.add(dateField);
+		
+		duration = new JPanel();
+		duration.setBackground(new Color(28, 28, 28));
+		duration.add(new SportLabel("   Durée : "));
+		durationField = new SportTextField(3);
+		durationField.setText("" + w.getDuration());
+		duration.add(durationField);
+		duration.add(new SportLabel("min"));
+		
+		listPanel = new JPanel();
+		listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
+		listPanel.setBackground(new Color(28, 28, 28));
+		
+		exerciseList = new ArrayList<ExercisePanel>();		
+		
+		JScrollPane scroll = new JScrollPane(listPanel);
+		scroll.setPreferredSize(new Dimension(350, height/2));
+		scroll.getVerticalScrollBar().setBackground(new Color(50, 50, 50));
+		scroll.setBorder(null);
+
+		dataPanel.add(date);
+		dataPanel.add(duration);
+		dataPanel.add(scroll);
+
+
+		sportData.add(dataPanel, BorderLayout.CENTER);
+	}
+	
+	public void retour()
+	{
+		MainFrame.getGlobal().removeAll();;		
+		MainFrame.getGlobal().add(new SportDataPanel(user, 3));
+		MainFrame.getGlobal().revalidate();
+	}
+	
+	private class ButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e) 
+		{			
+			
+			
+			if(e.getSource() == confirmButton)
+			{
+			
+				String text_date=dateField.getText();
+				String distance=distanceField.getText();
+				String duration=durationField.getText();
+				String paddle_strokes=paddle_strokesField.getText();
+				int distance1=Integer.parseInt(distance); 
+				int duration1=Integer.parseInt(duration);
+				int paddle_strokes1=Integer.parseInt(paddle_strokes);
+				Date dates=ConvertDateToSql(text_date);
+				
+				System.out.println("paddle strokes ="+paddle_strokes);
+				
+				RowingWorkout mw = new RowingWorkout(dates,duration1,distance1,paddle_strokes1);
+				mw.setDate(new Date(0));
+				mw.setDuration(Integer.parseInt(durationField.getText()));
+				
+				for(int i = 0 ; i < exerciseList.size() ; i++)
+			
+
+				System.out.println(mw);
+				
+				wm.createNewWorkout(mw);
+				JOptionPane.showMessageDialog(null, "Nouvelle séance d' aviron enregistrée pour " + user.getFirstname());
+				retour();
+			
+			}
+			else if(e.getSource() == updateButton)
+			{
+				System.out.println("Ancienne séance : " + w);
+
+				w.setDate(new Date(0));
+				w.setDuration(Integer.parseInt(durationField.getText()));
+
+				System.out.println("Nouvelle séance : " + w);
+				
+				wm.updateWorkout(w);
+				JOptionPane.showMessageDialog(null, "Séance d' aviron modifiée pour " + user.getFirstname());
+				retour();
+			
+			}
+			else if(e.getSource() == deleteButton)
+			{
+				System.out.println(w);
+				
+				wm.deleteWorkout(w);
+				JOptionPane.showMessageDialog(null, "Séance d' avriron supprimée pour " + user.getFirstname());
+				retour();
+			
+			}
+			else if(e.getSource() == cancelButton)
+			{
+				retour();
+			}
+			
+			
+		}
+	}
+	
+	@SuppressWarnings("serial")
+	private class ExercisePanel extends JPanel
+	{
+		private SportTextField setsField, repsField;
+		private JPanel type, sets, reps;
+		private JComboBox<String> typeList;
+
+	
+		
+		public void setExerciseData(Exercise e)
+		{
+	
+			
+			this.setsField.setText("" + e.getSets());
+			this.repsField.setText("" + e.getRepetitions());
+		}
+
+			
+	}
+	
+	public Date ConvertDateToSql(String date) {  
+	    Date dates=Date.valueOf(date); 
+	    System.out.println(date);
+		return dates;  
+	}
+
+
+	@SuppressWarnings("serial")
+	private class IllustrationPanel extends JPanel
+	{
+		private Image background;
+		
+		public IllustrationPanel()
+		{
+			super(null);
+			try
+			{
+				background = ImageIO.read(new File("Projet Sports/resources/images/rowing.png"));
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
 			}
 		}
-	
-
-
-	/**
-	 * Create ActionListener
-	 *
-	 */
-	
-	public class ActionBoutton2 implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
 		
-			   settext("choice canceled");
-			
+		public void paintComponent(Graphics g)
+		{
+			Graphics2D g2d = (Graphics2D)g;
+            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+			super.paintComponent(g2d);
+
+			g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
 		}
-		  
 	}
-			
-	public int Convettexttomesure(String text) {
-		
-	
-		int nombre=0;
-		if (text.length() > 0) {
-		    try {
-		         nombre = Integer.parseInt(text);
-		        
-		    } catch (NumberFormatException nfe) {
-		        settext("Erreur de format");
-		   
-		    
-		    }
-		} else {
-		      settext("Un paramètre est requis");
-		}
-	      return nombre;
-		
-	}
-	public void settext(String text) {
-		
-	messagelabel.setText(text);	
-		
-	}
-	
+
 }
+

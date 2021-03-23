@@ -10,7 +10,10 @@ public class RowingWorkout extends Workout
 	private int distance;
 	private int paddle_strokes;
 
-
+    public RowingWorkout() {
+    	
+    }
+	
 	public RowingWorkout(Date date, int duration, int distance, int paddle_strokes) 
 	{
 		super(date, duration);
