@@ -14,15 +14,11 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.PieSectionLabelGenerator;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
-
-import data.ArcheryWorkout;
+import org.jfree.data.general.DefaultPieDataset; 
 import data.ClimbingWorkout;
 import data.Workout;
 
+@SuppressWarnings("serial")
 public class ClimbingWorkoutPie extends JPanel  {
 	
 	private JFreeChart pieGraph;

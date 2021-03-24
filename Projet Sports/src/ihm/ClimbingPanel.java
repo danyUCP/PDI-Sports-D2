@@ -7,11 +7,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-
-import data.ArcheryWorkout;
 import data.ClimbingWorkout;
 
 import data.User;
@@ -138,6 +133,7 @@ public class ClimbingPanel extends JPanel {
 		btnAnnuler.addActionListener(new Action_Add() );
 		}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ClimbingPanel(User user, Workout w) {
 		this.user = user;
 		this.wm = new WorkoutManager(this.user);

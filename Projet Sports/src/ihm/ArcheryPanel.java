@@ -34,6 +34,7 @@ import ihm.components.SportLabel;
 import ihm.components.SportTextField;
 import manager.WorkoutManager;
 
+@SuppressWarnings("serial")
 public class ArcheryPanel extends JPanel
 {
 	private User user;

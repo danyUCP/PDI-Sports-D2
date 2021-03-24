@@ -1,14 +1,9 @@
 package data;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Iterator;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+
 
 /**
  * 

@@ -76,7 +76,7 @@ public class JoggingWindow  extends JFrame {
 			
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				setBounds(100, 100, 646, 482);
-				contentPane = new JoggingPanel();
+				contentPane = new JoggingPanel(null);
 				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 				setContentPane(contentPane);
 				contentPane.setLayout(null);

@@ -12,8 +12,6 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -21,14 +19,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.general.DefaultPieDataset;
-
 import data.User;
-import graph.ArcheryPrecisionPie;
-import graph.ArcherySummaryBar;
 import graph.ClimbingSummaryBar;
 import graph.ClimbingWorkoutPie;
 import ihm.components.SportButton;
@@ -39,6 +30,7 @@ import manager.WorkoutManager;
 
 
 
+@SuppressWarnings("serial")
 public class ClimbingGraphPanel extends JPanel {
 	private User user;
 	private WorkoutManager wm;
