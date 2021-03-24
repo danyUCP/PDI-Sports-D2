@@ -249,13 +249,13 @@ public class SportDataPanel extends JPanel
 				switch(mode)
 				{
 					case 1:
-						MainFrame.getGlobal().add(new JoggingPanel());
+						MainFrame.getGlobal().add(new JoggingPanel(user));
 						break;
 					case 2:
 						MainFrame.getGlobal().add(new ClimbingPanel(user));
 						break;
 					case 3:
-						MainFrame.getGlobal().add(new RowingPanel());
+						MainFrame.getGlobal().add(new RowingPanel(user));
 						break;
 					case 4:
 						MainFrame.getGlobal().add(new MusculationPanel(user));
@@ -342,13 +342,13 @@ public class SportDataPanel extends JPanel
 			switch(mode)
 			{
 				case 1:
-					MainFrame.getGlobal().add(new JoggingPanel());
+					MainFrame.getGlobal().add(new JoggingPanel(user));
 					break;
 				case 2:
-					MainFrame.getGlobal().add(new ClimbingPanel(user));
+					MainFrame.getGlobal().add(new ClimbingPanel(user,getWorkout()));
 					break;
 				case 3:
-					MainFrame.getGlobal().add(new RowingPanel());
+					MainFrame.getGlobal().add(new RowingPanel(user));
 					break;
 				case 4:
 					MainFrame.getGlobal().add(new MusculationPanel(user, getWorkout()));
