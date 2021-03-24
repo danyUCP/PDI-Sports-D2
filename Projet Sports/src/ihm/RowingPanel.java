@@ -44,7 +44,7 @@ public class RowingPanel extends JPanel
 	
 	private JPanel section, content, sportData, footer;
 	private IllustrationPanel imagePanel;
-	private SportButton cancelButton, confirmButton, updateButton, deleteButton, addExercise;
+	private SportButton cancelButton, confirmButton, updateButton, deleteButton;
 	private SportLabel title;
 	private SportTextField dateField, durationField,distanceField,paddle_strokesField;
 	private JPanel date, duration, dataPanel, listPanel,distance,paddle_strokes;
@@ -129,13 +129,13 @@ public class RowingPanel extends JPanel
 	{	
 		footer.setLayout(new BoxLayout(footer, BoxLayout.Y_AXIS));
 
-		addExercise  = new SportButton("Ajouter exercice");
+		
 		confirmButton = new SportButton("Valider");
 		cancelButton = new SportButton("Retour");
 		
 		JPanel f1 = new JPanel();
 		f1.setBackground(new Color(28, 28, 28));
-		f1.add(addExercise);
+	
 		
 		JPanel f2 = new JPanel();
 		f2.setBackground(new Color(28, 28, 28));
@@ -145,7 +145,7 @@ public class RowingPanel extends JPanel
 		footer.add(f1);
 		footer.add(f2);
 
-		addExercise.addActionListener(new ButtonListener());		
+	
 		confirmButton.addActionListener(new ButtonListener());
 		cancelButton.addActionListener(new ButtonListener());
 	} 
@@ -154,14 +154,14 @@ public class RowingPanel extends JPanel
 	{	
 		footer.setLayout(new BoxLayout(footer, BoxLayout.Y_AXIS));
 
-		addExercise  = new SportButton("Ajouter exercice");
+		
 		updateButton = new SportButton("Modifier");
 		deleteButton = new SportButton("Supprimer");
 		cancelButton = new SportButton("Retour");
 		
 		JPanel f1 = new JPanel();
 		f1.setBackground(new Color(28, 28, 28));
-		f1.add(addExercise);
+	
 		
 		JPanel f2 = new JPanel();
 		f2.setBackground(new Color(28, 28, 28));
@@ -172,7 +172,7 @@ public class RowingPanel extends JPanel
 		footer.add(f1);
 		footer.add(f2);
 
-		addExercise.addActionListener(new ButtonListener());		
+			
 		updateButton.addActionListener(new ButtonListener());
 		deleteButton.addActionListener(new ButtonListener());
 		cancelButton.addActionListener(new ButtonListener());
@@ -317,7 +317,7 @@ public class RowingPanel extends JPanel
 				System.out.println("paddle strokes ="+paddle_strokes);
 				
 				RowingWorkout mw = new RowingWorkout(dates,duration1,distance1,paddle_strokes1);
-				mw.setDate(new Date(0));
+				mw.setDate(dates);
 				mw.setDuration(Integer.parseInt(durationField.getText()));
 				
 				for(int i = 0 ; i < exerciseList.size() ; i++)

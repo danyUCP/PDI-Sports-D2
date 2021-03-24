@@ -18,7 +18,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
+
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -30,7 +30,7 @@ import data.JoggingWorkout;
 import data.User;
 import data.Workout;
 import ihm.components.SportButton;
-import ihm.components.SportComboBox;
+
 import ihm.components.SportLabel;
 import ihm.components.SportTextField;
 import manager.WorkoutManager;
@@ -43,7 +43,7 @@ public class JoggingPanel extends JPanel
 	
 	private JPanel section, content, sportData, footer;
 	private IllustrationPanel imagePanel;
-	private SportButton cancelButton, confirmButton, updateButton, deleteButton, addExercise;
+	private SportButton cancelButton, confirmButton, updateButton, deleteButton;// addExercise;
 	private SportLabel title;
 	private SportTextField dateField, durationField,distanceField;
 	private JPanel date, duration, dataPanel, listPanel,distance;
@@ -128,13 +128,13 @@ public class JoggingPanel extends JPanel
 	{	
 		footer.setLayout(new BoxLayout(footer, BoxLayout.Y_AXIS));
 
-		addExercise  = new SportButton("Ajouter exercice");
+	//	addExercise  = new SportButton("Ajouter exercice");
 		confirmButton = new SportButton("Valider");
 		cancelButton = new SportButton("Retour");
 		
 		JPanel f1 = new JPanel();
 		f1.setBackground(new Color(28, 28, 28));
-		f1.add(addExercise);
+	//	f1.add(addExercise);
 		
 		JPanel f2 = new JPanel();
 		f2.setBackground(new Color(28, 28, 28));
@@ -144,7 +144,7 @@ public class JoggingPanel extends JPanel
 		footer.add(f1);
 		footer.add(f2);
 
-		addExercise.addActionListener(new ButtonListener());		
+	//	addExercise.addActionListener(new ButtonListener());		
 		confirmButton.addActionListener(new ButtonListener());
 		cancelButton.addActionListener(new ButtonListener());
 	}
@@ -153,14 +153,14 @@ public class JoggingPanel extends JPanel
 	{	
 		footer.setLayout(new BoxLayout(footer, BoxLayout.Y_AXIS));
 
-		addExercise  = new SportButton("Ajouter exercice");
+	//	addExercise  = new SportButton("Ajouter exercice");
 		updateButton = new SportButton("Modifier");
 		deleteButton = new SportButton("Supprimer");
 		cancelButton = new SportButton("Retour");
 		
 		JPanel f1 = new JPanel();
 		f1.setBackground(new Color(28, 28, 28));
-		f1.add(addExercise);
+	//	f1.add(addExercise);
 		
 		JPanel f2 = new JPanel();
 		f2.setBackground(new Color(28, 28, 28));
@@ -171,7 +171,7 @@ public class JoggingPanel extends JPanel
 		footer.add(f1);
 		footer.add(f2);
 
-		addExercise.addActionListener(new ButtonListener());		
+	//	addExercise.addActionListener(new ButtonListener());		
 		updateButton.addActionListener(new ButtonListener());
 		deleteButton.addActionListener(new ButtonListener());
 		cancelButton.addActionListener(new ButtonListener());
@@ -283,7 +283,7 @@ public class JoggingPanel extends JPanel
 	public void retour()
 	{
 		MainFrame.getGlobal().removeAll();;		
-		MainFrame.getGlobal().add(new SportDataPanel(user, 4));
+		MainFrame.getGlobal().add(new SportDataPanel(user, 1));
 		MainFrame.getGlobal().revalidate();
 	}
 	
@@ -292,7 +292,7 @@ public class JoggingPanel extends JPanel
 		public void actionPerformed(ActionEvent e) 
 		{			
 			
-			if(e.getSource() == addExercise)
+		/*	if(e.getSource() == addExercise)
 			{
 				if(exerciseList.size() < 4)
 				{
@@ -302,8 +302,8 @@ public class JoggingPanel extends JPanel
 					revalidate();
 				}
 
-			}
-			else if(e.getSource() == confirmButton)
+			}*/
+			if(e.getSource() == confirmButton)
 			{
 			
 				String text_date=dateField.getText();
@@ -313,7 +313,7 @@ public class JoggingPanel extends JPanel
 				int duration1=Integer.parseInt(duration);
 				Date dates=ConvertDateToSql(text_date);
 				JoggingWorkout mw = new JoggingWorkout(dates,duration1,distance1);
-				mw.setDate(new Date(0));
+				mw.setDate(dates);
 				mw.setDuration(Integer.parseInt(durationField.getText()));
 				
 				for(int i = 0 ; i < exerciseList.size() ; i++)
@@ -333,19 +333,7 @@ public class JoggingPanel extends JPanel
 				w.setDate(new Date(0));
 				w.setDuration(Integer.parseInt(durationField.getText()));
 				
-				for(int i = 0 ; i < exerciseList.size() ; i++)
-				{
-					/*if(i < w.getExercises().size())
-					{
-						Exercise ex = w.getExercises().get(i);
-						ex.setType(exerciseList.get(i).getExerciseData().getType());
-						ex.setSets(exerciseList.get(i).getExerciseData().getSets());
-						ex.setRepetitions(exerciseList.get(i).getExerciseData().getRepetitions());
-					}
-					else
-						w.addExercise(exerciseList.get(i).getExerciseData());
-                     */
-				}
+				
 
 				System.out.println("Nouvelle séance : " + w);
 				
