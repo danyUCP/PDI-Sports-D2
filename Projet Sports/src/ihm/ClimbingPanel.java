@@ -65,11 +65,11 @@ public class ClimbingPanel extends JPanel {
 		
 		this.dim = new Dimension(width, height);
 		this.setSize(dim);
-		this.setBackground(Color.LIGHT_GRAY);
+		this.setBackground(new Color(28, 28, 28));
 		this.setLayout(null);
 		
 		title = new SportLabel("Climbing Workout");
-		title.setFont(new Font("Verdana", Font.BOLD, 28));
+		title.setFont(new Font("Verdana", Font.BOLD, 24));
 		title.setBounds(12, 40, 310, 40);
 		add(title);
 		
@@ -93,14 +93,17 @@ public class ClimbingPanel extends JPanel {
 		
 		JLabel lblNewLabel_3 = new JLabel("Duration");
 		lblNewLabel_3.setBounds(240, 280, 86, 24);
+		lblNewLabel_3.setForeground(Color.white);
 		add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Difficulty");
 		lblNewLabel_3_1.setBounds(240, 200, 86, 24);
+		lblNewLabel_3_1.setForeground(Color.white);
 		add(lblNewLabel_3_1);
 		
 		JLabel lblNewLabel_3_2 = new JLabel("Date");
 		lblNewLabel_3_2.setBounds(240, 110, 86, 24);
+		lblNewLabel_3_2.setForeground(Color.white);
 		add(lblNewLabel_3_2);
 		
 		
@@ -141,11 +144,11 @@ public class ClimbingPanel extends JPanel {
 		
 		this.dim = new Dimension(width, height);
 		this.setSize(dim);
-		this.setBackground(Color.LIGHT_GRAY);
+		this.setBackground(new Color(28, 28, 28));
 		this.setLayout(null);
 		
 		title = new SportLabel("Climbing Workout");
-		title.setFont(new Font("Verdana", Font.BOLD, 28));
+		title.setFont(new Font("Verdana", Font.BOLD, 24));
 		title.setBounds(12, 40, 310, 40);
 		add(title);
 		
@@ -164,14 +167,17 @@ public class ClimbingPanel extends JPanel {
 		
 		JLabel lblNewLabel_3_2 = new JLabel("Date");
 		lblNewLabel_3_2.setBounds(240, 110, 86, 24);
+		lblNewLabel_3_2.setForeground(Color.white);
 		add(lblNewLabel_3_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Duration");
 		lblNewLabel_3.setBounds(240, 280, 86, 24);
+		lblNewLabel_3.setForeground(Color.white);
 		add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Difficulty");
 		lblNewLabel_3_1.setBounds(240, 200, 86, 24);
+		lblNewLabel_3_1.setForeground(Color.white);
 		add(lblNewLabel_3_1);
 		
 		time = new SportTextField(100);
