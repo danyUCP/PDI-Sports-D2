@@ -18,9 +18,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -31,7 +31,6 @@ import data.RowingWorkout;
 import data.User;
 import data.Workout;
 import ihm.components.SportButton;
-import ihm.components.SportComboBox;
 import ihm.components.SportLabel;
 import ihm.components.SportTextField;
 import manager.WorkoutManager;
@@ -49,6 +48,7 @@ public class RowingPanel extends JPanel
 	private SportTextField dateField, durationField,distanceField,paddle_strokesField;
 	private JPanel date, duration, dataPanel, listPanel,distance,paddle_strokes;
 	private ArrayList<ExercisePanel> exerciseList;
+	private JLabel messagelabel;
 	
 	private Dimension dim;
 	private int width = 858;
@@ -270,6 +270,20 @@ public class RowingPanel extends JPanel
 		duration.add(durationField);
 		duration.add(new SportLabel("min"));
 		
+		paddle_strokes=new JPanel();
+		paddle_strokes.setBackground(new Color(28, 28, 28));
+		paddle_strokes.add(new SportLabel("   Paddle Strokes : "));
+		paddle_strokesField = new SportTextField(3);
+		paddle_strokes.add(paddle_strokesField);
+		paddle_strokes.add(new SportLabel("nb"));
+		
+		distance=new JPanel();
+		distance.setBackground(new Color(28, 28, 28));
+		distance.add(new SportLabel("   Distance : "));
+		distanceField = new SportTextField(3);
+		distance.add(distanceField);
+		distance.add(new SportLabel("m"));
+		
 		listPanel = new JPanel();
 		listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
 		listPanel.setBackground(new Color(28, 28, 28));
@@ -283,6 +297,8 @@ public class RowingPanel extends JPanel
 
 		dataPanel.add(date);
 		dataPanel.add(duration);
+		dataPanel.add(paddle_strokes);
+		dataPanel.add(distance);
 		dataPanel.add(scroll);
 
 
@@ -333,8 +349,18 @@ public class RowingPanel extends JPanel
 			else if(e.getSource() == updateButton)
 			{
 				System.out.println("Ancienne séance : " + w);
+				
+				String paddle_strokes=paddle_strokesField.getText();
+				int paddle_strokes1=Integer.parseInt(paddle_strokes);
+				
+				String distance=distanceField.getText();
+				int distance1=Integer.parseInt(distance); 
+				
 
-				w.setDate(new Date(0));
+			//	w.setDate(new Date(0));
+				w.setPaddleStrokes(paddle_strokes1);
+				w.setDistance(distance1);
+				
 				w.setDuration(Integer.parseInt(durationField.getText()));
 
 				System.out.println("Nouvelle séance : " + w);

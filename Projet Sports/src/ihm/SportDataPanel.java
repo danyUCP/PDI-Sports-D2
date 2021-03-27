@@ -317,6 +317,7 @@ public class SportDataPanel extends JPanel
 			this.setFont(new Font("Verdana", Font.ITALIC, 13));
 			this.setBorder(BorderFactory.createLineBorder(new Color(28, 28, 28), 5));
 			this.setBackground(new Color(28, 28, 28));
+		
 		}
 
 		public Workout getWorkout() 
@@ -342,13 +343,13 @@ public class SportDataPanel extends JPanel
 			switch(mode)
 			{
 				case 1:
-					MainFrame.getGlobal().add(new JoggingPanel(user));
+					MainFrame.getGlobal().add(new JoggingPanel(user,getWorkout()));
 					break;
 				case 2:
 					MainFrame.getGlobal().add(new ClimbingPanel(user,getWorkout()));
 					break;
 				case 3:
-					MainFrame.getGlobal().add(new RowingPanel(user));
+					MainFrame.getGlobal().add(new RowingPanel(user,getWorkout()));
 					break;
 				case 4:
 					MainFrame.getGlobal().add(new MusculationPanel(user, getWorkout()));

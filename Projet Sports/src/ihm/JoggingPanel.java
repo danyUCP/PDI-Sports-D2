@@ -21,6 +21,7 @@ import javax.imageio.ImageIO;
 
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -48,6 +49,7 @@ public class JoggingPanel extends JPanel
 	private SportTextField dateField, durationField,distanceField;
 	private JPanel date, duration, dataPanel, listPanel,distance;
 	private ArrayList<ExercisePanel> exerciseList;
+	private JLabel messagelabel;
 	
 	private Dimension dim;
 	private int width = 858;
@@ -67,6 +69,14 @@ public class JoggingPanel extends JPanel
 		initSportData();
 		content.add(sportData);
 		
+		messagelabel=new JLabel();
+		messagelabel.setPreferredSize(new Dimension(width, 60));
+		messagelabel.setBackground(new Color(28, 28, 28));
+		messagelabel.setLayout(new BorderLayout());
+		initSportData();
+		content.add(messagelabel);
+		
+		
 		imagePanel = new IllustrationPanel();
 		content.add(imagePanel);
 		
@@ -75,6 +85,9 @@ public class JoggingPanel extends JPanel
 		footer.setBackground(new Color(28, 28, 28));
 		initFooter();
 		sportData.add(footer, BorderLayout.SOUTH);
+		
+		
+		
 	}
 
 	public JoggingPanel(User user, Workout w)
@@ -144,7 +157,7 @@ public class JoggingPanel extends JPanel
 		footer.add(f1);
 		footer.add(f2);
 
-	//	addExercise.addActionListener(new ButtonListener());		
+//	    addExercise.addActionListener(new ButtonListener());		
 		confirmButton.addActionListener(new ButtonListener());
 		cancelButton.addActionListener(new ButtonListener());
 	}
@@ -243,7 +256,6 @@ public class JoggingPanel extends JPanel
 		dataPanel.setBackground(new Color(28, 28, 28));
 		dataPanel.setLayout(new BorderLayout());
 		
-		//dataPanel.setLayout(new BoxLayout(dataPanel, BoxLayout.Y_AXIS));
 		dataPanel.setLayout(new FlowLayout());
 
 		date = new JPanel();
@@ -261,6 +273,14 @@ public class JoggingPanel extends JPanel
 		duration.add(durationField);
 		duration.add(new SportLabel("min"));
 		
+		distance=new JPanel();
+		distance.setBackground(new Color(28, 28, 28));
+		distance.add(new SportLabel("   Distance : "));
+		distanceField = new SportTextField(3);
+		distance.add(distanceField);
+		distance.add(new SportLabel("m"));
+		
+		
 		listPanel = new JPanel();
 		listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
 		listPanel.setBackground(new Color(28, 28, 28));
@@ -274,6 +294,7 @@ public class JoggingPanel extends JPanel
 
 		dataPanel.add(date);
 		dataPanel.add(duration);
+		dataPanel.add(distance);
 		dataPanel.add(scroll);
 
 
@@ -292,17 +313,6 @@ public class JoggingPanel extends JPanel
 		public void actionPerformed(ActionEvent e) 
 		{			
 			
-		/*	if(e.getSource() == addExercise)
-			{
-				if(exerciseList.size() < 4)
-				{
-					ExercisePanel ex = new ExercisePanel();
-					exerciseList.add(ex);
-					listPanel.add(ex);
-					revalidate();
-				}
-
-			}*/
 			if(e.getSource() == confirmButton)
 			{
 			
@@ -329,10 +339,19 @@ public class JoggingPanel extends JPanel
 			else if(e.getSource() == updateButton)
 			{
 				System.out.println("Ancienne séance : " + w);
-
-				w.setDate(new Date(0));
-				w.setDuration(Integer.parseInt(durationField.getText()));
 				
+				
+				
+				//String duration_result=durationField.getText();
+				String datess=dateField.toString();
+				
+				String distance=distanceField.getText();
+				
+				//Date fin=ConvertDateToSql(datess);
+
+				//w.setDate(fin);
+				w.setDuration(Integer.parseInt(durationField.getText()));
+				w.setDistance(Integer.parseInt(distance));
 				
 
 				System.out.println("Nouvelle séance : " + w);
@@ -366,49 +385,7 @@ public class JoggingPanel extends JPanel
 		private SportTextField setsField, repsField;
 		private JPanel type, sets, reps;
 		private JComboBox<String> typeList;
-		/*
-		public ExercisePanel()
-		{
-			this.setMaximumSize(new Dimension(350, 180));
-			this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-			this.setBackground(new Color(28, 28, 28));
-			
-			JPanel p1 = new JPanel();
-			p1.setBackground(new Color(28, 28, 28));
-			p1.add(new SportLabel("Nouvel exercice"));
-			
-			type = new JPanel();
-			type.setBackground(new Color(28, 28, 28));
-			type.add(new SportLabel(" Type : "));
-			String[] types = {"Pompes", "Tractions", "Squats", "Abdominaux"};
-			typeList = new SportComboBox(types);
-			type.add(typeList);
-			
-			JPanel p2 = new JPanel();
-			p2.setBackground(new Color(28, 28, 28));
-			p2.add(new SportLabel("Vos données"));
-			
-			sets = new JPanel();
-			sets.setBackground(new Color(28, 28, 28));
-			sets.add(new SportLabel(" Séries : "));
-			setsField = new SportTextField(3);
-			sets.add(setsField);
-			
-			reps = new JPanel();
-			reps.setBackground(new Color(28, 28, 28));
-			reps.add(new SportLabel("Répétitions : "));
-			repsField = new SportTextField(3);
-			reps.add(repsField);
 
-			this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.DARK_GRAY));
-
-			
-			this.add(p1);
-			this.add(type);
-			this.add(p2);
-			this.add(sets);
-			this.add(reps);
-		}*/
 		
 		public Exercise getExerciseData()
 		{
@@ -450,8 +427,74 @@ public class JoggingPanel extends JPanel
 	    Date dates=Date.valueOf(date); 
 	    System.out.println(date);
 		return dates;  
-	}
+	}	
+	/*
+	public class Action_Modify_Supp implements ActionListener {
+		
+		String duration_result=durationField.getText();
+		String datess=dateField.toString();
 
+		
+		
+		String text_date=dateField.getText();
+		String distance=distanceField.getText();
+		String duration=durationField.getText();
+
+		
+		public void actionPerformed(ActionEvent e2) {
+			if (e2.getSource()==updateButton) {
+			//	w.setCourseDifficulty(difficulty);
+				Date fin=ConvertDateToSql(datess);
+				int distance1=Integer.parseInt(distance);
+				System.out.printf(" distance = "+distance1    +"");
+				w.setDate(fin);
+				int final_times=Convettexttomesure(duration_result);
+			//	w.setDuration(final_times);
+			//	w.setDistance(distance1);
+			//	wm.updateWorkout(w);
+			JOptionPane.showMessageDialog(null, "Nouvelle séance de Jogging modifiée pour " + user.getFirstname());
+		//	retour();
+			}
+			
+			
+			if (e2.getSource()==deleteButton) {
+				wm.deleteWorkout(w);
+			JOptionPane.showMessageDialog(null, "Séance de Jogging supprimé pour " + user.getFirstname());
+			retour();
+			}
+		}
+		
+		
+		}*/
+	
+	public int Convettexttomesure(String text) {
+		
+		
+		int nombre=0;
+		if (text.length() > 0) {
+		    try {
+		         nombre = Integer.parseInt(text);
+		        
+		    } catch (NumberFormatException nfe) {
+		        settext("Erreur de format");
+		   
+		    
+		    }
+		} else {
+		      settext("Un paramètre est requis");
+		}
+	      return nombre;
+		
+	}
+	
+
+	public void settext(String text) {
+		
+		messagelabel.setText(text);	
+			
+	}
+	
+	
 
 	@SuppressWarnings("serial")
 	private class IllustrationPanel extends JPanel
