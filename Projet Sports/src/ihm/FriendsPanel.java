@@ -216,29 +216,24 @@ public class FriendsPanel extends JPanel {
 				      //RefineryUtilities.centerFrameOnScreen( demo );    
 				      //demo.setVisible( true );
 					//friends_1.add(new SwimmingSummaryBar(wm.getWorkoutList(5)), BorderLayout.CENTER);
-					
-					MainFrame.getGlobal().add(new SwimmingGraphPanel(use));
-					/*switch(mode)
-					{
-						case 1:
-						    MainFrame.getGlobal().add(new JoggingGraphPanel(use));
-							break;
-						case 2:
-							MainFrame.getGlobal().add(new ClimbingGraphPanel(use));
-							break;
-						case 3:
-							MainFrame.getGlobal().add(new RowingGraphPanel(use));
-							break;
-						case 4:
-							MainFrame.getGlobal().add(new MusculationGraphPanel(use));
-							break;
-						case 5:
-							MainFrame.getGlobal().add(new SwimmingGraphPanel(use));
-							break;
-						case 6:
-							MainFrame.getGlobal().add(new ArcheryGraphPanel(use));
-							break;
-					}*/
+					MainFrame.getGlobal().removeAll();
+					MainFrame.getGlobal().add(new FriendGraphPanel(use));
+					MainFrame.getGlobal().revalidate();
+					MainFrame.getGlobal().repaint();
+					if(!list.isSelectionEmpty())
+			   		{
+						UserManager m=new UserManager();
+						User[] user=m.userFriends(use);
+						for(int i=0;i<user.length;i++) {
+							if(user[i]!=null) {
+								if(user[i].getFirstname().equals(list.getSelectedValue())) {
+									FriendGraphPanel f=new FriendGraphPanel();
+									f.recup(user[i]);
+								}
+							}
+						}
+			   		}
+					//MainFrame.getGlobal().add(new SwimmingGraphPanel(use));
 					
 				}
 				else if(e.getSource() == btnOK) {
@@ -276,9 +271,10 @@ public class FriendsPanel extends JPanel {
 			   		}
 			     }
 				else if(e.getSource() == btnReturn) {
-					System.out.println(use);
-					new HomePanel(use);
-					//MainFrame.getGlobal().add(new HomePanel(use));
+					MainFrame.getGlobal().removeAll();
+					MainFrame.getGlobal().add(new HomePanel(use));
+					MainFrame.getGlobal().revalidate();
+					MainFrame.getGlobal().repaint();
 				}
 	}
 

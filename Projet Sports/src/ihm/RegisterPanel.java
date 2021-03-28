@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import ihm.components.SportButton;
 import ihm.components.SportTextField;
@@ -275,6 +276,11 @@ public void paintComponent(Graphics g)
 					}
 				}
 				if(e1.getSource()== cancel) {
+					MainFrame frame = (MainFrame) (SwingUtilities.getRoot(MainFrame.getGlobal()));
+					MainFrame.getGlobal().removeAll();
+					frame.resetHome();
+					MainFrame.getGlobal().revalidate();
+					MainFrame.getGlobal().repaint();
 					
 				}
 				

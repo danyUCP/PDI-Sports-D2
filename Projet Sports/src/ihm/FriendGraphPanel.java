@@ -20,15 +20,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import data.User;
-import graph.ClimbingSummaryBar;
-import graph.ClimbingWorkoutPie;
 import graph.SwimmingSummaryBar;
 import ihm.components.SportButton;
 import ihm.components.SportComboBox;
 import ihm.components.SportLabel;
 import manager.WorkoutManager;
 
-public class SwimmingGraphPanel  extends JPanel{
+public class FriendGraphPanel  extends JPanel{
+	
 	/**
 	 * 
 	 */
@@ -46,8 +45,14 @@ public class SwimmingGraphPanel  extends JPanel{
 	private JPanel workoutNumber, choice, choicePanel;
 	private SportLabel uName;
 	private Image background;
+	private User u;
 	
-	public  SwimmingGraphPanel(User user) {
+	
+	
+	public  FriendGraphPanel() {
+		
+	}
+	public  FriendGraphPanel(User user) {
 		this.user = user;
 		this.wm = new WorkoutManager(this.user);
 
@@ -136,9 +141,12 @@ public class SwimmingGraphPanel  extends JPanel{
 		deconnexionButton.addActionListener(new ButtonListener());
 		
 	}
+	public void recup(User u) {
+		this.u=u;
+	}
 	public void initGraphChoice()
 	{	
-		title = new SportLabel("Swimming");
+		title = new SportLabel( user.getFirstname()+"VS"+"Amis");
 		title.setFont(new Font("Verdana", Font.BOLD, 20));
 		title.setPreferredSize(new Dimension(200, 80));
 		
@@ -150,7 +158,7 @@ public class SwimmingGraphPanel  extends JPanel{
 		choice.setLayout(new GridLayout(2, 1));
 		choice.setBackground(new Color(28, 28, 28));
 		choice.add(new SportLabel("Consulter : "));
-		String[] choices = {"Mon résumé", "Type nage"};
+		String[] choices = {"Résumé", "Type nage"};
 		choiceBox = new SportComboBox(choices);
 		choice.add(choiceBox);
 		
@@ -208,12 +216,12 @@ public class SwimmingGraphPanel  extends JPanel{
 			else if(e.getSource() == returnButton)
 			{
 				MainFrame.getGlobal().removeAll();
-				MainFrame.getGlobal().add(new SportDataPanel(user, 5));
+				MainFrame.getGlobal().add(new FriendsPanel(user));
 				MainFrame.getGlobal().revalidate();
+				MainFrame.getGlobal().repaint();
 			}
 			else if(e.getSource() == deconnexionButton)
 				close();
-			
 		}
 	}
 

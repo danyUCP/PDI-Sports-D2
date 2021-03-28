@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import data.ClimbingWorkout;
+import data.SwimmingWorkout;
 import data.User;
 import data.Workout;
 import ihm.components.SportButton;
@@ -44,7 +45,7 @@ public class SwimmingPanel extends JPanel{
 	
 	private User user;
 	private WorkoutManager wm;
-	private ClimbingWorkout w;
+	private SwimmingWorkout w;
 	private Dimension dim;
 	private int width = 858;
 	private int height = 460;
@@ -151,7 +152,7 @@ public class SwimmingPanel extends JPanel{
 	public SwimmingPanel(User user, Workout w) {
 		this.user = user;
 		this.wm = new WorkoutManager(this.user);
-		this.w = (ClimbingWorkout) w;
+		this.w = (SwimmingWorkout) w;
 		
 		this.dim = new Dimension(width, height);
 		this.setSize(dim);
@@ -182,6 +183,31 @@ public class SwimmingPanel extends JPanel{
 		dateBox.setBounds(21, 100, 200, 50);
 		
 		add(dateBox);
+		
+		papillon = new SportTextField(100);
+		papillon.setText("" + w.getDuration());
+		papillon.setBounds(130, 202, 100, 30);
+		add(papillon);
+		
+		crowl = new SportTextField(100);
+		crowl.setText("" + w.getDuration());
+		crowl.setBounds(130, 264, 100, 30);
+		add(crowl);
+		
+		papillon_2 = new SportTextField(100);
+		papillon_2.setText("" + w.getDuration());
+		papillon_2.setBounds(130, 327, 100, 30);
+		add(papillon_2);
+		
+		papillon_3 = new SportTextField(100);
+		papillon_3.setText("" + w.getDuration());
+		papillon_3.setBounds(130, 134, 100, 30);
+		add(papillon_3);
+		
+		papillon_2_1 = new SportTextField(100);
+		papillon_2_1.setText("" + w.getDuration());
+		papillon_2_1.setBounds(130, 375, 100, 30);
+		add(papillon_2_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(ClimbingPanel.class.getResource("/images/piscine.jpg")));
@@ -225,7 +251,6 @@ public class SwimmingPanel extends JPanel{
 			
 			if(e1.getSource() == btnAnnuler)
 			{
-				
 				retour();
 			}
 		

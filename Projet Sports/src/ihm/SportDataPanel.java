@@ -26,7 +26,6 @@ import javax.swing.SwingUtilities;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -34,11 +33,14 @@ import data.User;
 import data.Workout;
 import ihm.components.SportButton;
 import ihm.components.SportLabel;
-import manager.UserManager;
 import manager.WorkoutManager;
 
 public class SportDataPanel extends JPanel
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private User user;
 	private WorkoutManager wm;
 	private int mode;
@@ -261,7 +263,7 @@ public class SportDataPanel extends JPanel
 						MainFrame.getGlobal().add(new MusculationPanel(user));
 						break;
 					case 5:
-						MainFrame.getGlobal().add(new SwimmingPanel());
+						MainFrame.getGlobal().add(new SwimmingPanel(user));
 						break;
 					case 6:
 						MainFrame.getGlobal().add(new ArcheryPanel(user));
@@ -285,7 +287,7 @@ public class SportDataPanel extends JPanel
 						MainFrame.getGlobal().add(new MusculationGraphPanel(user));
 						break;
 					case 5:
-						//MainFrame.getGlobal().add(new SwimmingGraphPanel());
+						MainFrame.getGlobal().add(new SwimmingGraphPanel(user));
 						break;
 					case 6:
 						MainFrame.getGlobal().add(new ArcheryGraphPanel(user));
@@ -355,7 +357,7 @@ public class SportDataPanel extends JPanel
 					MainFrame.getGlobal().add(new MusculationPanel(user, getWorkout()));
 					break;
 				case 5:
-					MainFrame.getGlobal().add(new SwimmingPanel());
+					MainFrame.getGlobal().add(new SwimmingPanel(user));
 					break;
 				case 6:
 					MainFrame.getGlobal().add(new ArcheryPanel(user, getWorkout()));
