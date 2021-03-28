@@ -1,161 +1,90 @@
 package ihm;
 
-
-import javax.swing.JPanel;
-
-
-import org.jfree.ui.RefineryUtilities;
-
-import data.User;
-import graph.SwimmingWorkoutBarChart;
-import manager.Managers;
-import manager.UserManager;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTextPane;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
+import data.ClimbingWorkout;
+import data.User;
+import data.Workout;
+import ihm.components.SportButton;
+import ihm.components.SportDateBox;
+import ihm.components.SportLabel;
+import ihm.components.SportTextField;
+import manager.Managers;
+import manager.UserManager;
+import manager.WorkoutManager;
 
-public class SwimmingPanel extends JPanel {
-
+public class SwimmingPanel extends JPanel{
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//private JPanel contentPane;
-	String[] liste={"1 jour","Une semaine","1 mois"};
-	String[] liste1={"Modifier","Ajouter"};
-	JButton btnNewButton_1;
-	User user;
+	/**
+	 * 
+	 */
+	
+	SportLabel title;
+	SportDateBox dateBox;
+	SportButton Valider,btnAnnuler,Modify,Supp;
 	JLabel basse,Crowl,arriere,Papillon,time;
-	JTextPane papillon,crowl,papillon_2,papillon_3,papillon_2_1;
-	JComboBox comboBox,comboBox_1;
-	JButton btnNewButton;
+	SportTextField papillon,crowl,papillon_2,papillon_3,papillon_2_1;
+	 
 	
+	private JLabel messagelabel;
+	
+	private User user;
+	private WorkoutManager wm;
+	private ClimbingWorkout w;
+	private Dimension dim;
+	private int width = 858;
+	private int height = 460;
 
+	
 	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Swimming frame = new Swimming();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
-	/**
-	 * Create the frame.
+	 * Create the panel.
 	 */
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public SwimmingPanel() {
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setBounds(100, 100, 858, 496);
-		//contentPane = new JPanel();
-		//setBackground(Color.WHITE);
-		//setBorder(new EmptyBorder(5, 5, 5, 5));
-		//setContentPane(contentPane);
+	public SwimmingPanel(){
 		
-		setLayout(null);
+	}
+	public SwimmingPanel(User user) {
+		
+		this.user = user;
+		this.wm = new WorkoutManager(this.user);
+		
+		this.dim = new Dimension(width, height);
+		this.setSize(dim);
+		this.setBackground(new Color(28, 28, 28));
+		this.setLayout(null);
+		
+		title = new SportLabel("Swimming Workout");
+		title.setFont(new Font("Verdana", Font.BOLD, 24));
+		title.setBounds(12, 20, 310, 40);
+		add(title);
+		
+		messagelabel=new JLabel("");
+		messagelabel.setBounds(151, 181, 100, 30);
+
+		btnAnnuler = new SportButton("Cancel");
+		btnAnnuler.setBounds(180, 428, 100, 30);
+		btnAnnuler.setBackground(new Color(28, 28, 28));
+		add(btnAnnuler);
 		
 		
-		btnNewButton_1 = new JButton("Valider");
-		btnNewButton_1.setForeground(new Color(169, 169, 169));
-		btnNewButton_1.setBackground(new Color(192, 192, 192));
-		btnNewButton_1.setBounds(759, 47, 85, 21);
-		add(btnNewButton_1);
-		
-		btnNewButton = new JButton("Retour");
-		btnNewButton.setForeground(new Color(192, 192, 192));
-		btnNewButton.setBounds(10, 428, 85, 21);
-		add(btnNewButton);
-		
-		JLabel lblNewLabel_3 = new JLabel("Données natation");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setBounds(54, 64, 136, 30);
-		add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_1 = new JLabel("Lets go");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 16));
-		lblNewLabel_1.setBounds(10, 10, 243, 23);
-		add(lblNewLabel_1);
-		
-		JLabel lblNewLabel = new JLabel("Option");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(306, 50, 126, 18);
-		add(lblNewLabel);
-		
-		JLabel lblNewLabel_2 = new JLabel("Periode");
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_2.setBounds(520, 51, 66, 18);
-		add(lblNewLabel_2);
-		
-		papillon = new JTextPane();
-		papillon.setBackground(Color.LIGHT_GRAY);
-		papillon.setBounds(130, 202, 100, 19);
-		add(papillon);
-		
-		crowl = new JTextPane();
-		crowl.setBackground(Color.LIGHT_GRAY);
-		crowl.setBounds(130, 264, 100, 19);
-		add(crowl);
-		
-		papillon_2 = new JTextPane();
-		papillon_2.setBackground(Color.LIGHT_GRAY);
-		papillon_2.setBounds(130, 327, 100, 19);
-		add(papillon_2);
-		
-		papillon_3 = new JTextPane();
-		papillon_3.setBackground(Color.LIGHT_GRAY);
-		papillon_3.setBounds(130, 134, 100, 19);
-		add(papillon_3);
-		
-		comboBox = new JComboBox();
-		comboBox.setForeground(new Color(169, 169, 169));
-		comboBox.setBackground(new Color(192, 192, 192));
-		comboBox.setBounds(581, 46, 136, 23);
-		add(comboBox);
-		comboBox.setModel(new javax.swing.DefaultComboBoxModel(liste));
-		
-		comboBox_1 = new JComboBox();
-		comboBox_1.setForeground(new Color(169, 169, 169));
-		comboBox_1.setBackground(new Color(192, 192, 192));
-		comboBox_1.setBounds(352, 49, 136, 23);
-		add(comboBox_1);
-		comboBox_1.setModel(new javax.swing.DefaultComboBoxModel(liste1));
-		
-		JLabel left_1 = new JLabel("");
-		left_1.setOpaque(true);
-		left_1.setBackground(new Color(0, 0, 128));
-		left_1.setBounds(263, 0, 581, 94);
-		add(left_1);
+		Valider = new SportButton("Submit");
+		Valider.setBackground(new Color(28, 28, 28));
+		Valider.setBounds(20, 428, 100, 30);
+		add(Valider);
 		
 		basse = new JLabel("Distance Basse");
 		basse.setForeground(Color.WHITE);
@@ -177,95 +106,224 @@ public class SwimmingPanel extends JPanel {
 		Papillon.setBounds(10, 316, 119, 30);
 		add(Papillon);
 		
-		papillon_2_1 = new JTextPane();
-		papillon_2_1.setBackground(Color.LIGHT_GRAY);
-		papillon_2_1.setBounds(130, 375, 66, 19);
-		add(papillon_2_1);
-		
 		time = new JLabel("Durée");
 		time.setForeground(Color.WHITE);
 		time.setBounds(77, 364, 119, 30);
 		add(time);
 		
-		JLabel left = new JLabel("");
-		left.setOpaque(true);
-		left.setBackground(new Color(0, 0, 128));
-		left.setBounds(0, 0, 266, 459);
-		add(left);
+		papillon = new SportTextField(100);
+		papillon.setBounds(130, 202, 100, 30);
+		add(papillon);
 		
+		crowl = new SportTextField(100);
+		crowl.setBounds(130, 264, 100, 30);
+		add(crowl);
 		
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon(SwimmingPanel.class.getResource("/images/piscine.jpg")));
-		lblNewLabel_4.setBounds(266, 92, 578, 367);
-		add(lblNewLabel_4);
+		papillon_2 = new SportTextField(100);
+		papillon_2.setBounds(130, 327, 100, 30);
+		add(papillon_2);
 		
-		btnNewButton_1.addActionListener(new Graph());
-		btnNewButton.addActionListener(new Cancel());
+		papillon_3 = new SportTextField(100);
+		papillon_3.setBounds(130, 134, 100, 30);
+		add(papillon_3);
 		
-	}
-	
-	public void previous() {
-		MainFrame fami = (MainFrame) (SwingUtilities.getRoot(MainFrame.getGlobal()));
+		papillon_2_1 = new SportTextField(100);
+		papillon_2_1.setBounds(130, 375, 100, 30);
+		add(papillon_2_1);
 		
-		
-		this.removeAll();
-		
-		//fami.changePanel();
-	}
-	
-	private class Graph implements ActionListener {
 
-		public void actionPerformed(ActionEvent e) {
-			if(e.getSource()==btnNewButton_1) {
+		dateBox = new SportDateBox();
+		dateBox.setBackground(new Color(28, 28, 28));
+		dateBox.setBounds(60, 80, 200, 30);
+		add(dateBox);
+		
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(ClimbingPanel.class.getResource("/images/piscine.jpg")));
+		lblNewLabel_1.setBounds(330, 0, 626, 520); 
+		add(lblNewLabel_1);
+		
+		Valider.addActionListener(new Action_Add());
+		btnAnnuler.addActionListener(new Action_Add() );
+		}
+	
+
+	public SwimmingPanel(User user, Workout w) {
+		this.user = user;
+		this.wm = new WorkoutManager(this.user);
+		this.w = (ClimbingWorkout) w;
+		
+		this.dim = new Dimension(width, height);
+		this.setSize(dim);
+		this.setBackground(new Color(28, 28, 28));
+		this.setLayout(null);
+		
+		title = new SportLabel("Swimming Workout");
+		title.setFont(new Font("Verdana", Font.BOLD, 24));
+		title.setBounds(12, 40, 310, 40);
+		add(title);
+		
+		messagelabel=new JLabel("");
+		messagelabel.setBounds(151, 181, 100, 30);
+		
+		Modify = new SportButton("Alter");
+		Modify.setBounds(20, 350, 130, 50);
+		Modify.setBackground(new Color(28, 28, 28));
+		add(Modify);
+		
+		Supp = new SportButton("Delete");
+		Supp.setBounds(180, 350, 130, 50);
+		Supp.setBackground(new Color(28, 28, 28));
+		add(Supp);
+		
+		
+		dateBox = new SportDateBox(w.getDate());
+		dateBox.setBackground(new Color(28, 28, 28));
+		dateBox.setBounds(21, 100, 200, 50);
+		
+		add(dateBox);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(ClimbingPanel.class.getResource("/images/piscine.jpg")));
+		lblNewLabel_1.setBounds(330, 0, 626, 520); 
+		add(lblNewLabel_1);
+		
+		//Modify.addActionListener(new Action_Modify_Supp());
+		//Supp.addActionListener(new Action_Modify_Supp() );
+	}
+	
+	public void retour()
+	{
+		MainFrame.getGlobal().removeAll();	
+		MainFrame.getGlobal().add(new SportDataPanel(user, 5));
+		MainFrame.getGlobal().revalidate();
+	}
+	
+	/**
+	 * Create ActionListener
+	 *
+	 */
+	
+	public class Action_Add implements ActionListener {
+		
+	public void actionPerformed(ActionEvent e1) {
+	
+			if(e1.getSource()== Valider) {
 				Managers um = new Managers();
 				//if(!papillon_2_1.getText().isEmpty() && !papillon.getText().isEmpty() && !crowl.getText().isEmpty() && !papillon_2.getText().isEmpty() && papillon_3.getText().isEmpty()) {
-					if(comboBox_1.getSelectedItem().toString().equals("Ajouter")) {
-					System.out.println(comboBox_1.getSelectedItem().toString());
-					UserManager m=new UserManager();
-					user=m.findUser("seruche", "1311");
-					Graph p=new Graph();
+					
+					//UserManager m=new UserManager();
+					//user=m.findUser("seruche", "1311");
+					Action_Add p=new Action_Add();
 					
 					//System.out.println(p.ConvertIntoNumeric(papillon_2_1.getText())+" "+p.ConvertIntoNumeric(papillon.getText())+" "+p.ConvertIntoNumeric(crowl.getText())+" "+p.ConvertIntoNumeric(papillon_2.getText())+" "+p.ConvertIntoNumeric(papillon_3.getText()));
 					um.addSwimming(user,new Date(0),p.ConvertIntoNumeric(papillon_2_1.getText()),p.ConvertIntoNumeric(papillon.getText()),p.ConvertIntoNumeric(crowl.getText()),p.ConvertIntoNumeric(papillon_2.getText()),p.ConvertIntoNumeric(papillon_3.getText()));
-					SwimmingWorkoutBarChart demo = new SwimmingWorkoutBarChart("SwimmingWorkoutBar Chart");
-					demo.pack();
-					RefineryUtilities.centerFrameOnScreen(demo);
-					demo.setVisible(true);
-					}
-				}
-				/*else {
-					JOptionPane.showMessageDialog(null, "Tous les champs doivent être remplis");
-				}*/
-			
-			}
-		
-		private int ConvertIntoNumeric(String xVal)
-		{
-		 try
-		  { 
-		     return Integer.parseInt(xVal);
-		  }
-		 catch(Exception ex) 
-		  {
-		     return 0; 
-		  }
-		}
-	}
-		
-		
-		public class Cancel implements ActionListener {
-
-			public void actionPerformed(ActionEvent e) {
 				
-				if(e.getSource()==btnNewButton) {
-					
-					previous();
-					
-				}
+				JOptionPane.showMessageDialog(null, "Nouvelle séance de Swimming enregistrée pour " + user.getFirstname());
+				retour();
 			}
 			
-		}
+			if(e1.getSource() == btnAnnuler)
+			{
+				
+				retour();
+			}
+		
+
 	}
+	private int ConvertIntoNumeric(String xVal)
+	{
+	 try
+	  { 
+	     return Integer.parseInt(xVal);
+	  }
+	 catch(Exception ex) 
+	  {
+	     return 0; 
+	  }
+	}
+	}
+	
+
+			
+	public class Action_Modify_Supp implements ActionListener {
+		
+		String duration_result=time.getText();
+		String datess=dateBox.getDateBox().toString();
+		//String difficulty=comboBox_difficulty.getSelectedItem().toString();
+		public void actionPerformed(ActionEvent e2) {
+			if (e2.getSource()==Modify) {
+				//w.setCourseDifficulty(difficulty);
+				Date fin=ConvertDateToSql(datess);
+				w.setDate(fin);
+				int final_times=Convettexttomesure(duration_result);
+				w.setDuration(final_times);
+				wm.updateWorkout(w);
+			JOptionPane.showMessageDialog(null, "Nouvelle séance de Swimming modifié pour " + user.getFirstname());
+			retour();
+			}
+			
+			
+			if (e2.getSource()==Supp) {
+				wm.deleteWorkout(w);
+			JOptionPane.showMessageDialog(null, "Séance de Swimming  supprimé pour " + user.getFirstname());
+			retour();
+			}
+		}
 		
 		
+		}
+	
+	
+	
+	public int Convettexttomesure(String text) {
+		
+	
+		int nombre=0;
+		if (text.length() > 0) {
+		    try {
+		         nombre = Integer.parseInt(text);
+		        
+		    } catch (NumberFormatException nfe) {
+		        settext("Erreur de format");
+		   
+		    
+		    }
+		} else {
+		      settext("Un paramètre est requis");
+		}
+	      return nombre;
+		
+	}
+	public String ConvettextString(int text) {
+		
+		
+		String nombre=String.valueOf(text);
+		
+	      return nombre;
+		
+	}
+	
+	
+	
+	public void settext(String text) {
+		
+		messagelabel.setText(text);	
+			
+		}
+	
+	public Date text_date(String date) {  
+	    Date dates=Date.valueOf(date); 
+	    System.out.println(date);
+		return dates;  
+	}
+	
+	public Date ConvertDateToSql(String date) {  
+	    Date dates=Date.valueOf(date); 
+	    System.out.println(date);
+		return dates;  
+	}
+	
+}
+
 

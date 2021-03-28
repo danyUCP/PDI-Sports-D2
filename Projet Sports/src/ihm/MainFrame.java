@@ -180,7 +180,9 @@ public class MainFrame extends JFrame
 			}
 			else if(e.getSource() == create)
 			{
-				//Actions pour le bouton create
+				global.removeAll();
+				global.add(new RegisterPanel(), BorderLayout.CENTER);
+				global.repaint();
 			}
 
 			global.revalidate();	

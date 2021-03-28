@@ -32,8 +32,12 @@ public class SportGui extends JFrame {
 		setBounds(100, 100, 858, 496);
 		//contentPane = new JoggingPanel();
 		//contentPane=new RowingPanel();
-		contentPane = new ClimbingPanel(user);
+		//contentPane = new ClimbingPanel(user);
 		//contentPane = new SwimmingPanel();
+		//contentPane =new MusculationPanel(user);
+		//contentPane =new SwimmingPanel(user);
+		//contentPane =new FriendsPanel(user);
+		contentPane =new RegisterPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import data.User;
 import ihm.Index.Cancel;
 import manager.Managers;
 
@@ -119,7 +120,8 @@ public class Inbox extends JFrame {
 	public class Action implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			SwimmingPanel frame = new SwimmingPanel();
+			User use=null;
+			SwimmingPanel frame = new SwimmingPanel(use);
 			frame.setVisible(true);
 		}
 	}

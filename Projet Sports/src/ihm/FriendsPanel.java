@@ -13,11 +13,11 @@ import org.jfree.ui.RefineryUtilities;
 
 import data.User;
 import graph.Compare;
+import graph.SwimmingSummaryBar;
 import manager.UserManager;
 import manager.WorkoutManager;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -49,10 +49,13 @@ public class FriendsPanel extends JPanel {
 	private int width = 845;
 	private int height = 460;
 	private Image background;
-	JButton btnOK, addFriend,btnSupprimer,btnComparer;
+	JButton btnOK, addFriend,btnSupprimer,btnComparer,btnReturn;
 	JLabel graphLabel,lblNewLabel;
 	String listElem[]= {}; 
-	JPanel friends,friends_1;
+	JPanel friends,friends_1, south;
+	private WorkoutManager wm;
+	User use;
+	int mode;
 	@SuppressWarnings("rawtypes")
 	JList list;
 
@@ -60,8 +63,10 @@ public class FriendsPanel extends JPanel {
 	 * Create the panel.
 	 */
 	
-	public FriendsPanel() {
+
+	public FriendsPanel(User use) {
 		
+		this.use = use;
 		this.dim = new Dimension(width, height);
 		this.setSize(dim);
 		this.setBackground(Color.ORANGE);
@@ -71,11 +76,11 @@ public class FriendsPanel extends JPanel {
       * the JList object with its elements
       */
 					UserManager m=new UserManager();
-					User[] use=m.userFriends();
-					listElem=new String[use.length];
-					for(int i=0;i<use.length;i++) {
-						if(use[i]!=null) {
-							listElem[i]=use[i].getFirstname();
+					User[] user=m.userFriends(use);
+					listElem=new String[user.length];
+					for(int i=0;i<user.length;i++) {
+						if(user[i]!=null&!user[i].getLogin().equals(use.getFirstname())) {
+							listElem[i]=user[i].getFirstname();
 						}
 					}
 	
@@ -103,10 +108,22 @@ public class FriendsPanel extends JPanel {
         btnOK .setBorder(new LineBorder(Color.CYAN, 3));
         btnOK .setBackground(Color.BLACK);
         btnOK .setForeground(Color.WHITE);
+        btnOK .setBounds(60, 374, 85, 21);
         
-   
+        btnReturn = new JButton("Retour");
+        btnReturn.setSize(85, 21);
+        btnReturn .setBorder(new LineBorder(Color.CYAN, 3));
+        btnReturn .setBackground(Color.BLACK);
+        btnReturn .setForeground(Color.WHITE);
+
+	    south = new JPanel();
+	    south.setBackground(Color.WHITE);
+	    south.setBackground(new Color(28, 28, 28));
+	    south.add(btnOK);
+	    south.add(btnReturn);
+	    friends.add(south, BorderLayout.SOUTH);
+	    
         friends.add(pane, BorderLayout.CENTER);
-        friends.add(btnOK, BorderLayout.SOUTH);
 		add(friends);
 		
 		graphLabel = new JLabel("Cliquer sur un nom pour voir les détails");
@@ -151,16 +168,12 @@ public class FriendsPanel extends JPanel {
 		lblNewLabel.setBounds(60, 22, 279, 21);
 		friends_1.add(lblNewLabel);
 		
-		/*JLabel regi = new JLabel("");
-		regi.setIcon(new ImageIcon("resources/images/backImage.jpg"));
-		regi.setBounds(176, 0, 658, 459);
-		this.add(regi);*/
-	
 		
 		addFriend.addActionListener(new ActionFriends());
 		btnSupprimer.addActionListener(new ActionFriends());
 		btnComparer.addActionListener(new ActionFriends());
 		btnOK.addActionListener(new ActionFriends());
+		btnReturn.addActionListener(new ActionFriends());
 
 		try
 		{
@@ -196,24 +209,48 @@ public class FriendsPanel extends JPanel {
 					
 				}
 				else if(e.getSource() == btnComparer) {
-					Compare demo = new Compare( "VS" );  
-				      demo.setBounds(30, 300, 375, 311);
-				      demo.setBackground(new Color(28, 28, 28));
+					//Compare demo = new Compare( "VS" );  
+				     // demo.setBounds(30, 300, 375, 311);
+				      //demo.setBackground(new Color(28, 28, 28));
 				      //demo.setUndecorated(true);
-				      RefineryUtilities.centerFrameOnScreen( demo );    
-				      demo.setVisible( true );
+				      //RefineryUtilities.centerFrameOnScreen( demo );    
+				      //demo.setVisible( true );
+					//friends_1.add(new SwimmingSummaryBar(wm.getWorkoutList(5)), BorderLayout.CENTER);
+					
+					MainFrame.getGlobal().add(new SwimmingGraphPanel(use));
+					/*switch(mode)
+					{
+						case 1:
+						    MainFrame.getGlobal().add(new JoggingGraphPanel(use));
+							break;
+						case 2:
+							MainFrame.getGlobal().add(new ClimbingGraphPanel(use));
+							break;
+						case 3:
+							MainFrame.getGlobal().add(new RowingGraphPanel(use));
+							break;
+						case 4:
+							MainFrame.getGlobal().add(new MusculationGraphPanel(use));
+							break;
+						case 5:
+							MainFrame.getGlobal().add(new SwimmingGraphPanel(use));
+							break;
+						case 6:
+							MainFrame.getGlobal().add(new ArcheryGraphPanel(use));
+							break;
+					}*/
 					
 				}
 				else if(e.getSource() == btnOK) {
 					if(!list.isSelectionEmpty())
 			   		{
 						UserManager m=new UserManager();
-						User[] use=m.userFriends();
-						for(int i=0;i<use.length;i++) {
-							if(use[i]!=null) {
-								if(use[i].getFirstname().equals(list.getSelectedValue())) {
-									String log=use[i].getLogin();
-									String mdp=use[i].getMdp();
+						User[] user=m.userFriends(use);
+						for(int i=0;i<user.length;i++) {
+							if(user[i]!=null) {
+								if(user[i].getFirstname().equals(list.getSelectedValue())) {
+									String log=user[i].getLogin();
+									String mdp=user[i].getMdp();
 									System.out.println(log+mdp);
 									UserManager um = new UserManager();
 									User u1 = um.findUser(log, mdp);
@@ -222,12 +259,12 @@ public class FriendsPanel extends JPanel {
 									graphLabel.setFont(new Font("Verdana", Font.BOLD,12));
 									graphLabel.setVerticalAlignment(SwingConstants.NORTH);
 									graphLabel.setHorizontalAlignment(SwingConstants.LEFT);
-									graphLabel.setText("<html><body><p>Nom: "+use[i].getLastname()+ "</p>"+
-									    	 "<br/> <p>Prénom:"+ use[i].getFirstname()+"</p>"+
-									    	 			"<p> Sexe: "+use[i].getGender()+"</p>"+
-									    	 			"<p> Age: "+use[i].getAge()+" ans </p>"+
-									    	 			"<p> Taille: "+use[i].getSize()+"</p>"+
-									    	 			"<p> Poids: "+use[i].getWeight()+" kg</p>"+
+									graphLabel.setText("<html><body><p>Nom: "+user[i].getLastname()+ "</p>"+
+									    	 "<br/> <p>Prénom:"+ user[i].getFirstname()+"</p>"+
+									    	 			"<p> Sexe: "+user[i].getGender()+"</p>"+
+									    	 			"<p> Age: "+user[i].getAge()+" ans </p>"+
+									    	 			"<p> Taille: "+user[i].getSize()+"</p>"+
+									    	 			"<p> Poids: "+user[i].getWeight()+" kg</p>"+
 									    	 			"<p> Sports en commun: "+sport+"</p>"+
 									    	 			"<p> Statut: Ami/non "+"</p>"+
 														"</body></html>");
@@ -238,7 +275,12 @@ public class FriendsPanel extends JPanel {
 						
 			   		}
 			     }
+				else if(e.getSource() == btnReturn) {
+					System.out.println(use);
+					new HomePanel(use);
+					//MainFrame.getGlobal().add(new HomePanel(use));
 				}
+	}
 
 		private String getUserWorkoutList(WorkoutManager wm) {
 			String name=" ";

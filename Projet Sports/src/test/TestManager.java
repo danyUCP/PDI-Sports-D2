@@ -15,8 +15,8 @@ public class TestManager
 		
 		//User u=new User();
 		UserManager u=new UserManager();
-		
-		u.userFriends();
+		User user=null;
+		u.userFriends(user);
 		
 		
 		

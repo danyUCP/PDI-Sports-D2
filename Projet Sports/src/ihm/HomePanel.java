@@ -48,6 +48,10 @@ public class HomePanel extends JPanel
 	private int height = 496;
 	
 	
+	public HomePanel() {
+		
+	}
+	
 	public HomePanel(User user)
 	{
 		this.user = user;
@@ -208,7 +212,7 @@ public class HomePanel extends JPanel
 			else if(e.getSource() == friendsButton)
 			{
 				MainFrame.getGlobal().removeAll();
-				MainFrame.getGlobal().add(new FriendsPanel());
+				MainFrame.getGlobal().add(new FriendsPanel(user));
 				MainFrame.getGlobal().revalidate();
 				MainFrame.getGlobal().repaint();
 			}
