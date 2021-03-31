@@ -15,11 +15,17 @@ public class WorkoutManager
 {
 	private Session session;
 	private Transaction transaction;
-	private User user;
+	private User user,use;
 	
 	public WorkoutManager(User user)
 	{
 		this.user = user;
+	}
+	
+	public WorkoutManager(User user,User use)
+	{
+		this.user = user;
+		this.use = use;
 	}
 	
 	
@@ -58,9 +64,6 @@ public class WorkoutManager
 		
 		@SuppressWarnings("unchecked")
 		ArrayList<Workout> result = (ArrayList<Workout>) query.list();
-
-		//System.out.println(result.size() + " " + table + " found for " + user.getFirstname());
-		//System.out.println(result);
 
 		session.close();
 

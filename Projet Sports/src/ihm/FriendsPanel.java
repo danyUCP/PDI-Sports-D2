@@ -54,7 +54,7 @@ public class FriendsPanel extends JPanel {
 	String listElem[]= {}; 
 	JPanel friends,friends_1, south;
 	private WorkoutManager wm;
-	User use;
+	User use,u2;
 	int mode;
 	@SuppressWarnings("rawtypes")
 	JList list;
@@ -81,6 +81,7 @@ public class FriendsPanel extends JPanel {
 					for(int i=0;i<user.length;i++) {
 						if(user[i]!=null&!user[i].getLogin().equals(use.getFirstname())) {
 							listElem[i]=user[i].getFirstname();
+							u2=user[i];
 						}
 					}
 	
@@ -209,17 +210,7 @@ public class FriendsPanel extends JPanel {
 					
 				}
 				else if(e.getSource() == btnComparer) {
-					//Compare demo = new Compare( "VS" );  
-				     // demo.setBounds(30, 300, 375, 311);
-				      //demo.setBackground(new Color(28, 28, 28));
-				      //demo.setUndecorated(true);
-				      //RefineryUtilities.centerFrameOnScreen( demo );    
-				      //demo.setVisible( true );
-					//friends_1.add(new SwimmingSummaryBar(wm.getWorkoutList(5)), BorderLayout.CENTER);
-					MainFrame.getGlobal().removeAll();
-					MainFrame.getGlobal().add(new FriendGraphPanel(use));
-					MainFrame.getGlobal().revalidate();
-					MainFrame.getGlobal().repaint();
+					
 					if(!list.isSelectionEmpty())
 			   		{
 						UserManager m=new UserManager();
@@ -227,13 +218,15 @@ public class FriendsPanel extends JPanel {
 						for(int i=0;i<user.length;i++) {
 							if(user[i]!=null) {
 								if(user[i].getFirstname().equals(list.getSelectedValue())) {
-									FriendGraphPanel f=new FriendGraphPanel();
-									f.recup(user[i]);
+									u2=user[i];
 								}
 							}
 						}
 			   		}
-					//MainFrame.getGlobal().add(new SwimmingGraphPanel(use));
+					MainFrame.getGlobal().removeAll();
+					MainFrame.getGlobal().add(new FriendGraphPanel(use,u2));
+					MainFrame.getGlobal().revalidate();
+					MainFrame.getGlobal().repaint();
 					
 				}
 				else if(e.getSource() == btnOK) {
@@ -246,7 +239,6 @@ public class FriendsPanel extends JPanel {
 								if(user[i].getFirstname().equals(list.getSelectedValue())) {
 									String log=user[i].getLogin();
 									String mdp=user[i].getMdp();
-									System.out.println(log+mdp);
 									UserManager um = new UserManager();
 									User u1 = um.findUser(log, mdp);
 									WorkoutManager wm = new WorkoutManager(u1);
