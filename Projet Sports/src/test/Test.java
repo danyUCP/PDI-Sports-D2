@@ -23,7 +23,9 @@ public class Test {
 		
 		WorkoutManager wm = new WorkoutManager(u);
 		
-		System.out.println(wm.getWorkoutList(0));
+		System.out.println(wm.getLastWorkout());
+		
+		
 
 
 		session.close();

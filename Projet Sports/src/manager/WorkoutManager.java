@@ -67,6 +67,21 @@ public class WorkoutManager
 		return result;
 	}
 	
+	public Workout getLastWorkout()
+	{
+		session = DBConnection.getSession();
+		
+		Query query = session.createQuery("from Workout where user_id = :id order by date DESC, id DESC limit 1");
+		query.setInteger("id", user.getId());
+
+
+		Workout result = (Workout) query.list().get(0);
+		
+		session.close();
+
+		return result;
+	}
+	
 	public void createNewWorkout(Workout w)
 	{
 		session = DBConnection.getSession();

@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -309,13 +310,14 @@ public class SportDataPanel extends JPanel
 	private class WorkoutButton extends SportButton
 	{
 		private Workout w;
-		
+		private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+
 		public WorkoutButton(Workout w)
 		{
 			super("Séance");
 			this.w = w;
 			
-			this.setText("<html><p style='text-align: center;'>Séance du " + w.getDate() + "<br />Durée : " + w.getDuration() + " min</p></html>");
+			this.setText("<html><p style='text-align: center;'>Séance du " + dateFormat.format(w.getDate()) + "<br />Durée : " + w.getDuration() + " min</p></html>");
 			this.setFont(new Font("Verdana", Font.ITALIC, 13));
 			this.setBorder(BorderFactory.createLineBorder(new Color(28, 28, 28), 5));
 			this.setBackground(new Color(28, 28, 28));

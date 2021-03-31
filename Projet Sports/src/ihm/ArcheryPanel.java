@@ -315,7 +315,7 @@ public class ArcheryPanel extends JPanel
 			else if(e.getSource() == confirmButton)
 			{
 				ArcheryWorkout aw = new ArcheryWorkout(new Date(0), 0);
-				aw.setDate(new Date(0));
+				aw.setDate(dateBox.getDateBox());
 				aw.setDuration(Integer.parseInt(durationField.getText()));
 				
 				for(int i = 0 ; i < targetList.size() ; i++)
@@ -331,7 +331,7 @@ public class ArcheryPanel extends JPanel
 			{
 				System.out.println("Ancienne séance : " + w);
 
-				w.setDate(new Date(0));
+				w.setDate(dateBox.getDateBox());
 				w.setDuration(Integer.parseInt(durationField.getText()));
 				
 				for(int i = 0 ; i < targetList.size() ; i++)

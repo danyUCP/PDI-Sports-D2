@@ -319,7 +319,7 @@ public class MusculationPanel extends JPanel
 			else if(e.getSource() == confirmButton)
 			{
 				MusculationWorkout mw = new MusculationWorkout(new Date(0), 0);
-				mw.setDate(new Date(0));
+				mw.setDate(dateBox.getDateBox());
 				mw.setDuration(Integer.parseInt(durationField.getText()));
 				
 				for(int i = 0 ; i < exerciseList.size() ; i++)
@@ -336,7 +336,7 @@ public class MusculationPanel extends JPanel
 			{
 				System.out.println("Ancienne séance : " + w);
 
-				w.setDate(new Date(0));
+				w.setDate(dateBox.getDateBox());
 				w.setDuration(Integer.parseInt(durationField.getText()));
 				
 				for(int i = 0 ; i < exerciseList.size() ; i++)
