@@ -63,6 +63,7 @@ public class ClimbingPanel extends JPanel {
 		this.user = user;
 		this.wm = new WorkoutManager(this.user);
 		
+		
 		this.dim = new Dimension(width, height);
 		this.setSize(dim);
 		this.setBackground(new Color(28, 28, 28));

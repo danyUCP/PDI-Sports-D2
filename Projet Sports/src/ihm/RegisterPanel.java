@@ -4,13 +4,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import data.User;
 import ihm.components.SportButton;
 import ihm.components.SportTextField;
+import orm.DBConnection;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -36,11 +42,13 @@ public class RegisterPanel extends JPanel {
 	private Dimension dim;
 	private int width = 845;//800;
 	private int height = 460;//500;
-	private SportTextField textFieldLogin,textField_1,textField_2,textField_3, textField_4,textField_5,textField_6,textField_7;
+	private SportTextField textFieldLogin,textField_2,textField_3, textField_4,textField_5,textField_6,textField_7;
+	private JPasswordField textField_1;
 	private JLabel lblNewLabel,lblMdp,lblFirstname,lblLastname, lblGender,lblAge,lblSize,lblWeight,title;
 	private SportButton btnSubmit,cancel;
 	private Image background;
 	private JRadioButton R1,R2, R3, R4, R5, R6;
+	private JLabel messagelabel;
 	/**
 	 * Create the panel.
 	 */
@@ -68,7 +76,7 @@ public class RegisterPanel extends JPanel {
 		panel.add(textFieldLogin);
 		textFieldLogin.setColumns(10);
 		
-		textField_1 =new SportTextField(17);
+		textField_1 =new JPasswordField(17);
 		textField_1.setColumns(10);
 		textField_1.setBounds(148, 92, 181, 26);
 		panel.add(textField_1);
@@ -131,11 +139,11 @@ public class RegisterPanel extends JPanel {
 		lblLastname.setBounds(47, 183, 74, 20);
 		panel.add(lblLastname);
 		
-		lblGender = new JLabel("Gender");
+		lblGender = new JLabel("Gender : M/F");
 		lblGender.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGender.setForeground(Color.WHITE);
 		lblGender.setFont(new Font("Source Serif Pro Semibold", Font.PLAIN, 14));
-		lblGender.setBounds(47, 225, 74, 20);
+		lblGender.setBounds(17, 225, 120, 20);
 		panel.add(lblGender);
 		
 		lblAge = new JLabel("Age");
@@ -164,6 +172,9 @@ public class RegisterPanel extends JPanel {
 		panel_1.setBounds(412, 376, 354, 38);
 		add(panel_1);
 		panel_1.setLayout(null);
+		
+		messagelabel=new JLabel("");
+		messagelabel.setBounds(151, 181, 100, 30);
 		
 		btnSubmit = new SportButton("Submit");
 		btnSubmit.setBounds(50, 10, 124, 21);
@@ -253,15 +264,34 @@ public void paintComponent(Graphics g)
 	void radioButtons_itemStateChanged(ItemEvent e) {
         Object source = e.getSource();
         if (source == R1) System.out.println("Vous pratiquez du jogging");
-        if (source == R2) System.out.println("Vous pratiquez dde la musculation");
+        if (source == R2) System.out.println("Vous pratiquez de la musculation");
         if (source == R3) System.out.println("Vous pratiquez du tir à l'arc");
+        if (source == R4) System.out.println("Vous pratiquez de l'escalade");
+        if (source == R5) System.out.println("Vous pratiquez de l'aviron");
+        if (source == R6) System.out.println("Vous pratiquez de la natation");
     }
 	
 	public class Add_Workout implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e1) {
-		
+			String weight=textField_7.getText();
+			String size=textField_6.getText();
+			String age=textField_5.getText();
+			String gender=textField_4.getText();
+			String lastName=textField_3.getText();
+			String firstname=textField_2.getText();
+			@SuppressWarnings("deprecation")
+			String mdp=textField_1.getText();
+			String login=textFieldLogin.getText();
+			int weight1=Convettexttomesure(weight);
+			int size1=Convettexttomesure(size);
+			int age1=Convettexttomesure(age);
+			
 				if(e1.getSource()== btnSubmit) {
+					Session session = DBConnection.getSession();
+					Transaction persistTransaction1 = session.beginTransaction();
+					User u1 = new User(login,mdp,firstname,lastName,gender,age1,size1,weight1);
+					session.save(u1);
 					btnSubmit.setText("AddWorkout");
 					btnSubmit.setActionCommand("AddWorkout");
 					panel.removeAll();
@@ -285,6 +315,31 @@ public void paintComponent(Graphics g)
 				}
 				
 		}
+	
+	
+		public int Convettexttomesure(String text) {
+			
+			
+			int nombre=0;
+			if (text.length() > 0) {
+			    try {
+			         nombre = Integer.parseInt(text);
+			        
+			    } catch (NumberFormatException nfe) {
+			        settext("Erreur de format");
+			   
+			    
+			    }
+			} else {
+			      settext("Un paramètre est requis");
+			}
+		      return nombre;
+			
+		}
+		public void settext(String text) {
+			
+			messagelabel.setText(text);	
+				
+			}
 	}
 }
-
