@@ -16,8 +16,8 @@ public class UserManager
 {
 	private Session session;
 	private Transaction transaction;
-	@SuppressWarnings("unused")
-	private User use;
+
+	
 	public UserManager() {	}
 	
 	public UserManager(User u) {	
@@ -141,7 +141,7 @@ public class UserManager
 	}
 	
 	public User[] userFriends(User use) {
-		this.use=use;
+
 		@SuppressWarnings("unused")
 		String listElem[] =null; 
 		User result1[]= {},result2[]={},result3[]={},result4[]={},result5[]=null,result6[]={};

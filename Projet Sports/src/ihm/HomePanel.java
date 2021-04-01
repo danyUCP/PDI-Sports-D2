@@ -24,8 +24,10 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import data.User;
+import data.Workout;
 import ihm.components.SportButton;
 import ihm.components.SportLabel;
+import manager.WorkoutManager;
 
 public class HomePanel extends JPanel
 {
@@ -35,6 +37,7 @@ public class HomePanel extends JPanel
 	private static final long serialVersionUID = 1L;
 
 	private User user;
+	private WorkoutManager wm;
 
 	private JPanel section, menu, header, content, profile;
 	private JPanel userPanel, history;
@@ -55,7 +58,8 @@ public class HomePanel extends JPanel
 	public HomePanel(User user)
 	{
 		this.user = user;
-		
+		this.wm = new WorkoutManager(this.user);
+
 		this.dim = new Dimension(width, height);
 		this.setSize(dim);
 		this.setBackground(Color.ORANGE);
@@ -182,7 +186,38 @@ public class HomePanel extends JPanel
 		dateLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
 		hourLabel = new ProfileLabel(hourFormat.format(today), Font.ITALIC, 24);
 		hourLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		Workout w = wm.getLastWorkout();
 		lastSessionLabel = new ProfileLabel("Aucune dernière séance", Font.ITALIC, 14);
+
+		if(w != null)
+		{
+			String type = "";
+			
+			switch(w.getClass().getSimpleName())
+			{
+				case "JoggingWorkout":
+					type = "Jogging";
+					break;
+				case "ClimbingWorkout":
+					type = "Escalade";
+					break;
+				case "RowingWorkout":
+					type = "Aviron";
+					break;
+				case "MusculationWorkout":
+					type = "Musculation";
+					break;
+				case "SwimmingWorkout":
+					type = "Natation";
+					break;
+				case "ArcheryWorkout":
+					type = "Tir à l'arc";
+					break;
+			}
+			
+			lastSessionLabel.setText("<html><p style='text-align: center;'><br />Dernière séance : <br />" + type + " <br />" + dayFormat.format(w.getDate()) + " : " + w.getDuration() + " min</p></html>");
+		}
+
 
 		history.add(dateLabel);
 		history.add(hourLabel);
