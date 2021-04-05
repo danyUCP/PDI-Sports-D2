@@ -28,9 +28,16 @@ import manager.WorkoutManager;
 
 
 /**
- * 
- * @author PD2_Sport
+ * <code>FriendsPanel</code> 
+ * Is the class that implements the panel for viewing the list of friends, 
+ * adding/removing a friend and also accessing the comparison graph. 
+ * <strong>NOTE:</strong>
+ *This class<code>FriendsPanel</code>. implements all the components of the associated graphical ihm .
  *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
  */
 public class FriendsPanel extends JPanel {
 	

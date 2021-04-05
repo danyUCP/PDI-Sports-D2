@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -112,7 +113,12 @@ public class MainFrame extends JFrame
 		log2 = new JPanel();
 		log2.setBackground(new Color(28, 28, 28));
 		log2.add(new SportLabel("Mot de passe : "));
-		mdp1 = new JPasswordField(14);		
+		mdp1 = new JPasswordField(17);
+		mdp1.setBackground(new Color(50, 50, 50));
+		mdp1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		mdp1.setFont(new Font("Verdana", Font.PLAIN, 16));
+		mdp1.setForeground(Color.WHITE);
+		mdp1.setCaretColor(Color.WHITE);
 		log2.add(mdp1);
 		
 		controls = new JPanel();

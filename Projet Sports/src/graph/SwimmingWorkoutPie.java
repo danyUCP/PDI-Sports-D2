@@ -19,6 +19,17 @@ import org.jfree.data.general.DefaultPieDataset;
 import data.SwimmingWorkout;
 import data.Workout;
 
+
+/**
+ * <code>SwimmingWorkoutPie </code>Is a class that creates pie chart for swimming.
+ * <strong>NOTE:</strong>
+ *This class<code>SwimmingWorkoutPie</code>. implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ */
 public class SwimmingWorkoutPie extends JPanel{
 	
 	/**
@@ -30,6 +41,10 @@ public class SwimmingWorkoutPie extends JPanel{
 
 	private ArrayList<Workout> workoutList;
 	
+	/**
+	 * Builders of the class SwimmingWorkoutPie 
+	 * @param workoutList
+	 */
 	public SwimmingWorkoutPie(ArrayList<Workout> workoutList) {
 		this.setLayout(new BorderLayout());
 
@@ -43,6 +58,9 @@ public class SwimmingWorkoutPie extends JPanel{
 		this.add(new ChartPanel(pieGraph), BorderLayout.CENTER);
 	}
 
+	/**
+	 * Initialization of data to build the graph.
+	 */
 	public void initDataset() 
 	{
 		int basse = 0, crowl = 0, arriere= 0, papillon = 0;
@@ -75,7 +93,7 @@ public class SwimmingWorkoutPie extends JPanel{
 					}
 			}
 		}
-		System.out.println(""+basse+"");
+		
 		dataset.setValue("crowl_lenghts",crowl);
 		dataset.setValue("breaststroke_lenghts", basse);
 		dataset.setValue("backstroke_lenghts",arriere);

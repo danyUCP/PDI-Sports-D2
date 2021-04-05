@@ -14,16 +14,36 @@ import orm.DBConnection;
 import trash.HibernateUtil;
 
 /**
- * 
- * cette classe créer et modifie la table manager
+ * <code>Managers</code> is a class that manages different actions/functions of the software
+ * <strong>NOTE:</strong>
+ *This class<code>Managers</code> is a purely motor .
  *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
  */
 public class Managers {
 	private String user="";
+	
+	/**
+	 * default Constructor
+	 */
 	public Managers() {
 		
 	}
 	
+	/**
+	 * This method adds a user to the database
+	 * @param login
+	 * @param mdp
+	 * @param firstname
+	 * @param lastname
+	 * @param gender
+	 * @param age
+	 * @param size
+	 * @param weight
+	 */
 	public void addUser(String login, String mdp, String firstname, String lastname, String gender, String age, String size, String weight) {
 		Session session = DBConnection.getSession();
 		@SuppressWarnings("unused")
@@ -38,6 +58,10 @@ public class Managers {
    
 	}
 	
+	/**
+	 * This method delete a user to the database
+	 * @param idUser
+	 */
 	public void deletteUser(int idUser) {
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -48,6 +72,17 @@ public class Managers {
 		
 	}
 	
+	/**
+	 * This method associates the sport of swimming with a user to specify that this user practices it.
+	 * 
+	 * @param u1
+	 * @param date
+	 * @param duration
+	 * @param breaststroke_lenghts
+	 * @param butterfly_lenghts
+	 * @param crowl_lenghts
+	 * @param backstroke_lenghts
+	 */
 	public void addSwimming(User u1,Date date, int duration, int breaststroke_lenghts, int butterfly_lenghts, int crowl_lenghts, int backstroke_lenghts) {
 		Session session = DBConnection.getSession();
 		@SuppressWarnings("unused")
@@ -63,6 +98,13 @@ public class Managers {
 	}
 	
 	@SuppressWarnings("rawtypes")
+	/**
+	 * This method allows you to search for the existence of a user in the database.
+	 * @param session
+	 * @param login
+	 * @param mdp
+	 * @return
+	 */
 	public String testWhereClause(Session session, String login,String mdp) {
 		String name="",mt="",log="";
 		Transaction readTransaction = session.beginTransaction();
@@ -86,9 +128,13 @@ public class Managers {
 		
 	}
 	
+	/**
+	 * This method is used to retrieve information about a user.
+	 */
 	public void getInfoUser() {
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
+		@SuppressWarnings("deprecation")
 		Object ob=session.load(User.class,new Integer(1));
 		User u=(User) ob;
 		//session.select();
@@ -96,27 +142,29 @@ public class Managers {
 		
 	}
 	
+	/**
+	 * This method is used to retrieve information about a user.
+	 * @param id
+	 * @return String
+	 */
 	public String getInfoUser(int id) {
-		//SessionFactory sessionFactory=new AnnotationConfiguration().configure().buildSessionFactory();
+		
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-		//Session session=sessionFactory.openSession();
+		
 		session.beginTransaction();
 		User u=(User) session.get(User.class, id);
-		//User u=(User) session.createQuery("SELECT * FROM `user` WHERE `idUser`=1;");
-		/*if(u.getFirstname().equals(user)&&u.getLastname().equals(name)) {
-			//String name=u.getFirstname()
-			System.out.println("Nom: "+u.getLogin()+" Prenom: "+u.getMdp());
-			session.getTransaction().commit();
-		}
-		else {
-			System.out.println("quelque chose ne va pas");
-		}*/
+		
 		String ide=u.getLogin();
 		String mpd=u.getMdp();
 		session.getTransaction().commit();
 			
 		return ide+mpd;
 		}
+	
+	/**
+	 * This method retrieves a user from the database.
+	 * @return String
+	 */
 	
 	public String getUser() {
 		return user;

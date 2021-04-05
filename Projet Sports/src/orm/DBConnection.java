@@ -17,13 +17,27 @@ import data.Target;
 import data.User;
 import data.Workout;
 
+/**
+ * <code>DBConnection </code>Used to link java to the database.
+ * <strong>NOTE:</strong>
+ *This class<code>DBConnection  </code> is a motor class .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ */
 public class DBConnection 
 {
 	private static SessionFactory sessionFactory;
 	private static AnnotationConfiguration config;
-	private static File configFile;
+	private static File configFile; 
 
 
+	/**
+	 * creation of tables in the database
+	 * @return static AnnotationConfiguration
+	 */
 	public static AnnotationConfiguration getConfig() 
 	{
 		if (config == null) 
@@ -49,6 +63,10 @@ public class DBConnection
 		return config;
 	}
 
+	/**
+	 * Recovery of the SessionFactory .
+	 * @return static SessionFactory
+	 */
 	public static SessionFactory getSessionFactory() 
 	{
 		if (sessionFactory == null) 
@@ -64,6 +82,10 @@ public class DBConnection
 		return sessionFactory;
 	}
 
+	/**
+	 * Recovery of the Session.
+	 * @return static Session
+	 */
 	public static Session getSession() 
 	{
 		return getSessionFactory().openSession();

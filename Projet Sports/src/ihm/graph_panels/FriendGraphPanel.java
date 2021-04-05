@@ -32,6 +32,19 @@ import ihm.components.SportLabel;
 import manager.UserManager;
 import manager.WorkoutManager;
 
+
+
+/**
+ * <code>FriendGraphPanel </code> 
+ * Is the class that implements the graph comparison panel between two friends.
+ * <strong>NOTE:</strong>
+ *This class<code>FriendsPanel</code> implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ */
 public class FriendGraphPanel  extends JPanel{
 	
 	/**
@@ -233,7 +246,7 @@ public class FriendGraphPanel  extends JPanel{
 		}
 	}
 	
-	@SuppressWarnings("null")
+	@SuppressWarnings({ "null", "unlikely-arg-type" })
 	public String[] getUnionWorkout(User u1,User u2) {
 		UserManager m=new UserManager();
 		String[] list1= {},liste2= {},liste3= {},liste4= {},liste5= {},liste6= {};

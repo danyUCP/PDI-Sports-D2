@@ -16,6 +16,18 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import data.SwimmingWorkout;
 import data.Workout;
 
+
+/**
+ * <code>SwimmingTypeBar </code>Is a class that creates TypeBar for swimming.
+ * <strong>NOTE:</strong>
+ *This class<code>SwimmingTypeBar</code>. implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ * 
+ * */
 public class SwimmingTypeBar extends JPanel{
 	
 	/**
@@ -41,6 +53,9 @@ public class SwimmingTypeBar extends JPanel{
 		this.add(new ChartPanel(barGraph), BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Initialization of data to build the graph.
+	 */
 	public void initDataset() 
 	{
 		dataset = new DefaultCategoryDataset();

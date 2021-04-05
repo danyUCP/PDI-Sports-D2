@@ -16,6 +16,17 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import data.SwimmingWorkout;
 import data.Workout;
 
+/**
+ * <code>SwimmingSummaryBar</code>Is a class that builds the summary graph.
+ * <strong>NOTE:</strong>
+ *This class<code>SwimmingSummaryBar</code>. implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ * 
+ * */
 @SuppressWarnings("serial")
 public class SwimmingSummaryBar extends JPanel {
 	
@@ -24,6 +35,10 @@ public class SwimmingSummaryBar extends JPanel {
 
 	private ArrayList<Workout> workoutList;
 	
+	/**
+	 * Builders of the class SwimmingSummaryBar
+	 * @param workoutList
+	 */
 	public SwimmingSummaryBar(ArrayList<Workout> workoutList) 
 	{
 		this.setLayout(new BorderLayout());
@@ -38,6 +53,9 @@ public class SwimmingSummaryBar extends JPanel {
 		this.add(new ChartPanel(barGraph), BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Initialization of data to build the graph.
+	 */
 	public void initDataset() 
 	{
 		dataset = new DefaultCategoryDataset();

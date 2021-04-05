@@ -20,6 +20,18 @@ import data.SwimmingWorkout;
 import data.User;
 import data.Workout;
 
+
+/**
+ * <code> FriendPieChart</code>Is a class that builds the pie chart of friend.
+ * <strong>NOTE:</strong>
+ *This class<code> FriendPieChart</code>. implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ * 
+ * */
 public class FriendPieChart extends JPanel{
 
 	/**
@@ -32,8 +44,14 @@ public class FriendPieChart extends JPanel{
 
 	private ArrayList<Workout> workoutList;
 	private ArrayList<Workout> workoutList2;
+	@SuppressWarnings("unused")
 	private User u1,u2;
 	
+	/**
+	 *  Builders of the class FriendPieChart
+	 * @param workoutListF1
+	 * @param workoutListF2
+	 */
 	public  FriendPieChart (ArrayList<Workout> workoutListF1,ArrayList<Workout> workoutListF2) 
 	{
 		this.setLayout(new BorderLayout());
@@ -49,6 +67,9 @@ public class FriendPieChart extends JPanel{
 		this.add(new ChartPanel(pieGraph), BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Initialization of data to build the graph.
+	 */
 	public void initDataset() 
 	{
 		int a=0,b=0,c=0,d=0,e=0,f=0,g=0,h=0;

@@ -11,15 +11,30 @@ import data.User;
 import orm.DBConnection;
 
 
+/**
+ * <code>UserManager </code> Is a class that manages the actions associated with the user.
+ * <strong>NOTE:</strong>
+ *This class<code>UserManager</code> is a purely motor .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ */
 public class UserManager 
 {
 	private Session session;
 	private Transaction transaction;
 
-	
+	/**
+	 * default Constructor
+	 */
 	public UserManager() {	}
 	
-	
+	/**
+	 * Constructor with a user as parameter
+	 * @param u
+	 */
 	public void addUser(User u) 
 	{
 		session = DBConnection.getSession();
@@ -29,6 +44,10 @@ public class UserManager
 		transaction.commit();
 	}
 	
+	/**
+	 * deleting a user
+	 * @param u
+	 */
 	public void deleteUser(User u) 
 	{
 		session = DBConnection.getSession();
@@ -38,6 +57,12 @@ public class UserManager
 		transaction.commit();
 	}
 	
+	/**
+	 * @brief Method that verifies a user in the database based on his login and password
+	 * @param login
+	 * @param mdp
+	 * @return User
+	 */
 	public User findUser(String login, String mdp)
 	{
 		session = DBConnection.getSession();
@@ -65,6 +90,12 @@ public class UserManager
 		return u;		
 	}
 	
+	/**
+	 * Method for retrieving a user's ID from parameter elements
+	 * @param login
+	 * @param mdp
+	 * @return int
+	 */
 	public int findID(String login, String mdp) {
 		
 		Query query = session.createQuery("from User where login = :login and mdp = :mdp");
@@ -93,7 +124,11 @@ public class UserManager
 		return id;
 	}
 		
-	
+	/**
+	 * method to search for a user in each sport
+	 * @param type
+	 * @return ArrayList<User>
+	 */
 	public ArrayList<User> findUsersFromSport(int type)
 	{
 		session = DBConnection.getSession();
@@ -135,6 +170,11 @@ public class UserManager
 		return result;
 	}
 	
+	/**
+	 * A method for returning a list containing all users playing a sport where the logged-in user is located.
+	 * @param use
+	 * @return User[] 
+	 */
 	public User[] userFriends(User use) {
 
 		@SuppressWarnings("unused")
@@ -254,7 +294,13 @@ public class UserManager
 		return result;
 		
 	}
-		
+	
+	
+	/**
+	 * method that returns all sports in common between two users
+	 * @param wm
+	 * @return String
+	 */
 	public String getUserWorkoutList(WorkoutManager wm) {
 		String name=" ";
 	

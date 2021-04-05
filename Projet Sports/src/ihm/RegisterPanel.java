@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -27,6 +28,21 @@ import ihm.components.SportButton;
 import ihm.components.SportTextField;
 import orm.DBConnection;
 
+
+/**
+ * <code>RegisterPanel</code> 
+ * Is the class that implements the registration of a user in order 
+ * to have an account and access the all sports social network 
+ * You can find further information and examples in
+ * <a href="https://www.javaguides.net/2019/07/registration-form-using-java-swing-jdbc-mysql-example-tutorial.html">Registration Form using Java Swing + JDBC + MySQL Example Tutorial </a>,
+ * <strong>NOTE:</strong>
+ *This class<code>RegisterPanel</code>. implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ */
 public class RegisterPanel extends JPanel {
 	/**
 	 * 
@@ -36,13 +52,14 @@ public class RegisterPanel extends JPanel {
 	private static JPanel global;
 	private JPanel panel, panel_1;
 	private Dimension dim;
-	private int width = 845;//800;
-	private int height = 460;//500;
+	private int width = 845;
+	private int height = 460;
 	private SportTextField textFieldLogin,textField_2,textField_3, textField_4,textField_5,textField_6,textField_7;
 	private JPasswordField textField_1;
 	private JLabel lblNewLabel,lblMdp,lblFirstname,lblLastname, lblGender,lblAge,lblSize,lblWeight,title;
 	private SportButton btnSubmit,cancel;
 	private Image background;
+	@SuppressWarnings("unused")
 	private JRadioButton R1,R2, R3, R4, R5, R6;
 	private JLabel messagelabel;
 	/**
@@ -75,6 +92,11 @@ public class RegisterPanel extends JPanel {
 		textField_1 =new JPasswordField(17);
 		textField_1.setColumns(10);
 		textField_1.setBounds(148, 92, 181, 26);
+		textField_1.setBackground(new Color(50, 50, 50));
+		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		textField_1.setFont(new Font("Verdana", Font.PLAIN, 16));
+		textField_1.setForeground(Color.WHITE);
+		textField_1.setCaretColor(Color.WHITE);
 		panel.add(textField_1);
 		
 		textField_2 = new SportTextField(17);
@@ -184,7 +206,7 @@ public class RegisterPanel extends JPanel {
 		
 		try
 		{
-			background = ImageIO.read(new File("resources/images/background.jpg"));
+			background = ImageIO.read(new File("resources/images/backImage.jpg"));
 		}
 		catch(IOException e)
 		{

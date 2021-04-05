@@ -80,6 +80,7 @@ public class TestDataSample
 		persistTransaction1.commit();		
 		
 		Query selectQuery = session.createQuery("from MusculationWorkout");
+		@SuppressWarnings("rawtypes")
 		List result = selectQuery.list();
 
 		System.out.println(result.size() + " workout found");
@@ -93,6 +94,7 @@ public class TestDataSample
 		
 		session.close();
 		
+		@SuppressWarnings("unused")
 		MainFrame frame = new MainFrame();
 	
 	}

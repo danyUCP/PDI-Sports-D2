@@ -29,6 +29,18 @@ import ihm.components.SportComboBox;
 import ihm.components.SportLabel;
 import manager.WorkoutManager;
 
+
+/**
+ * <code>SwimmingGraphPanel </code> Is a class that implements the graphical ihm for adding,
+ *  editing and deleting sessions for the swimming sport in the database.
+ * <strong>NOTE:</strong>
+ *This class<code>SwimmingGraphPanel</code> implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ */
 public class SwimmingGraphPanel  extends JPanel{
 	/**
 	 * 
