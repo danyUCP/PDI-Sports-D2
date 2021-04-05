@@ -19,6 +19,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 import data.User;
 import ihm.components.SportButton;
@@ -39,6 +40,7 @@ public class MainFrame extends JFrame
 	
 	private SportLabel title;
 	private SportTextField pseudo, mdp;
+	private JPasswordField mdp1;
 	
 	private int width = 845;//800;
 	private int height = 460;//500;
@@ -110,8 +112,8 @@ public class MainFrame extends JFrame
 		log2 = new JPanel();
 		log2.setBackground(new Color(28, 28, 28));
 		log2.add(new SportLabel("Mot de passe : "));
-		mdp = new SportTextField(14);		
-		log2.add(mdp);
+		mdp1 = new JPasswordField(14);		
+		log2.add(mdp1);
 		
 		controls = new JPanel();
 		controls.setBackground(new Color(28, 28, 28));
@@ -161,13 +163,14 @@ public class MainFrame extends JFrame
 	 */
 	private class ButtonListener implements ActionListener
 	{
+		@SuppressWarnings("deprecation")
 		public void actionPerformed(ActionEvent e) 
 		{
 			
 			if(e.getSource() == connect)
 			{
 				UserManager um = new UserManager();
-				user = um.findUser(pseudo.getText(), mdp.getText());
+				user = um.findUser(pseudo.getText(), mdp1.getText());
 				
 				if(user == null)
 					JOptionPane.showMessageDialog(null, "Utilisateur inexistant");

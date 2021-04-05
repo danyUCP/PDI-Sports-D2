@@ -208,68 +208,7 @@ public void paintComponent(Graphics g)
 	g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
 }
 	
-	public void addComposent() {
-		
-		title = new JLabel("Register");
-		title.setForeground(Color.WHITE);
-		title.setHorizontalAlignment(SwingConstants.CENTER);
-		title.setBounds(100, 10, 164, 20);
-		title.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 16));
-		panel.add(title);
-		
-		R2 = new JRadioButton("Musculation");
-		R2.setBounds(224, 121, 103, 21);
-		R2.setBackground(new Color(50, 50, 50));
-		R2.setForeground(Color.WHITE);
-		R2.setFocusPainted(false);
-		panel.add(R2);
-		
-		R1 = new JRadioButton("Jogging");
-		R1.setBounds(23, 121, 103, 21);
-		R1.setBackground(new Color(50, 50, 50));
-		R1.setForeground(Color.WHITE);
-		R1.setFocusPainted(false);
-		panel.add(R1);
-		
-		R4 = new JRadioButton("Escalade");
-		R4.setBounds(23, 180, 103, 21);
-		R4.setBackground(new Color(50, 50, 50));
-		R4.setForeground(Color.WHITE);
-		R4.setFocusPainted(false);
-		panel.add(R4);
-		
-		R3 = new JRadioButton("Tir à l'arc");
-		R3.setBounds(23, 260, 103, 21);
-		R3.setBackground(new Color(50, 50, 50));
-		R3.setForeground(Color.WHITE);
-		R3.setFocusPainted(false);
-		panel.add(R3);
-		
-		R5 = new JRadioButton("Aviron");
-		R5.setBounds(224, 180, 103, 21);
-		R5.setBackground(new Color(50, 50, 50));
-		R5.setForeground(Color.WHITE);
-		R5.setFocusPainted(false);
-		panel.add(R5);
-		
-		R6 = new JRadioButton("Natation");
-		R6.setBounds(224, 260, 103, 21);
-		R6.setBackground(new Color(50, 50, 50));
-		R6.setForeground(Color.WHITE);
-		R6.setFocusPainted(false);
-		panel.add(R6);
-		
-	}
-	
-	void radioButtons_itemStateChanged(ItemEvent e) {
-        Object source = e.getSource();
-        if (source == R1) System.out.println("Vous pratiquez du jogging");
-        if (source == R2) System.out.println("Vous pratiquez de la musculation");
-        if (source == R3) System.out.println("Vous pratiquez du tir à l'arc");
-        if (source == R4) System.out.println("Vous pratiquez de l'escalade");
-        if (source == R5) System.out.println("Vous pratiquez de l'aviron");
-        if (source == R6) System.out.println("Vous pratiquez de la natation");
-    }
+
 	
 	public class Add_Workout implements ActionListener {
 		
@@ -289,33 +228,30 @@ public void paintComponent(Graphics g)
 			
 				if(e1.getSource()== btnSubmit) {
 					Session session = DBConnection.getSession();
+					@SuppressWarnings("unused")
 					Transaction persistTransaction1 = session.beginTransaction();
 					User u1 = new User(login,mdp,firstname,lastName,gender,age1,size1,weight1);
 					session.save(u1);
-					btnSubmit.setText("AddWorkout");
-					btnSubmit.setActionCommand("AddWorkout");
-					panel.removeAll();
-					panel.repaint();
-					addComposent();
+					
 				
 				}
-				if(e1.getSource()== btnSubmit) {
-					String newAction = e1.getActionCommand();
-					if(newAction.equals("AddWorkout")) {
-						System.out.println("Ajouter");
-					}
-				}
+			
 				if(e1.getSource()== cancel) {
-					MainFrame frame = (MainFrame) (SwingUtilities.getRoot(MainFrame.getGlobal()));
-					MainFrame.getGlobal().removeAll();
-					frame.resetHome();
-					MainFrame.getGlobal().revalidate();
-					MainFrame.getGlobal().repaint();
-					
+					retour()
+;					
 				}
 				
 		}
+	}
 	
+	public void retour()
+	{
+		MainFrame.getGlobal().removeAll();
+		MainFrame.getGlobal().add(MainFrame.getGlobal());
+		MainFrame.getGlobal().revalidate();
+		MainFrame.getGlobal().repaint();
+		
+	}
 	
 		public int Convettexttomesure(String text) {
 			
@@ -341,5 +277,5 @@ public void paintComponent(Graphics g)
 			messagelabel.setText(text);	
 				
 			}
-	}
+	
 }
