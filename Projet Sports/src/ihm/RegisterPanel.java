@@ -2,13 +2,22 @@ package ihm;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,19 +26,6 @@ import data.User;
 import ihm.components.SportButton;
 import ihm.components.SportTextField;
 import orm.DBConnection;
-
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.io.File;
-import java.io.IOException;
 
 public class RegisterPanel extends JPanel {
 	/**

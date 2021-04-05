@@ -34,6 +34,18 @@ import data.User;
 import data.Workout;
 import ihm.components.SportButton;
 import ihm.components.SportLabel;
+import ihm.graph_panels.ArcheryGraphPanel;
+import ihm.graph_panels.ClimbingGraphPanel;
+import ihm.graph_panels.JoggingGraphPanel;
+import ihm.graph_panels.MusculationGraphPanel;
+import ihm.graph_panels.RowingGraphPanel;
+import ihm.graph_panels.SwimmingGraphPanel;
+import ihm.sport_panels.ArcheryPanel;
+import ihm.sport_panels.ClimbingPanel;
+import ihm.sport_panels.JoggingPanel;
+import ihm.sport_panels.MusculationPanel;
+import ihm.sport_panels.RowingPanel;
+import ihm.sport_panels.SwimmingPanel;
 import manager.WorkoutManager;
 
 public class SportDataPanel extends JPanel
@@ -162,9 +174,33 @@ public class SportDataPanel extends JPanel
 			dataset.addValue(dur, "Durée", "Séance " + (i + 1));
 			totalDuration += dur;
 		}
+		
+		String type = "";
+		
+		switch(mode)
+		{
+			case 1:
+				type = "Jogging";
+				break;
+			case 2:
+				type = "Escalade";
+				break;
+			case 3:
+				type = "Aviron";
+				break;
+			case 4:
+				type = "Musculation";
+				break;
+			case 5:
+				type = "Natation";
+				break;
+			case 6:
+				type = "Tir à l'arc";
+				break;
+		}
 			
 		//Graphe simplifié  ==========================================================
-		JFreeChart summaryGraph = ChartFactory.createBarChart3D("Résumé", null, "Temps (min)", dataset, PlotOrientation.VERTICAL, false, false, false);
+		JFreeChart summaryGraph = ChartFactory.createBarChart3D("Résumé " + type, null, "Temps (min)", dataset, PlotOrientation.VERTICAL, false, false, false);
 		summaryGraph.setBackgroundPaint(new Color(28, 28, 28));
 		summaryGraph.getTitle().setFont(new Font("Verdana", Font.PLAIN, 16));
 		summaryGraph.getTitle().setPaint(Color.WHITE);

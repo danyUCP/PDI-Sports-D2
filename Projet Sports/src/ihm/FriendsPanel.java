@@ -2,25 +2,6 @@ package ihm;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.LineBorder;
-
-
-
-import org.jfree.ui.RefineryUtilities;
-
-import data.User;
-import graph.Compare;
-import graph.SwimmingSummaryBar;
-import manager.UserManager;
-import manager.WorkoutManager;
-
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -31,7 +12,19 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+
+import data.User;
+import ihm.graph_panels.FriendGraphPanel;
+import manager.UserManager;
+import manager.WorkoutManager;
 
 
 /**

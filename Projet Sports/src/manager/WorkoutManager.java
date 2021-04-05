@@ -1,7 +1,6 @@
 package manager;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,17 +14,12 @@ public class WorkoutManager
 {
 	private Session session;
 	private Transaction transaction;
-	private User user,use;
+	private User user;
+	
 	
 	public WorkoutManager(User user)
 	{
 		this.user = user;
-	}
-	
-	public WorkoutManager(User user,User use)
-	{
-		this.user = user;
-		this.use = use;
 	}
 	
 	

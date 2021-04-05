@@ -10,9 +10,8 @@ import org.hibernate.Transaction;
 import data.SwimmingWorkout;
 import data.User;
 import data.Workout;
-import ihm.MainFrame;
 import orm.DBConnection;
-import util.HibernateUtil;
+import trash.HibernateUtil;
 
 /**
  * 

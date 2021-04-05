@@ -2,7 +2,6 @@ package ihm.components;
 
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.sql.Date;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
@@ -12,14 +11,13 @@ import java.util.Calendar;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class SportDateBox extends JPanel
 {
 	private SportComboBox dayBox;
 	private SportComboBox monthBox;
 	private SportComboBox yearBox;
-	
-	private Date date;
-	
+		
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
 	private SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
 	private SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");

@@ -1,8 +1,8 @@
 package test;
 
 
-import util.HibernateUtil;
 import manager.UserManager;
+import trash.HibernateUtil;
 
 
 /**

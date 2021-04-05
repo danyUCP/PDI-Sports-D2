@@ -13,25 +13,28 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import data.MusculationWorkout;
+import data.SwimmingWorkout;
 import data.Workout;
 
-@SuppressWarnings("serial")
-public class MuscuSummaryBar extends JPanel
-{
+public class SwimmingTypeBar extends JPanel{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFreeChart barGraph;
 	private DefaultCategoryDataset dataset;
 
 	private ArrayList<Workout> workoutList;
 	
-	public MuscuSummaryBar(ArrayList<Workout> workoutList) 
+	public SwimmingTypeBar(ArrayList<Workout> workoutList) 
 	{
 		this.setLayout(new BorderLayout());
 
 		this.workoutList = workoutList;
 		
 		initDataset();
-		barGraph = ChartFactory.createBarChart3D("Résumé de Musculation", "Séances", "Temps (min)", dataset, PlotOrientation.VERTICAL, true, true, false);
+		barGraph = ChartFactory.createBarChart3D("Types de natation", "Séances", "Temps (min)", dataset, PlotOrientation.VERTICAL, true, true, false);
 
 		formatGraph();
 		
@@ -46,9 +49,12 @@ public class MuscuSummaryBar extends JPanel
 		{
 			for(int i = 0 ; i < workoutList.size() ; i++)
 			{
-				MusculationWorkout w = (MusculationWorkout) workoutList.get(i);
+				SwimmingWorkout w = (SwimmingWorkout) workoutList.get(i);
 
-				dataset.addValue(w.getDuration(), "Durée", "" + (i + 1));
+				dataset.addValue(w.getBreaststroke_lenghts(), "basse", "" + (i + 1));
+				dataset.addValue(w.getButterfly_lenghts(), "papillon", "" + (i + 1));
+				dataset.addValue(w.getCrowl_lenghts(), "crowl", "" + (i + 1));
+				dataset.addValue(w.getBackstroke_lenghts(), "arriere", "" + (i + 1));
 			}
 		}
 	}
@@ -68,6 +74,6 @@ public class MuscuSummaryBar extends JPanel
 		barGraph.getLegend().setBackgroundPaint(new Color(50, 50, 50));
 		barGraph.getLegend().setItemPaint(Color.WHITE);
 		barGraph.getCategoryPlot().setRangeGridlinePaint(Color.WHITE);
-		
 	}
+
 }

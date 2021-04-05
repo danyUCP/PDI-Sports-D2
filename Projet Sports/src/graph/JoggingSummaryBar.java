@@ -16,6 +16,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import data.JoggingWorkout;
 import data.Workout;
 
+@SuppressWarnings("serial")
 public class JoggingSummaryBar extends JPanel
 {
 	private JFreeChart barGraph;

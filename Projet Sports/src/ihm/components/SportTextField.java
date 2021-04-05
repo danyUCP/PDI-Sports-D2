@@ -6,16 +6,12 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class SportTextField extends JTextField
 {
-	private int size;
-
 	public SportTextField(int size)
 	{
 		super(size);
-
-		this.size = size;
-
 
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		this.setFont(new Font("Verdana", Font.PLAIN, 16));

@@ -14,7 +14,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.PieSectionLabelGenerator;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
-import org.jfree.data.general.DefaultPieDataset; 
+import org.jfree.data.general.DefaultPieDataset;
+
 import data.ClimbingWorkout;
 import data.Workout;
 

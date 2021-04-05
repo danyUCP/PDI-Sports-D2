@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class SportButton extends JButton implements MouseListener
 {
 	public SportButton(String name)

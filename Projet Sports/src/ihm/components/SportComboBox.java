@@ -9,14 +9,9 @@ import javax.swing.JComboBox;
 @SuppressWarnings("serial")
 public class SportComboBox extends JComboBox<String>
 {
-	private String[] list;
-
 	public SportComboBox(String[] list)
 	{
 		super(list);
-
-		this.list = list;
-
 
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		this.setFont(new Font("Verdana", Font.PLAIN, 16));

@@ -6,16 +6,12 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class SportLabel extends JLabel
 {
-	private String texte;
-	
 	public SportLabel(String texte)
 	{
 		super(texte);
-		
-		this.texte = texte;
-		
 
 		this.setFont(new Font("Verdana", Font.PLAIN, 16));
 		this.setBackground(new Color(28, 28, 28));

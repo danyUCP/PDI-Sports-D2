@@ -13,10 +13,10 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import data.JoggingWorkout;
 import data.RowingWorkout;
 import data.Workout;
 
+@SuppressWarnings("serial")
 public class RowingSummaryBar extends JPanel
 {
 	private JFreeChart barGraph;

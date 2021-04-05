@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import data.User;
-import manager.UserManager;
 import orm.DBConnection;
 
 
@@ -19,10 +18,6 @@ public class UserManager
 
 	
 	public UserManager() {	}
-	
-	public UserManager(User u) {	
-		
-	}
 	
 	
 	public void addUser(User u) 
@@ -147,7 +142,6 @@ public class UserManager
 		User result1[]= {},result2[]={},result3[]={},result4[]={},result5[]=null,result6[]={};
 		ArrayList<User> listFriends1=null, listFriends2=null, listFriends3=null, listFriends4=null, listFriends5=null, listFriends6=null;
 		
-		WorkoutManager ww=new WorkoutManager(use);
 		
 		UserManager um = new UserManager();		
 		User u1 = um.findUser(use.getLogin(), use.getMdp());
