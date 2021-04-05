@@ -77,13 +77,13 @@ public class ClimbingWorkoutPie extends JPanel  {
 				
 			}
 		}
-		System.out.println(""+yellow+"");
-		dataset.setValue("Difficulté White",white);
-		dataset.setValue("Difficulté Yellow", yellow);
+		
+		dataset.setValue("Difficulté Blanche",white);
+		dataset.setValue("Difficulté Jaune", yellow);
 		dataset.setValue("Difficulté Orange",orange);
-		dataset.setValue("Difficulté Blue",blue);
-		dataset.setValue("Difficulté Red", red);
-		dataset.setValue("Difficulté Grey", grey);
+		dataset.setValue("Difficulté Bleu",blue);
+		dataset.setValue("Difficulté Rouge", red);
+		dataset.setValue("Difficulté Gris", grey);
 		
 	}
 	

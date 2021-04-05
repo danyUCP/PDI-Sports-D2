@@ -69,7 +69,7 @@ public class ClimbingPanel extends JPanel {
 		this.setBackground(new Color(28, 28, 28));
 		this.setLayout(null);
 		
-		title = new SportLabel("Climbing Workout");
+		title = new SportLabel("Séance d'escalade");
 		title.setFont(new Font("Verdana", Font.BOLD, 24));
 		title.setBounds(12, 40, 310, 40);
 		add(title);
