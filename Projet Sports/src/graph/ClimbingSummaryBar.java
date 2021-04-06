@@ -15,6 +15,17 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import data.ClimbingWorkout;
 import data.Workout;
 
+/**
+ * <code>ClimbingSummaryBar</code>Is a class that builds the summary graph.
+ * <strong>NOTE:</strong>
+ *This class<code>ClimbingSummaryBar</code>. implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ * 
+ * */
 @SuppressWarnings("serial")
 public class ClimbingSummaryBar extends JPanel
 {
@@ -22,7 +33,10 @@ public class ClimbingSummaryBar extends JPanel
 	private DefaultCategoryDataset dataset;
 
 	private ArrayList<Workout> workoutList;
-	
+	/**
+	 * Builders of the class ClimbingSummaryBar
+	 * @param workoutList
+	 */
 	public ClimbingSummaryBar(ArrayList<Workout> workoutList) 
 	{
 		this.setLayout(new BorderLayout());
@@ -36,7 +50,9 @@ public class ClimbingSummaryBar extends JPanel
 		
 		this.add(new ChartPanel(barGraph), BorderLayout.CENTER);
 	}
-	
+	/**
+	 * Initialization of data to build the graph.
+	 */
 	public void initDataset() 
 	{
 		dataset = new DefaultCategoryDataset();

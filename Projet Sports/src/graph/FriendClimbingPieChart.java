@@ -19,7 +19,17 @@ import org.jfree.data.general.DefaultPieDataset;
 import data.ClimbingWorkout;
 import data.User;
 import data.Workout;
-
+/**
+ * <code> FriendClimbingPieChart</code>Is a class that builds the pie chart of friend for the climbingWorkout.
+ * <strong>NOTE:</strong>
+ *This class<code> FriendClimbingPieChart</code>. implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ * 
+ * */
 public class FriendClimbingPieChart extends JPanel {
 private static final long serialVersionUID = 1L;
 	
@@ -30,7 +40,11 @@ private static final long serialVersionUID = 1L;
 	private ArrayList<Workout> workoutList2;
 	@SuppressWarnings("unused")
 	private User u1,u2;
-	
+	/**
+	 *  Builders of the class FriendPieChart
+	 * @param workoutListF1
+	 * @param workoutListF2
+	 */
 	public  FriendClimbingPieChart (ArrayList<Workout> workoutListF1,ArrayList<Workout> workoutListF2) 
 	{
 		this.setLayout(new BorderLayout());
@@ -45,7 +59,9 @@ private static final long serialVersionUID = 1L;
 		
 		this.add(new ChartPanel(pieGraph), BorderLayout.CENTER);
 	}
-	
+	/**
+	 * Initialization of data to build the graph.
+	 */
 	public void initDataset() 
 	{
 		int yellow = 0, blue = 0, orange= 0, white = 0, grey = 0, red=0;

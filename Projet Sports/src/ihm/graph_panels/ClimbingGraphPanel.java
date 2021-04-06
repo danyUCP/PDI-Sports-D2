@@ -31,7 +31,17 @@ import manager.WorkoutManager;
 
 
 
-
+/**
+ * <code>ClimbingGraphPanel </code> Is a class that implements the graphical ihm for adding,
+ *  editing and deleting sessions for the climbing sport in the database.
+ * <strong>NOTE:</strong>
+ *This class<code>ClimbingGraphPanel</code> implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ */
 @SuppressWarnings("serial")
 public class ClimbingGraphPanel extends JPanel {
 	private User user;
