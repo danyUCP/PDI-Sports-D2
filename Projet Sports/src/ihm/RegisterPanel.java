@@ -252,7 +252,7 @@ public void paintComponent(Graphics g)
 					Transaction persistTransaction1 = session.beginTransaction();
 					User u1 = new User(login,mdp,firstname,lastName,gender,age1,size1,weight1);
 					session.save(u1);
-					
+					retour();
 				
 				}
 			
