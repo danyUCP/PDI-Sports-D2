@@ -43,8 +43,8 @@ public class MainFrame extends JFrame
 	private SportTextField pseudo;
 	private JPasswordField mdp1;
 	
-	private int width = 845;//800;
-	private int height = 460;//500;
+	private int width = 845;
+	private int height = 460;
 	
 	
 	/**

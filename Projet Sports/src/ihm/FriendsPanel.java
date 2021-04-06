@@ -53,6 +53,7 @@ public class FriendsPanel extends JPanel {
 	JLabel graphLabel,lblNewLabel;
 	String listElem[]= {}; 
 	JPanel friends,friends_1, south;
+	@SuppressWarnings("unused")
 	private WorkoutManager wm;
 	User use,u2;
 	int mode;
@@ -64,6 +65,7 @@ public class FriendsPanel extends JPanel {
 	 */
 	
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public FriendsPanel(User use) {
 		
 		this.use = use;

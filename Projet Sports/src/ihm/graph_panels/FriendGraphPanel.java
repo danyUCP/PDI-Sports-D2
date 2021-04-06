@@ -186,8 +186,15 @@ public class FriendGraphPanel  extends JPanel{
 		workoutNumber.setLayout(new GridLayout(2, 1));
 		workoutNumber.setBackground(new Color(28, 28, 28));
 		workoutNumber.add(new SportLabel("Visualiser : "));
-		getUnionWorkout(u,user);
-		String[] types = {"Toutes séances", "1 séance", "5 séances", "10 séances"};
+		
+		String same[]=sameWorkout();
+		System.out.println(same.length);
+		String[] types =new String[same.length];
+		for(int i=0;i<same.length;i++) {
+			if(!same[i].isEmpty()) {
+				types[i]=same[i];
+			}
+		}
 		workoutNumberBox = new SportComboBox(types);
 		workoutNumber.add(workoutNumberBox);
 
@@ -208,6 +215,143 @@ public class FriendGraphPanel  extends JPanel{
 		graphChoice.add(choicePanel, BorderLayout.CENTER);
 		graphChoice.add(footer, BorderLayout.SOUTH);
 
+	}
+	
+	public String[] sameWorkout() {
+		UserManager find =new UserManager();
+		
+		 ArrayList<User> listFriends1=find.findUsersFromSport(1);
+		 ArrayList<User> listFriends2=find.findUsersFromSport(2);
+		 ArrayList<User> listFriends3=find.findUsersFromSport(3);
+		 ArrayList<User> listFriends4=find.findUsersFromSport(4);
+		 ArrayList<User> listFriends5=find.findUsersFromSport(6);
+		 ArrayList<User> listFriends6=find.findUsersFromSport(5);
+		
+		
+		
+		@SuppressWarnings("unused")
+		String a1 = " ",a2=" ",a3=" ",a4=" ",a5=" ",a6=" ";
+		int u1=0,u2=0,u3=0,u4=0,u5=0,u6=0,u7=0,u8=0,u9=0,u10=0,u11=0,u12=0;
+		for(int i=0;i<listFriends6.size();i++) {
+			
+			if(!listFriends6.isEmpty()) {
+					User uv= (User) listFriends6.get(i);
+					if(uv.getFirstname().equals(user.getFirstname())) {
+						u1=1;
+					}
+					
+					if(uv.getFirstname().equals(u.getFirstname())) {
+						u2=1;
+					}
+				}
+				
+		}
+		if(u1!=0&&u2!=0) {
+			a5="Natation";
+			u1=0;
+			u2=0;
+		}
+		
+		if(!listFriends1.isEmpty()) {
+				for(int i=0;i<listFriends1.size();i++) {
+					User uv= (User) listFriends1.get(i);
+					if(uv.getFirstname().equals(user.getFirstname())) {
+						u3=1;
+					}
+					
+					if(uv.getFirstname().equals(u.getFirstname())) {
+						u4=1;
+					}
+				}
+			
+		}
+		if(u3!=0&u4!=0) {
+			a1="Jogging";
+			u3=0;
+			u4=0;
+		}
+		
+		if(!listFriends2.isEmpty()) {
+				for(int i=0;i<listFriends2.size();i++) {
+					User uv= (User) listFriends2.get(i);
+					if(uv.getFirstname().equals(user.getFirstname())) {
+						u5=1;
+					}
+					
+					if(uv.getFirstname().equals(u.getFirstname())) {
+						u6=1;
+					}
+				}
+				
+		}
+		if(u5!=0&u6!=0) {
+			a2="Escalade";
+			u5=0;
+			u6=0;
+		}
+		
+		if(!listFriends3.isEmpty()) {
+				for(int i=0;i<listFriends3.size();i++) {
+					User uv= (User) listFriends3.get(i);
+					if(uv.getFirstname().equals(user.getFirstname())) {
+						u7=1;
+					}
+					
+					if(uv.getFirstname().equals(u.getFirstname())) {
+						u8=1;
+					}
+					
+				}
+				
+		}
+		if(u7!=0&u8!=0) {
+			a3="Aviron";
+			u7=0;
+			u8=0;
+		}
+		
+		if(!listFriends4.isEmpty()) {
+				for(int i=0;i<listFriends4.size();i++) {
+					User uv= (User) listFriends4.get(i);
+					if(uv.getFirstname().equals(user.getFirstname())) {
+						u9=1;
+					}
+					
+					if(uv.getFirstname().equals(u.getFirstname())) {
+						u10=1;
+					}
+					
+				}
+		}
+		if(u9!=0&u10!=0) {
+			a4="musculation";
+			u9=0;
+			u10=0;
+		}
+		
+		
+		if(!listFriends5.isEmpty()) {
+				for(int i=0;i<listFriends5.size();i++) {
+					User uv= (User) listFriends5.get(i);
+					if(uv.getFirstname().equals(user.getFirstname())) {
+						u11=1;
+					}
+					
+					if(uv.getFirstname().equals(u.getFirstname())) {
+						u12=1;
+					}
+					
+				}
+		}
+		if(u11!=0&u12!=0) {
+			a6=" Tir à l'arc";
+			u11=0;
+			u12=0;
+		}
+		
+		String a[]= {a1,a2,a3,a4,a5,a6};
+		
+		return a;
 	}
 	
 	public void close()
@@ -246,112 +390,6 @@ public class FriendGraphPanel  extends JPanel{
 		}
 	}
 	
-	@SuppressWarnings({ "null", "unlikely-arg-type" })
-	public String[] getUnionWorkout(User u1,User u2) {
-		UserManager m=new UserManager();
-		String[] list1= {},liste2= {},liste3= {},liste4= {},liste5= {},liste6= {};
-		
-		ArrayList<User> result=m.findUsersFromSport(1);
-		ArrayList<User> result2=m.findUsersFromSport(2);
-		ArrayList<User> result3=m.findUsersFromSport(3);
-		ArrayList<User> result4=m.findUsersFromSport(4);
-		ArrayList<User> result5=m.findUsersFromSport(5);
-		ArrayList<User> result6=m.findUsersFromSport(6);
-		
-		System.out.println("taille des arrayliste: "+result.size()+result2.size()+result3.size()+result4.size()+result5.size()+result6.size());
 	
-		for(int i=0;i<result.size();i++) {
-			System.out.println("les sports"+result.get(i));
-			if(result.contains(u1.getFirstname())||result.get(i)==u2) {
-				System.out.println("yes");
-			}
-		}
-		if(result.contains(u1))
-			System.out.println("yes");
-		if(result.contains(u1)&&result.contains(u2)) {
-			list1= new String[]{"Jogging"};
-			System.out.println("longeur liste1: "+list1.length );
-		}
-		if(result2.contains(u1)&&result2.contains(u2)) {
-			liste2= new String[]{"Escalade"};
-			System.out.println("longeur liste2: "+list1.length );
-		}
-		if(result3.contains(u1)&&result3.contains(u2)) {
-			liste3= new String[]{"Aviron"};
-			System.out.println("longeur liste3: "+list1.length );
-		}
-		if(result4.contains(u1)&&result4.contains(u2)) {
-			liste4= new String[]{"Musculation"};
-			System.out.println("longeur liste4: "+list1.length );
-		}
-		if(result5.contains(u1)&&result5.contains(u2)) {
-			liste5=new String[] {"Natation"};
-			System.out.println("longeur liste5: "+list1.length );
-		}
-		if(result6.contains(u1)&&result6.contains(u2)) {
-			liste6=new String[] {"Tir à l'arc"};
-			System.out.println("longeur liste6: "+list1.length );
-		}
-		
-		int len = list1.length + liste2.length+ liste3.length+ liste4.length+liste5.length+ liste6.length;
-		System.out.println("total longeur: "+len);
-		String[] total=new String[len];
-		
-		int position = 0;
-		
-		if( list1!=null) {
-			for (String object :  list1)
-	        {
-				total[position] = object;
-	            position++;
-	        }
-		}
-		
-		if( liste2!=null) {
-			for (String object :  liste2)
-	        {
-				total[position] = object;
-	            position++;
-	        }
-		}
-		
-		if( liste3!=null) {
-			for (String object :  liste3)
-	        {
-				total[position] = object;
-	            position++;
-	        }
-		}
-		
-		if( liste4!=null) {
-			for (String object :  liste4)
-	        {
-				total[position] = object;
-	            position++;
-	        }
-		}
-		
-		if( liste5!=null) {
-			for (String object :  liste5)
-	        {
-				total[position] = object;
-	            position++;
-	        }
-		}
-		
-		if( liste6!=null) {
-			for (String object :  liste6)
-	        {
-				total[position] = object;
-	            position++;
-	        }
-		}
-		
-		for(int k=0;k<total.length;k++) {
-			System.out.println(total[k]);
-		}		
-		
-		return total;
-	}
 	
 }
