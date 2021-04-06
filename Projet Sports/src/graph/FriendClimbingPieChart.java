@@ -53,7 +53,7 @@ private static final long serialVersionUID = 1L;
 		this.workoutList2 = workoutListF2;
 		
 		initDataset();
-		pieGraph = ChartFactory.createPieChart3D("Répartition des types de natation", dataset, true, true, false);
+		pieGraph = ChartFactory.createPieChart3D("Répartition des séances d'escalade", dataset, true, true, false);
 
 		formatGraph();
 		

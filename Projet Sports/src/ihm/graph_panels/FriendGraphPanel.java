@@ -142,7 +142,7 @@ public class FriendGraphPanel  extends JPanel{
 	{	
 		graphPanel.setLayout(new BorderLayout());
 
-		graphPanel.add(new SwimmingSummaryBar(wm.getWorkoutList(5)), BorderLayout.CENTER);
+		graphPanel.add(new FriendSummaryBar(wm.getWorkoutList(5), wm2.getWorkoutList(5)), BorderLayout.CENTER);
 	}
 	
 	public void initHeader()
