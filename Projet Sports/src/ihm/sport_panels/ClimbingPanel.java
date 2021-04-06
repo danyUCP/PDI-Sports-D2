@@ -203,7 +203,7 @@ public class ClimbingPanel extends JPanel {
 		add(dateBox);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(ClimbingPanel.class.getResource("/images/climming.jpg")));
+		lblNewLabel_1.setIcon(new ImageIcon("./images/climming.jpg"));
 		lblNewLabel_1.setBounds(330, 0, 626, 520); 
 		add(lblNewLabel_1);
 		

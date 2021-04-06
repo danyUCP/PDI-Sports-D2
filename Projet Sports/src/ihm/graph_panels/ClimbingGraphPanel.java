@@ -104,7 +104,7 @@ public class ClimbingGraphPanel extends JPanel {
 		
 		try
 		{
-			background = ImageIO.read(new File("resources/images/backImage.jpg"));
+			background = ImageIO.read(new File("./resources/images/backImage.jpg"));
 		}
 		catch(IOException e)
 		{
