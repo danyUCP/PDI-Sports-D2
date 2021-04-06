@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -203,6 +204,7 @@ public class RegisterPanel extends JPanel {
 		panel_1.add(cancel);
 		
 		btnSubmit.addActionListener(new Add_Workout());
+		cancel.addActionListener(new Add_Workout());
 		
 		try
 		{
@@ -264,11 +266,10 @@ public void paintComponent(Graphics g)
 	
 	public void retour()
 	{
-		MainFrame.getGlobal().removeAll();
-		MainFrame.getGlobal().add(MainFrame.getGlobal());
-		MainFrame.getGlobal().revalidate();
-		MainFrame.getGlobal().repaint();
+		MainFrame frame = (MainFrame) (SwingUtilities.getRoot(MainFrame.getGlobal()));
 		
+		this.removeAll();
+		frame.resetHome();
 	}
 	
 		public int Convettexttomesure(String text) {
