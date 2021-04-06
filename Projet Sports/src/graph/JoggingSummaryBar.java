@@ -16,6 +16,17 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import data.JoggingWorkout;
 import data.Workout;
 
+/**
+ * <code>JoggingSummaryBar</code>Is a class that builds the summary graph of jogging workout.
+ * <strong>NOTE:</strong>
+ *This class<code>JoggingSummaryBar</code>. implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ * 
+ * */
 @SuppressWarnings("serial")
 public class JoggingSummaryBar extends JPanel
 {
@@ -23,7 +34,12 @@ public class JoggingSummaryBar extends JPanel
 	private DefaultCategoryDataset dataset;
 
 	private ArrayList<Workout> workoutList;
-	
+	/**
+	 * Builders of the class JoggingSummaryBar
+	 * @param workoutList
+	 * @param choice
+	 * @param choice2
+	 */
 	public JoggingSummaryBar(ArrayList<Workout> workoutList,int choice,int choice2) 
 	{
 		this.setLayout(new BorderLayout());
@@ -41,7 +57,9 @@ public class JoggingSummaryBar extends JPanel
 		
 		this.add(new ChartPanel(barGraph), BorderLayout.CENTER);
 	}
-	
+	/**
+	 * Initialization of data to build the graph.
+	 */
 	public void initDataset(int choice,int choice2) 
 	{
 		dataset = new DefaultCategoryDataset();

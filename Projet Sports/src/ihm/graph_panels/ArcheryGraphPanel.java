@@ -28,11 +28,23 @@ import ihm.components.SportButton;
 import ihm.components.SportComboBox;
 import ihm.components.SportLabel;
 import manager.WorkoutManager;
-
+/**
+ * <code>ArcheryGraphPanel </code> Is a class that implements the graphical ihm for adding,
+ *  editing and deleting sessions for the archery sport in the database.
+ * <strong>NOTE:</strong>
+ *This class<code>ArcheryGraphPanel</code> implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ */
+@SuppressWarnings("serial")
 public class ArcheryGraphPanel extends JPanel
 {
 	private User user;
 	private WorkoutManager wm;
+	@SuppressWarnings("unused")
 	private int mode;
 
 	private JPanel section, header, content, footer;

@@ -16,6 +16,17 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import data.RowingWorkout;
 import data.Workout;
 
+/**
+ * <code>Rowing SummaryBar</code>Is a class that builds the summary graph of rowing workout.
+ * <strong>NOTE:</strong>
+ *This class<code>RowingSummaryBar</code>. implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ * 
+ * */
 @SuppressWarnings("serial")
 public class RowingSummaryBar extends JPanel
 {
@@ -23,7 +34,12 @@ public class RowingSummaryBar extends JPanel
 	private DefaultCategoryDataset dataset;
 
 	private ArrayList<Workout> workoutList;
-	
+	/**
+	 * Builders of the class RowingSummaryBar
+	 * @param workoutList
+	 * @param choice
+	 * @param choice2
+	 */
 	public RowingSummaryBar(ArrayList<Workout> workoutList,int choice,int choice2) 
 	{
 		this.setLayout(new BorderLayout());
@@ -74,7 +90,9 @@ public class RowingSummaryBar extends JPanel
 		}
 	
 	}
-	
+	/**
+	 * Initialization of data to build the graph.
+	 */
 	public void formatGraph()
 	{
 		barGraph.setBackgroundPaint(new Color(20, 20, 20));

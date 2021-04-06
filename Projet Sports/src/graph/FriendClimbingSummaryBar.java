@@ -36,7 +36,7 @@ public class FriendClimbingSummaryBar extends JPanel{
 	private ArrayList<Workout> workoutList;
 	private ArrayList<Workout> workoutList2;
 	/**
-	 * Builders of the class FriendSummaryBar
+	 * Builders of the class FriendClimbingSummaryBar
 	 * @param workoutList
 	 * @param workoutList2
 	 */

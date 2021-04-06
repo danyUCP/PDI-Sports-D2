@@ -20,7 +20,7 @@ import data.ClimbingWorkout;
 import data.User;
 import data.Workout;
 /**
- * <code> FriendClimbingPieChart</code>Is a class that builds the pie chart of friend for the climbingWorkout.
+ * <code> FriendClimbingPieChart</code>Is a class that builds the pie chart of friend for the climbing workout.
  * <strong>NOTE:</strong>
  *This class<code> FriendClimbingPieChart</code>. implements all the components of the associated graphical ihm .
  *
@@ -41,7 +41,7 @@ private static final long serialVersionUID = 1L;
 	@SuppressWarnings("unused")
 	private User u1,u2;
 	/**
-	 *  Builders of the class FriendPieChart
+	 *  Builders of the class FriendClimbingPieChart
 	 * @param workoutListF1
 	 * @param workoutListF2
 	 */

@@ -19,7 +19,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import data.ClimbingWorkout;
 import data.Workout;
 /**
- * <code>ClimbingWorkoutPie </code>Is a class that creates pie chart for swimming.
+ * <code>ClimbingWorkoutPie </code>Is a class that creates pie chart for climbing.
  * <strong>NOTE:</strong>
  *This class<code>ClimbingWorkoutPie</code>. implements all the components of the associated graphical ihm .
  *
@@ -29,10 +29,7 @@ import data.Workout;
  * @author Seruche MPOU EKOUYA
  */
 @SuppressWarnings("serial")
-/**
- * Builders of the class ClimbingWorkoutPie 
- * @param workoutList
- */
+
 public class ClimbingWorkoutPie extends JPanel  {
 	
 	private JFreeChart pieGraph;
@@ -40,6 +37,10 @@ public class ClimbingWorkoutPie extends JPanel  {
 
 	private ArrayList<Workout> workoutList;
 	
+	/**
+	 * Builders of the class ClimbingWorkoutPie 
+	 * @param workoutList
+	 */
 	public ClimbingWorkoutPie(ArrayList<Workout> workoutList) {
 		this.setLayout(new BorderLayout());
 

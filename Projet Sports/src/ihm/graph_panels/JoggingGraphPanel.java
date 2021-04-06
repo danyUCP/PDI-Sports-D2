@@ -30,11 +30,23 @@ import ihm.components.SportButton;
 import ihm.components.SportComboBox;
 import ihm.components.SportLabel;
 import manager.WorkoutManager;
-
+/**
+ * <code>JoggingGraphPanel </code> Is a class that implements the graphical ihm for adding,
+ *  editing and deleting sessions for the jogging sport in the database.
+ * <strong>NOTE:</strong>
+ *This class<code>JoggingGraphPanel</code> implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ */
+@SuppressWarnings("serial")
 public class JoggingGraphPanel extends JPanel
 {
 	private User user;
 	private WorkoutManager wm;
+	@SuppressWarnings("unused")
 	private int mode;
 
 	private JPanel section, header, content, footer;
@@ -47,6 +59,7 @@ public class JoggingGraphPanel extends JPanel
 	private SportLabel uName;
 
 	private Image background;
+	@SuppressWarnings("unused")
 	private String text;
 
 	private Dimension dim;

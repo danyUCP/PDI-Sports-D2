@@ -19,7 +19,17 @@ import org.jfree.data.general.DefaultPieDataset;
 import data.Exercise;
 import data.MusculationWorkout;
 import data.Workout;
-
+/**
+ * <code>MuscuBalancePie</code>Is a class that builds the summary graph of musculation workout.
+ * <strong>NOTE:</strong>
+ *This class<code>MuscuBalancePie</code>. implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ * 
+ * */
 @SuppressWarnings("serial")
 public class MuscuBalancePie extends JPanel
 {
@@ -27,7 +37,10 @@ public class MuscuBalancePie extends JPanel
 	private DefaultPieDataset dataset;
 
 	private ArrayList<Workout> workoutList;
-	
+	/**
+	 * Builders of the class MuscuBalancePie
+	 * @param workoutList
+	 */
 	public MuscuBalancePie(ArrayList<Workout> workoutList) 
 	{
 		this.setLayout(new BorderLayout());
@@ -41,7 +54,9 @@ public class MuscuBalancePie extends JPanel
 		
 		this.add(new ChartPanel(pieGraph), BorderLayout.CENTER);
 	}
-	
+	/**
+	 * Initialization of data to build the graph.
+	 */
 	public void initDataset() 
 	{
 		int pushUps = 0, pullUps = 0, squats = 0, abs = 0;

@@ -18,7 +18,16 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import data.ArcheryWorkout;
 import data.Workout;
-
+/**
+ * <code>ArcheryPrecisionPie </code>Is a class that creates pie chart for archery.
+ * <strong>NOTE:</strong>
+ *This class<code>ArcheryPrecisionPie</code>. implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ */
 @SuppressWarnings("serial")
 public class ArcheryPrecisionPie extends JPanel
 {
@@ -26,7 +35,10 @@ public class ArcheryPrecisionPie extends JPanel
 	private DefaultPieDataset dataset;
 
 	private ArrayList<Workout> workoutList;
-	
+	/**
+	 * Builders of the class ArcheryPrecisionPie
+	 * @param workoutList
+	 */
 	public ArcheryPrecisionPie(ArrayList<Workout> workoutList) 
 	{
 		this.setLayout(new BorderLayout());
@@ -40,7 +52,9 @@ public class ArcheryPrecisionPie extends JPanel
 		
 		this.add(new ChartPanel(pieGraph), BorderLayout.CENTER);
 	}
-	
+	/**
+	 * Initialization of data to build the graph.
+	 */
 	public void initDataset() 
 	{
 		int yellow = 0, red = 0, blue = 0, black = 0, white = 0, misses = 0;

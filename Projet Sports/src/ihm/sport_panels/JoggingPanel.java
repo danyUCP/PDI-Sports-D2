@@ -344,6 +344,7 @@ public class JoggingPanel extends JPanel
 				
 				
 				//String duration_result=durationField.getText();
+				@SuppressWarnings("unused")
 				String datess=dateField.toString();
 				
 				String distance=distanceField.getText();
@@ -383,10 +384,12 @@ public class JoggingPanel extends JPanel
 	private class ExercisePanel extends JPanel
 	{
 		private SportTextField setsField, repsField;
+		@SuppressWarnings("unused")
 		private JPanel type, sets, reps;
 		private JComboBox<String> typeList;
 
 		
+		@SuppressWarnings("unused")
 		public Exercise getExerciseData()
 		{
 			Exercise e = new Exercise();
@@ -398,6 +401,7 @@ public class JoggingPanel extends JPanel
 			return e;
 		}
 		
+		@SuppressWarnings("unused")
 		public void setExerciseData(Exercise e)
 		{
 			switch(e.getType())

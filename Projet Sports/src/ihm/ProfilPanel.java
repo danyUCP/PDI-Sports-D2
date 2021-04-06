@@ -39,7 +39,9 @@ public class ProfilPanel extends JPanel {
 	private User user;
 
 	private JPanel section, menu, header, footer, content, profile;
+	@SuppressWarnings("unused")
 	private JPanel userPanel, history;
+	@SuppressWarnings("unused")
 	private MenuButton profileButton, friendsButton, deconnexionButton;
 	private MenuButton joggButton, climbButton, rowButton, muscuButton, swimButton, archButton;
 	//private ProfileLabel uName, uAge, uSize, uWeight, dateLabel, hourLabel, lastSessionLabel;
@@ -216,10 +218,12 @@ public class ProfilPanel extends JPanel {
 		public void mouseReleased(MouseEvent e) {}
 	}
 	
+	@SuppressWarnings({ "unused", "serial" })
 	private class ProfileLabel extends JLabel
 	{
 		private String texte;
 		
+		@SuppressWarnings("unused")
 		public ProfileLabel(String texte)
 		{
 			super(texte);
@@ -234,6 +238,7 @@ public class ProfilPanel extends JPanel {
 		    this.setHorizontalAlignment(SwingConstants.LEFT);
 		}
 		
+		@SuppressWarnings("unused")
 		public ProfileLabel(String texte, int style, int size)
 		{
 			super(texte);

@@ -23,6 +23,7 @@ public class Compare extends ApplicationFrame {
 		super( title ); 
 	      setContentPane(createDemoPanel( ));
 	}
+	@SuppressWarnings("deprecation")
 	private static PieDataset createDataset( ) {
 	      DefaultPieDataset dataset = new DefaultPieDataset( );
 	      dataset.setValue( "Duree Ami 1" , new Double( 20 ) );  

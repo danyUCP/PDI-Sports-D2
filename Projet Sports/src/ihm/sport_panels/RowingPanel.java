@@ -50,6 +50,7 @@ public class RowingPanel extends JPanel
 	private SportTextField dateField, durationField,distanceField,paddle_strokesField;
 	private JPanel date, duration, dataPanel, listPanel,distance,paddle_strokes;
 	private ArrayList<ExercisePanel> exerciseList;
+	@SuppressWarnings("unused")
 	private JLabel messagelabel;
 	
 	private Dimension dim;
@@ -393,11 +394,14 @@ public class RowingPanel extends JPanel
 	private class ExercisePanel extends JPanel
 	{
 		private SportTextField setsField, repsField;
+		@SuppressWarnings("unused")
 		private JPanel type, sets, reps;
+		@SuppressWarnings("unused")
 		private JComboBox<String> typeList;
 
 	
 		
+		@SuppressWarnings("unused")
 		public void setExerciseData(Exercise e)
 		{
 	

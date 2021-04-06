@@ -15,7 +15,17 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import data.MusculationWorkout;
 import data.Workout;
-
+/**
+ * <code>MuscuSummaryBar</code>Is a class that builds the summary graph of musculation workout.
+ * <strong>NOTE:</strong>
+ *This class<code>MuscuSummaryBar</code>. implements all the components of the associated graphical ihm .
+ *
+ * @author  Alexander BUBB
+ * @author Daniel François
+ * @author Julien VEYSSEYRE
+ * @author Seruche MPOU EKOUYA
+ * 
+ * */
 @SuppressWarnings("serial")
 public class MuscuSummaryBar extends JPanel
 {
@@ -23,7 +33,10 @@ public class MuscuSummaryBar extends JPanel
 	private DefaultCategoryDataset dataset;
 
 	private ArrayList<Workout> workoutList;
-	
+	/**
+	 * Builders of the class MuscuSummaryBar
+	 * @param workoutList
+	 */
 	public MuscuSummaryBar(ArrayList<Workout> workoutList) 
 	{
 		this.setLayout(new BorderLayout());
@@ -37,7 +50,9 @@ public class MuscuSummaryBar extends JPanel
 		
 		this.add(new ChartPanel(barGraph), BorderLayout.CENTER);
 	}
-	
+	/**
+	 * Initialization of data to build the graph.
+	 */
 	public void initDataset() 
 	{
 		dataset = new DefaultCategoryDataset();
