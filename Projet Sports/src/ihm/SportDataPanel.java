@@ -395,7 +395,7 @@ public class SportDataPanel extends JPanel
 					MainFrame.getGlobal().add(new MusculationPanel(user, getWorkout()));
 					break;
 				case 5:
-					MainFrame.getGlobal().add(new SwimmingPanel(user));
+					MainFrame.getGlobal().add(new SwimmingPanel(user,getWorkout()));
 					break;
 				case 6:
 					MainFrame.getGlobal().add(new ArcheryPanel(user, getWorkout()));

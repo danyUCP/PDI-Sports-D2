@@ -128,7 +128,7 @@ public class ClimbingPanel extends JPanel {
 		
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(ClimbingPanel.class.getResource("/images/climming.jpg")));
+		lblNewLabel_1.setIcon(new ImageIcon("./resources/images/climming.jpg"));
 		lblNewLabel_1.setBounds(330, 0, 626, 520); 
 		add(lblNewLabel_1);
 		

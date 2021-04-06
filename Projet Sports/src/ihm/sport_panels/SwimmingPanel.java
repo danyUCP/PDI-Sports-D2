@@ -140,7 +140,7 @@ public class SwimmingPanel extends JPanel{
 		
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(ClimbingPanel.class.getResource("/images/piscine.jpg")));
+		lblNewLabel_1.setIcon(new ImageIcon("./resources/images/piscine.jpg"));
 		lblNewLabel_1.setBounds(330, 0, 626, 520); 
 		add(lblNewLabel_1);
 		
@@ -208,9 +208,8 @@ public class SwimmingPanel extends JPanel{
 		papillon_2_1.setText("" + w.getDuration());
 		papillon_2_1.setBounds(130, 375, 100, 30);
 		add(papillon_2_1);
-		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(ClimbingPanel.class.getResource("/images/piscine.jpg")));
+		lblNewLabel_1.setIcon(new ImageIcon("./resources/images/piscine.jpg"));
 		lblNewLabel_1.setBounds(330, 0, 626, 520); 
 		add(lblNewLabel_1);
 		

@@ -27,7 +27,9 @@ public class TestDataSample
 
 		Session session = DBConnection.getSession();
 		Transaction persistTransaction1 = session.beginTransaction();
-
+		
+		Date dates=Date.valueOf("2021-04-05"); 
+		
 		User u1 = new User("Alexander","1311","Alexander","Bubb","M",20,186,65);
 		session.save(u1);
 		
@@ -37,23 +39,23 @@ public class TestDataSample
 		User u3 = new User("Julien","1311","Julien","Veysseyre","M",20,126,138);
 		session.save(u3);
 		
-		Workout w1 = new JoggingWorkout(new Date(0), 50, 10);
+		Workout w1 = new JoggingWorkout(dates, 50, 10);
 		w1.setUser(u1);
 		session.save(w1);
 		
-		Workout w2 = new SwimmingWorkout(new Date(0), 120, 10, 15, 5, 20);
+		Workout w2 = new SwimmingWorkout(dates, 120, 10, 15, 5, 20);
 		w2.setUser(u1);
 		session.save(w2);
 		
-		Workout w6 = new SwimmingWorkout(new Date(0), 345, 24, 34, 7, 80);
+		Workout w6 = new SwimmingWorkout(dates, 345, 24, 34, 7, 80);
 		w6.setUser(u2);
 		session.save(w6);
 		
-		Workout w7 = new SwimmingWorkout(new Date(0), 786, 16, 20, 10, 70);
+		Workout w7 = new SwimmingWorkout(dates, 786, 16, 20, 10, 70);
 		w7.setUser(u3);
 		session.save(w7);
 		
-		Workout w3 = new JoggingWorkout(new Date(0), 80, 20);
+		Workout w3 = new JoggingWorkout(dates, 80, 20);
 		w3.setUser(u1);
 		session.save(w3);
 		
@@ -99,4 +101,7 @@ public class TestDataSample
 	
 	}
 
+	
+	
+	
 }
