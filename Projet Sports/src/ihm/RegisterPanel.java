@@ -89,7 +89,7 @@ public class RegisterPanel extends JPanel {
 		panel.add(textFieldLogin);
 		textFieldLogin.setColumns(10);
 		
-		textField_1 =new JPasswordField(17);
+		textField_1 =new JPasswordField(14);
 		textField_1.setColumns(10);
 		textField_1.setBounds(148, 92, 181, 26);
 		textField_1.setBackground(new Color(50, 50, 50));
